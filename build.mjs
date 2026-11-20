@@ -90,6 +90,12 @@ function faqHtml(faq) {
 }
 const stripTags = (s) => s.replace(/<[^>]+>/g, "");
 
+function cabinImages(k) {
+  const d = join("public", k.gallery || "");
+  const files = k.gallery && existsSync(d) ? readdirSync(d).filter((f) => /\.(jpe?g|webp|png)$/i.test(f)).sort() : [];
+  return files.length ? files.map((f) => abs(`/${k.gallery}/${f}`)) : [abs(k.cardImage)];
+}
+
 function schemaFor(p) {
   const graph = [];
   const url = abs(p.path);
@@ -117,13 +123,16 @@ function schemaFor(p) {
       name: k.listingTitle || k.name,
       description: p.description,
       url: abs(p.path),
-      image: [abs(k.cardImage)],
+      identifier: k.identifier || p.path.replace(/\W+/g, "-").replace(/^-|-$/g, ""),
+      image: cabinImages(k),
       brand: { "@type": "Brand", name: site.name },
-      address: { "@type": "PostalAddress", addressLocality: "Island Park", addressRegion: "ID", addressCountry: "US" },
+      address: { "@type": "PostalAddress", addressLocality: "Island Park", addressRegion: "ID", ...(k.postalCode ? { postalCode: k.postalCode } : {}), addressCountry: "US" },
+      ...(k.geo ? { geo: { "@type": "GeoCoordinates", latitude: k.geo[0], longitude: k.geo[1] } } : {}),
       containsPlace: {
         "@type": "Accommodation",
         additionalType: "EntirePlace",
-        occupancy: { "@type": "QuantitativeValue", maxValue: k.guests },
+        occupancy: { "@type": "QuantitativeValue", value: k.guests },
+        ...(k.beds ? { bed: k.beds.map(([type, n]) => ({ "@type": "BedDetails", numberOfBeds: n, typeOfBed: type })) } : {}),
         numberOfBedrooms: k.bedrooms,
         numberOfBathroomsTotal: k.bathrooms,
         petsAllowed: !!k.petsAllowed,
