@@ -1,6 +1,6 @@
-# Whitebark Cabin, Island Park Idaho
+# Yellowstone Gateway Stays (yellowstonegatewaystays.com)
 
-Static, zero-dependency site that sends search and AI traffic to the Airbnb listing.
+Static, zero-dependency site for our Island Park, Idaho vacation rentals. It sends search and AI traffic to each rental's Airbnb listing.
 
 ## Edit
 - `site.json`: name, **domain (`url`)**, Airbnb link, rating, optional Plausible domain, Search Console token.
