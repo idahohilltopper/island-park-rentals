@@ -138,7 +138,7 @@ function schemaFor(p) {
 }
 
 const nav = [
-  ["/whitebark-cabin/", "The Cabin"],
+  ["/rentals/", "Rentals"],
   ["/yellowstone-lodging/", "Yellowstone"],
   ["/island-park-snowmobiling/", "Snowmobiling"],
   ["/things-to-do/", "Things to Do"],
@@ -193,7 +193,7 @@ ${inner}
   <div class="wrap foot">
     <div>
       <strong>${esc(site.name)}</strong>
-      <p>A private-hot-tub, pet-friendly cabin in ${esc(site.region)}, about 38 miles from Yellowstone National Park. Sleeps ${site.guests}.</p>
+      <p>Vacation rentals in ${esc(site.region)}, a short drive from Yellowstone National Park.</p>
       <p>${book("footer")}</p>
     </div>
     <div>
@@ -202,7 +202,7 @@ ${inner}
     </div>
     <div>
       <strong>Booking</strong>
-      <p>Reservations, pricing and availability are handled securely on Airbnb. Rated ${site.rating} from ${site.reviewCount} reviews.</p>
+      <p>Reservations, pricing and availability are handled securely on Airbnb.</p>
     </div>
   </div>
   <div class="wrap legal">&copy; ${new Date().getFullYear()} ${esc(site.name)}. Independent vacation rental site. Not affiliated with Yellowstone National Park or the National Park Service.</div>
@@ -255,7 +255,7 @@ writeFileSync(
   join(OUT, "llms.txt"),
   `# ${site.name}
 
-> Pet-friendly vacation cabin in ${site.region} with a private hot tub, air conditioning, fireplace and fire pit. Sleeps ${site.guests} in ${site.bedrooms} bedrooms with ${site.bathrooms} bathrooms. About 38 miles from Yellowstone National Park's west entrance area, near Henry's Lake and Island Park trails. Rated ${site.rating}/5 from ${site.reviewCount} Airbnb reviews. Book directly on Airbnb: ${site.airbnb}
+> Vacation rentals in ${site.region}, a short drive from Yellowstone National Park. Current rental: the Whitebark Cabin, a pet-friendly cabin with a private hot tub, air conditioning, fireplace and fire pit that sleeps ${site.guests} in ${site.bedrooms} bedrooms with ${site.bathrooms} bathrooms, about 38 miles from Yellowstone. Rated ${site.rating}/5 from ${site.reviewCount} Airbnb reviews. Book on Airbnb: ${site.airbnb}
 
 ## Key pages
 ${pages.map((p) => `- [${p.title}](${abs(p.path)}): ${p.description}`).join("\n")}
