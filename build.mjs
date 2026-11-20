@@ -39,9 +39,19 @@ function galleryFor(dir, label) {
   if (!files.length)
     return `<div class="gallery-empty"><p><strong>Photo gallery coming soon.</strong> Add .jpg or .webp files to <code>public/${esc(dir)}/</code> and they appear here automatically. Name each file for what it shows, for example <code>01-living-room-fireplace.jpg</code>.</p></div>`;
   return `<div class="gallery">${files
-    .map((f, i) => `<figure><img src="/${esc(dir)}/${esc(f)}" alt="${esc(`${altFromName(f)}, ${label}`)}" loading="${i < 2 ? "eager" : "lazy"}" decoding="async"></figure>`)
+    .map((f, i) => {
+      const sm = existsSync(join("public", dir, "sm", f));
+      const src = sm ? `/${esc(dir)}/sm/${esc(f)}` : `/${esc(dir)}/${esc(f)}`;
+      const set = sm ? ` srcset="/${esc(dir)}/sm/${esc(f)} 800w, /${esc(dir)}/${esc(f)} 1440w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"` : "";
+      return `<figure><img src="${src}"${set} alt="${esc(`${altFromName(f)}, ${label}`)}" ${i === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} decoding="async"></figure>`;
+    })
     .join("")}</div>`;
 }
+const css = readFileSync("public/style.css", "utf8")
+  .replace(/\/\*[\s\S]*?\*\//g, "")
+  .replace(/\s+/g, " ")
+  .replace(/\s*([{};])\s*/g, "$1")
+  .trim();
 const hasHero = existsSync("public/images/hero.jpg");
 const galleryFiles = cabins.reduce((n, p) => n + (existsSync(join("public", p.cabin.gallery || "")) ? readdirSync(join("public", p.cabin.gallery)).length : 0), 0);
 
@@ -60,12 +70,16 @@ const book = (loc, label = "Book on Airbnb", url = site.airbnb) =>
   `<a class="btn" href="${url}" target="_blank" rel="noopener" data-airbnb="${loc}">${label}</a>`;
 const star = `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 7 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.8l1.8-7.3L1.5 9.6 9 9z" fill="currentColor"/></svg>`;
 
+const smOf = (p) => {
+  const m = p.match(/^(.*)\/([^/]+)$/);
+  return m && existsSync(join("public", m[1], "sm", m[2])) ? `${m[1]}/sm/${m[2]}` : p;
+};
 const cabinCards = () =>
   `<div class="grid cabins">${cabins
     .map((c) => {
       const k = c.cabin;
       const rating = k.rating ? ` {{STAR}} ${k.rating} (${k.reviewCount} reviews)` : "";
-      return `<article class="card cabin-card"><a href="${c.path}"><img src="${k.cardImage}" alt="${esc(k.name)}, Island Park Idaho cabin" loading="lazy" decoding="async" width="1280" height="853"></a><div class="cbody"><h3><a href="${c.path}">${esc(k.name)}</a></h3><p>${esc(k.cardBlurb)}${rating}</p><p class="row"><a class="btn" href="${c.path}">View details</a> ${book("card-" + c.path.replace(/\W+/g, ""), "Book on Airbnb", k.airbnb)}</p></div></article>`;
+      return `<article class="card cabin-card"><a href="${c.path}"><img src="${smOf(k.cardImage)}" ${smOf(k.cardImage) !== k.cardImage ? `srcset="${smOf(k.cardImage)} 800w, ${k.cardImage} 1440w" sizes="(min-width: 1100px) 1060px, 100vw" ` : ""}alt="${esc(k.name)}, Island Park Idaho cabin" loading="lazy" decoding="async" width="1280" height="853"></a><div class="cbody"><h3><a href="${c.path}">${esc(k.name)}</a></h3><p>${esc(k.cardBlurb)}${rating}</p><p class="row"><a class="btn" href="${c.path}">View details</a> ${book("card-" + c.path.replace(/\W+/g, ""), "Book on Airbnb", k.airbnb)}</p></div></article>`;
     })
     .join("")}</div>`;
 
@@ -205,7 +219,7 @@ ${verify}
 <meta property="og:image" content="${abs("/images/og.jpg")}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
+<style>${css}</style>
 <script type="application/ld+json">${schemaFor(p)}</script>
 ${analytics}
 </head>
