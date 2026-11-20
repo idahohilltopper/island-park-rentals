@@ -186,6 +186,7 @@ function schemaFor(p) {
 const nav = [
   ["/rentals/", "Rentals"],
   ["/yellowstone-lodging/", "Yellowstone"],
+  ["/getting-to-island-park/", "Getting Here"],
   ["/island-park-snowmobiling/", "Snowmobiling"],
   ["/things-to-do/", "Things to Do"],
   ["/faq/", "FAQ"],
