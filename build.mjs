@@ -179,7 +179,7 @@ const nav = [
 function layout(p, inner) {
   const url = abs(p.path);
   const withBrand = `${p.title} | ${site.name}`;
-  const title = p.path === "/" || withBrand.length > 65 ? p.title : withBrand;
+  const title = p.path === "/" || withBrand.length > 60 ? p.title : withBrand;
   const analytics = site.plausibleDomain
     ? `<script defer data-domain="${esc(site.plausibleDomain)}" src="https://plausible.io/js/script.tagged-events.js"></script>`
     : "";
