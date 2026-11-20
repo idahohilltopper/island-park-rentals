@@ -251,7 +251,7 @@ ${inner}
       <p>Reservations, pricing and availability are handled securely on Airbnb.</p>
     </div>
   </div>
-  <div class="wrap legal">&copy; ${new Date().getFullYear()} ${esc(site.name)}. Independent vacation rental site. Not affiliated with Yellowstone National Park or the National Park Service.</div>
+  <div class="wrap legal">&copy; ${new Date().getFullYear()} ${esc(site.name)}. Independent vacation rental site. Not affiliated with Yellowstone National Park or the National Park Service. The home page background is an illustration; all cabin photos are of the actual properties.</div>
 </footer>
 <script>
 document.addEventListener("click",function(e){var a=e.target.closest("[data-airbnb]");if(!a)return;var l=a.getAttribute("data-airbnb");
