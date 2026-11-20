@@ -1,4 +1,4 @@
-:root{--green:#1f3a2e;--green2:#2c5440;--cream:#f6f1e7;--paper:#fffdf8;--wood:#b5651d;--wood-d:#8f4e12;--ink:#222a26;--mute:#5d6862;--line:#e3dccb;--r:14px}
+:root{--green:#1f3a2e;--green2:#2c5440;--cream:#f6f1e7;--paper:#fffdf8;--wood:#a35a15;--wood-d:#8f4e12;--ink:#222a26;--mute:#5d6862;--line:#e3dccb;--r:14px}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--paper)}
@@ -59,3 +59,4 @@ code{background:#eee7d6;padding:.1em .35em;border-radius:4px;font-size:.9em}
 .pbody .go{margin-top:auto;font-weight:700;color:var(--wood-d)}
 .credits{font-size:.82rem;color:var(--mute);padding-left:1.1em}.credits li{margin:.2em 0}
 .cabin-card{padding:0;overflow:hidden}.cabin-card img{width:100%;aspect-ratio:3/2;object-fit:cover}.cbody{padding:20px 22px 22px}.cbody h3 a{color:inherit;text-decoration:none}.cbody .row{margin-top:1em;display:flex;gap:10px;flex-wrap:wrap}.cabin-card .btn{padding:.55em 1.1em;font-size:.95rem}
+.site-footer a.btn{color:#fff}.site-footer a.btn:hover{color:#fff}
