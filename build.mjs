@@ -2,6 +2,7 @@
 // Usage: node build.mjs        -> writes ./dist
 // Pages live in src/pages/*.html and start with a JSON front-matter block between --- lines.
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, cpSync, rmSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
 
 const site = JSON.parse(readFileSync("site.json", "utf8"));
@@ -270,6 +271,38 @@ for (const p of pages) {
   mkdirSync(dir, { recursive: true });
   writeFileSync(join(dir, "index.html"), layout(p, inner));
 }
+
+// ---------- cache-busting: serve images from /assets/ with a content hash in the filename ----------
+// Browsers keep /assets/* for a year (immutable). Changing a photo changes its hash, so every visitor gets the new one.
+const imgRoot = join(OUT, "images");
+const assetMap = new Map();
+(function walk(dir, rel = "") {
+  if (!existsSync(dir)) return;
+  for (const name of readdirSync(dir, { withFileTypes: true })) {
+    const r = rel ? `${rel}/${name.name}` : name.name;
+    if (name.isDirectory()) walk(join(dir, name.name), r);
+    else if (/\.(jpe?g|png|webp|avif)$/i.test(name.name)) {
+      const data = readFileSync(join(dir, name.name));
+      const h = createHash("md5").update(data).digest("hex").slice(0, 8);
+      const hashed = r.replace(/(\.[^.]+)$/, `.${h}$1`);
+      const dest = join(OUT, "assets", hashed);
+      mkdirSync(join(dest, ".."), { recursive: true });
+      writeFileSync(dest, data);
+      assetMap.set(`/images/${r}`, `/assets/${hashed}`);
+    }
+  }
+})(imgRoot);
+const rewrite = (dir) => {
+  for (const e of readdirSync(dir, { withFileTypes: true })) {
+    const p = join(dir, e.name);
+    if (e.isDirectory()) { if (e.name !== "images" && e.name !== "assets") rewrite(p); }
+    else if (e.name.endsWith(".html")) {
+      const s = readFileSync(p, "utf8").replace(/\/images\/[^"'()\s,<>]+?\.(?:jpe?g|png|webp|avif)/gi, (m) => assetMap.get(m) || m);
+      writeFileSync(p, s);
+    }
+  }
+};
+rewrite(OUT);
 
 // 404
 writeFileSync(
