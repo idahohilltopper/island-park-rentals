@@ -14,45 +14,72 @@ mkdirSync(OUT, { recursive: true });
 if (existsSync("public")) cpSync("public", OUT, { recursive: true });
 
 // ---------- load pages ----------
-const pages = readdirSync("src/pages")
-  .filter((f) => f.endsWith(".html"))
-  .map((f) => {
-    const raw = readFileSync(join("src/pages", f), "utf8");
-    const m = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-    if (!m) throw new Error(`${f}: missing front matter`);
-    return { ...JSON.parse(m[1]), body: m[2] };
-  });
+const loadDir = (dir) =>
+  existsSync(dir)
+    ? readdirSync(dir)
+        .filter((f) => f.endsWith(".html"))
+        .map((f) => {
+          const raw = readFileSync(join(dir, f), "utf8");
+          const m = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+          if (!m) throw new Error(`${dir}/${f}: missing front matter`);
+          return { ...JSON.parse(m[1]), body: m[2] };
+        })
+    : [];
+const pages = [...loadDir("src/pages"), ...loadDir("src/cabins")];
+const cabins = pages.filter((p) => p.cabin);
 
-// ---------- gallery (auto from public/images/gallery) ----------
-const galleryDir = "public/images/gallery";
-const galleryFiles = existsSync(galleryDir)
-  ? readdirSync(galleryDir).filter((f) => /\.(jpe?g|webp|png|avif)$/i.test(f)).sort()
-  : [];
+// ---------- gallery (auto from a cabin's photo folder) ----------
 const altFromName = (f) =>
   f.replace(/\.[^.]+$/, "").replace(/^\d+[-_]?/, "").replace(/[-_]+/g, " ").trim() || "Cabin photo";
-const galleryHtml = galleryFiles.length
-  ? `<div class="gallery">${galleryFiles
-      .map((f, i) => {
-        const alt = `${altFromName(f)}, Island Park Idaho cabin`;
-        return `<figure><img src="/images/gallery/${esc(f)}" alt="${esc(alt)}" loading="${i < 2 ? "eager" : "lazy"}" decoding="async"></figure>`;
-      })
-      .join("")}</div>`
-  : `<div class="gallery-empty"><p><strong>Photo gallery coming soon.</strong> Add .jpg or .webp files to <code>public/images/gallery/</code> and they appear here automatically. Name each file for what it shows, for example <code>01-living-room-fireplace.jpg</code>.</p></div>`;
+function galleryFor(dir, label) {
+  const d = join("public", dir);
+  const files = existsSync(d)
+    ? readdirSync(d).filter((f) => /\.(jpe?g|webp|png|avif)$/i.test(f)).sort()
+    : [];
+  if (!files.length)
+    return `<div class="gallery-empty"><p><strong>Photo gallery coming soon.</strong> Add .jpg or .webp files to <code>public/${esc(dir)}/</code> and they appear here automatically. Name each file for what it shows, for example <code>01-living-room-fireplace.jpg</code>.</p></div>`;
+  return `<div class="gallery">${files
+    .map((f, i) => `<figure><img src="/${esc(dir)}/${esc(f)}" alt="${esc(`${altFromName(f)}, ${label}`)}" loading="${i < 2 ? "eager" : "lazy"}" decoding="async"></figure>`)
+    .join("")}</div>`;
+}
 const hasHero = existsSync("public/images/hero.jpg");
+const galleryFiles = cabins.reduce((n, p) => n + (existsSync(join("public", p.cabin.gallery || "")) ? readdirSync(join("public", p.cabin.gallery)).length : 0), 0);
+
+// ---------- photo credits (src/photo-credits.json) ----------
+const creditsFile = existsSync("src/photo-credits.json") ? JSON.parse(readFileSync("src/photo-credits.json", "utf8")) : [];
+const photoCredits = creditsFile.length
+  ? `<ul class="credits">${creditsFile
+      .filter((c) => c.slug !== "hero-candidate")
+      .map((c) => `<li>${esc(c.slug.replace(/-/g, " "))}: <a href="${esc(c.page)}" target="_blank" rel="noopener">${esc(c.author)}</a>, ${esc(c.license)}, via Wikimedia Commons</li>`)
+      .join("")}</ul>`
+  : "";
 
 // ---------- helpers ----------
 const abs = (p) => site.url.replace(/\/$/, "") + p;
-const book = (loc, label = "Book on Airbnb") =>
-  `<a class="btn" href="${site.airbnb}" target="_blank" rel="noopener" data-airbnb="${loc}">${label}</a>`;
+const book = (loc, label = "Book on Airbnb", url = site.airbnb) =>
+  `<a class="btn" href="${url}" target="_blank" rel="noopener" data-airbnb="${loc}">${label}</a>`;
 const star = `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 7 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.8l1.8-7.3L1.5 9.6 9 9z" fill="currentColor"/></svg>`;
 
-function render(body) {
+const cabinCards = () =>
+  `<div class="grid cabins">${cabins
+    .map((c) => {
+      const k = c.cabin;
+      const rating = k.rating ? ` {{STAR}} ${k.rating} (${k.reviewCount} reviews)` : "";
+      return `<article class="card cabin-card"><a href="${c.path}"><img src="${k.cardImage}" alt="${esc(k.name)}, Island Park Idaho cabin" loading="lazy" decoding="async" width="1280" height="853"></a><div class="cbody"><h3><a href="${c.path}">${esc(k.name)}</a></h3><p>${esc(k.cardBlurb)}${rating}</p><p class="row"><a class="btn" href="${c.path}">View details</a> ${book("card-" + c.path.replace(/\W+/g, ""), "Book on Airbnb", k.airbnb)}</p></div></article>`;
+    })
+    .join("")}</div>`;
+
+function render(body, p = {}) {
+  const k = p.cabin || {};
   return body
-    .replaceAll("{{GALLERY}}", galleryHtml)
-    .replace(/\{\{BOOK:([\w-]+)(?::([^}]+))?\}\}/g, (_, loc, label) => book(loc, label))
-    .replaceAll("{{RATING}}", String(site.rating))
-    .replaceAll("{{REVIEWS}}", String(site.reviewCount))
-    .replaceAll("{{AIRBNB}}", site.airbnb)
+    .replaceAll("{{GALLERY}}", galleryFor(k.gallery || "images/gallery", k.name ? `${k.name}, Island Park Idaho` : "Island Park Idaho cabin"))
+    .replaceAll("{{CABIN_CARDS}}", cabinCards())
+    .replaceAll("{{CABIN_COUNT}}", String(cabins.length))
+    .replace(/\{\{BOOK:([\w-]+)(?::([^}]+))?\}\}/g, (_, loc, label) => book(loc, label, k.airbnb || site.airbnb))
+    .replaceAll("{{RATING}}", String(k.rating ?? site.rating))
+    .replaceAll("{{REVIEWS}}", String(k.reviewCount ?? site.reviewCount))
+    .replaceAll("{{PHOTO_CREDITS}}", photoCredits)
+    .replaceAll("{{AIRBNB}}", k.airbnb || site.airbnb)
     .replaceAll("{{STAR}}", star);
 }
 
@@ -82,36 +109,31 @@ function schemaFor(p) {
       ],
     });
   }
-  if (p.type === "cabin") {
-    graph.push({
+  if (p.cabin) {
+    const k = p.cabin;
+    const v = {
       "@type": "VacationRental",
-      "@id": abs("/#cabin"),
-      name: site.listingTitle,
+      "@id": abs(p.path) + "#cabin",
+      name: k.listingTitle || k.name,
       description: p.description,
-      url: abs("/whitebark-cabin/"),
-      image: [abs("/images/hero.jpg")],
+      url: abs(p.path),
+      image: [abs(k.cardImage)],
       brand: { "@type": "Brand", name: site.name },
       address: { "@type": "PostalAddress", addressLocality: "Island Park", addressRegion: "ID", addressCountry: "US" },
       containsPlace: {
         "@type": "Accommodation",
         additionalType: "EntirePlace",
-        occupancy: { "@type": "QuantitativeValue", maxValue: site.guests },
-        numberOfBedrooms: site.bedrooms,
-        numberOfBathroomsTotal: site.bathrooms,
-        petsAllowed: true,
-        amenityFeature: [
-          "Private hot tub", "Air conditioning", "Full kitchen", "Wi-Fi", "In-unit washer and dryer",
-          "Indoor fireplace", "Backyard fire pit", "BBQ grill", "Free parking on premises",
-        ].map((name) => ({ "@type": "LocationFeatureSpecification", name, value: true })),
+        occupancy: { "@type": "QuantitativeValue", maxValue: k.guests },
+        numberOfBedrooms: k.bedrooms,
+        numberOfBathroomsTotal: k.bathrooms,
+        petsAllowed: !!k.petsAllowed,
+        amenityFeature: (k.amenities || []).map((name) => ({ "@type": "LocationFeatureSpecification", name, value: true })),
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: site.rating,
-        bestRating: 5,
-        reviewCount: site.reviewCount,
-      },
-      sameAs: [site.airbnb],
-    });
+      sameAs: [k.airbnb],
+    };
+    if (k.rating && k.reviewCount)
+      v.aggregateRating = { "@type": "AggregateRating", ratingValue: k.rating, bestRating: 5, reviewCount: k.reviewCount };
+    graph.push(v);
   }
   if (p.faq) {
     graph.push({
@@ -184,7 +206,7 @@ ${analytics}
   <div class="wrap bar">
     <a class="brand" href="/">${esc(site.name)}</a>
     <nav aria-label="Main">${nav.map(([h, l]) => `<a href="${h}"${h === p.path ? ' aria-current="page"' : ""}>${l}</a>`).join("")}</nav>
-    ${book("header", "Book")}
+    <a class="btn" href="/rentals/">Book</a>
   </div>
 </header>
 <main id="main">
@@ -194,8 +216,8 @@ ${inner}
   <div class="wrap foot">
     <div>
       <strong>${esc(site.name)}</strong>
-      <p>Vacation rentals in ${esc(site.region)}, a short drive from Yellowstone National Park.</p>
-      <p>${book("footer")}</p>
+      <p>Cabin rentals in ${esc(site.region)}, a short drive from Yellowstone National Park.</p>
+      <p><a class="btn" href="/rentals/">See our cabins</a></p>
     </div>
     <div>
       <strong>Explore</strong>
@@ -219,7 +241,7 @@ if(window.gtag)gtag("event","airbnb_click",{location:l,page:location.pathname});
 
 // ---------- write pages ----------
 for (const p of pages) {
-  let inner = render(p.body);
+  let inner = render(p.body, p);
   if (p.faq) inner = inner.replace("{{FAQ}}", faqHtml(p.faq));
   const dir = p.path === "/" ? OUT : join(OUT, p.path);
   mkdirSync(dir, { recursive: true });
@@ -256,14 +278,19 @@ writeFileSync(
   join(OUT, "llms.txt"),
   `# ${site.name}
 
-> Vacation rentals in ${site.region}, a short drive from Yellowstone National Park. Current rental: the Whitebark Cabin, a pet-friendly cabin with a private hot tub, air conditioning, fireplace and fire pit that sleeps ${site.guests} in ${site.bedrooms} bedrooms with ${site.bathrooms} bathrooms, about 38 miles from Yellowstone. Rated ${site.rating}/5 from ${site.reviewCount} Airbnb reviews. Book on Airbnb: ${site.airbnb}
+> Cabin rentals in ${site.region}, a short drive from Yellowstone National Park. All reservations, pricing and availability are on Airbnb.
+
+## Cabins
+${cabins
+  .map((c) => {
+    const k = c.cabin;
+    return `- [${k.name}](${abs(c.path)}): ${k.cardBlurb}${k.rating ? ` Rated ${k.rating}/5 from ${k.reviewCount} Airbnb reviews.` : ""} Book: ${k.airbnb}`;
+  })
+  .join("\n")}
 
 ## Key pages
-${pages.map((p) => `- [${p.title}](${abs(p.path)}): ${p.description}`).join("\n")}
-
-## Booking
-All reservations, availability and pricing are on Airbnb: ${site.airbnb}
+${pages.filter((p) => !p.cabin).map((p) => `- [${p.title}](${abs(p.path)}): ${p.description}`).join("\n")}
 `
 );
 
-console.log(`Built ${pages.length} pages + 404 to ${OUT}/ (gallery images: ${galleryFiles.length}, hero: ${hasHero})`);
+console.log(`Built ${pages.length} pages + 404 to ${OUT}/ (gallery images: ${galleryFiles}, hero: ${hasHero})`);
