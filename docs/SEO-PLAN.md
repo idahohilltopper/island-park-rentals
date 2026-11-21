@@ -28,3 +28,16 @@ are dominated by Tripadvisor, VRBO, Expedia and NPS, so we win the specific sear
 - Only publish facts we can source (NPS, Forest Service, state agencies, the Airbnb listing). Say "approximate" where sources differ.
 - Real photos for places and cabins. No invented images of real locations.
 - One topic per page, unique title under 60 characters and description under 160.
+
+## Competitor gap pages shipped (OpenSEO, Nov 2026)
+islandparkidaho.com (~5,260 est. monthly visits, 1,265 keywords) and yellowstoneteton.com (~8,000, 3,625 keywords) rank mid-page for these searches:
+| Search | Volume | Difficulty | Our page |
+|---|---|---|---|
+| mesa falls | 12,100 | 5-8 | /mesa-falls/ |
+| grizzly and wolf center (+ tickets) | 18,100 + 4,400 | 0-3 | /grizzly-wolf-discovery-center/ |
+| closest airport to yellowstone (variants) | 6,600 + 6,600 + 5,400 | 0-9 | /closest-airport-to-yellowstone/ |
+| camping island park idaho | 2,900 x 2 | 3-6 | /camping-island-park-idaho/ |
+| madison river fishing (variants) | ~8,000 | 5-20 | /madison-river-fishing/ |
+| henrys lake fishing / state park | 320 + 4,400 | 0-15 | /henrys-lake-fishing/ |
+| island park / island park idaho | 40,500 + 18,100 | 13-15 | /island-park-idaho/ (hub) |
+Still open: "airbnb island park idaho" (720, KD 2), island park webcams (3,600), Big Springs (1,300), Cave Falls (880), Johnny Sack Cabin.
