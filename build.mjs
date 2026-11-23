@@ -189,6 +189,7 @@ const nav = [
   ["/getting-to-island-park/", "Getting Here"],
   ["/island-park-snowmobiling/", "Snowmobiling"],
   ["/things-to-do/", "Things to Do"],
+  ["/guides/", "Guides"],
   ["/faq/", "FAQ"],
 ];
 
