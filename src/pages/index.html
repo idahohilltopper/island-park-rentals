@@ -7,6 +7,7 @@
     <h1>Your gateway to Yellowstone and Island Park, Idaho</h1>
     <p class="lead">Comfortable cabin rentals in the forests of Island Park, Idaho, a short drive from Yellowstone National Park, with room for the whole group.</p>
     <div class="cta"><a class="btn" href="/rentals/">See our cabins</a> <a class="btn ghost" href="/yellowstone-lodging/">Staying near Yellowstone</a></div>
+    <a class="hero-snow" id="hero-snow" href="/island-park-snow-report/" style="display:none"></a>
   </div>
 </section>
 <div class="facts"><ul>
@@ -38,6 +39,9 @@
     if(!parts.length)return;
     body.innerHTML=parts.join("<br>")+'<br><span style="font-size:.9rem;color:var(--mute)">NRCS SNOTEL, as of '+when+'</span>';
     sec.style.display="";
+    var hs=document.getElementById("hero-snow"),hp=[];
+    res.forEach(function(x){if(!x)return;var i=latest(x.rows,"sd");if(i<0)return;hp.push("<span>"+x.s.name.split(",")[0]+" <b>"+x.rows[i].sd+'"</b></span>');});
+    if(hs&&hp.length){hs.innerHTML='<em>Snow depth now</em>'+hp.join("")+'<u>Full report &rarr;</u>';hs.style.display="inline-flex";}
   });
 })();
 </script>
