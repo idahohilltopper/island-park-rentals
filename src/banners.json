@@ -115,5 +115,9 @@
   "/island-park-cabin-hot-tub/": {
     "img": "/images/gallery/04-private-hot-tub-winter-snow-view.jpg",
     "alt": "The private hot tub at the Whitebark Cabin in winter, Island Park, Idaho"
+  },
+  "/johnny-sack-cabin/": {
+    "img": "/images/places/johnny-sack-cabin.jpg",
+    "alt": "The waterwheel house beside the spring at Johnny Sack Cabin, Big Springs, Idaho"
   }
 }
