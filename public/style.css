@@ -70,3 +70,5 @@ code{background:#eee7d6;padding:.1em .35em;border-radius:4px;font-size:.9em}
 .page-hero .crumbs,.page-hero .crumbs a{color:rgba(255,255,255,.85);margin-bottom:.6em}
 .page-hero h1{color:#fff;margin:0;max-width:22ch;text-shadow:0 2px 14px rgba(0,0,0,.45)}
 .page-hero+.prose{padding-top:clamp(24px,4vw,40px)}
+
+@media (max-width:700px){.hero{background-image:linear-gradient(90deg,rgba(8,20,30,.66),rgba(8,20,30,.3) 42%,rgba(8,20,30,0) 70%),linear-gradient(180deg,rgba(8,20,30,0),rgba(8,20,30,.3)),url(/images/hero-sm.jpg)}}
