@@ -119,5 +119,9 @@
   "/johnny-sack-cabin/": {
     "img": "/images/places/johnny-sack-cabin.jpg",
     "alt": "The waterwheel house beside the spring at Johnny Sack Cabin, Big Springs, Idaho"
+  },
+  "/groceries-gas-supplies-island-park/": {
+    "img": "/images/gallery/08-fully-equipped-kitchen.jpg",
+    "alt": "The fully equipped kitchen at the Whitebark Cabin in Island Park, Idaho"
   }
 }
