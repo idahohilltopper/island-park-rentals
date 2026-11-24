@@ -24,7 +24,7 @@
   var m=new Date().getMonth();
   if(!(m>=10||m<=3))return;
 
-  var ST=[{id:"860:ID:SNTL",name:"White Elephant, Idaho",ft:"7,670 ft"},{id:"347:MT:SNTL",name:"Black Bear, Montana",ft:"8,160 ft"}];
+  var ST=[{id:"860:ID:SNTL",name:"White Elephant, Idaho",ft:"7,670 ft"},{id:"347:MT:SNTL",name:"Black Bear, Montana",ft:"8,160 ft"},{id:"546:ID:SNTL",name:"Island Park, Idaho",ft:"6,300 ft"}];
   function url(id){return "https://wcc.sc.egov.usda.gov/reportGenerator/view_csv/customSingleStationReport/hourly/"+id+"%7Cid=%22%22%7Cname/-167,0/WTEQ::value,SNWD::value,PREC::value,TOBS::value";}
   function parse(t){var rows=[];t.split("\n").forEach(function(l){if(!l||l.charAt(0)==="#"||l.indexOf("Date")===0)return;var p=l.split(",");if(p.length<5)return;rows.push({d:p[0],swe:p[1]===""?null:parseFloat(p[1]),sd:p[2]===""?null:parseFloat(p[2]),t:p[4]===""?null:parseFloat(p[4])});});return rows;}
   function latest(rows,k){for(var i=rows.length-1;i>=0;i--){if(rows[i][k]!==null&&!isNaN(rows[i][k]))return i;}return -1;}
