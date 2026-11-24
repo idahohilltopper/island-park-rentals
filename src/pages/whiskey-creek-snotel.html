@@ -1,0 +1,70 @@
+---
+{"path": "/whiskey-creek-snotel/", "type": "article", "crumb": "Whiskey Creek SNOTEL", "title": "Whiskey Creek SNOTEL (858): Live Snow Depth", "description": "Live snow depth, snow water equivalent and temperature from the Whiskey Creek SNOTEL station 858 (6,790 ft, Gallatin County, Montana), with a 7-day history.", "priority": 0.6, "faq": [["What is the Whiskey Creek SNOTEL?", "It is an automated snow and weather station run by the USDA Natural Resources Conservation Service (NRCS), station 858 in Gallatin County, Montana, at 6,790 feet. It measures snow depth, snow water equivalent, precipitation and air temperature every hour."], ["Where is the Whiskey Creek SNOTEL?", "NRCS lists it at about 44.61088 degrees north, 111.14998 degrees west, at 6,790 feet in Gallatin County, Montana. It has records going back to October 1967."], ["What is the snow depth at Whiskey Creek right now?", "The live readings on this page come straight from the NRCS station each time you open it. They are provisional and can change."], ["Is this the snow depth in town or on the trails?", "No. A SNOTEL station sits at one fixed spot. Snow in town, on trails and on the roads can be deeper or shallower, so use it as a guide and check local conditions."]]}
+---
+<section class="wrap prose">
+  <p class="crumbs"><a href="/">Home</a> / <a href="/guides/">Guides</a> / <a href="/west-yellowstone-snow-report/">West Yellowstone Snow Report</a> / Whiskey Creek SNOTEL</p>
+  <h1>Whiskey Creek SNOTEL (858): live snow depth</h1>
+  <p class="answer"><strong>Short answer:</strong> Whiskey Creek is NRCS SNOTEL station 858 in Gallatin County, Montana, at 6,790 feet. This page shows its newest hourly reading of snow depth, snow water equivalent and air temperature, plus the last 7 days.</p>
+
+  <h2>Live readings</h2>
+  <div id="snotel" data-id="858:MT:SNTL"><p>Loading&hellip;</p></div>
+  <p style="font-size:.9rem;color:var(--mute)">Data: <a href="https://wcc.sc.egov.usda.gov/reportGenerator/view/customSingleStationReport/hourly/858:MT:SNTL%7Cid%3D%22%22%7Cname/-167%2C0/WTEQ%3A%3Avalue%2CSNWD%3A%3Avalue%2CPREC%3A%3Avalue%2CTOBS%3A%3Avalue?fitToScreen=false" target="_blank" rel="noopener">NRCS hourly report for Whiskey Creek (858)</a>. Data are provisional and subject to revision. Times are Pacific Standard Time, as the station reports them.</p>
+
+  <h2>About the station</h2>
+  <ul>
+    <li><strong>Name and ID:</strong> Whiskey Creek, SNOTEL 858</li>
+    <li><strong>Location:</strong> Gallatin County, Montana, about 44.61088&deg;N, 111.14998&deg;W</li>
+    <li><strong>Elevation:</strong> 6,790 feet</li>
+    <li><strong>Records begin:</strong> October 1967</li>
+    <li><strong>Operator:</strong> USDA Natural Resources Conservation Service</li>
+  </ul>
+  <p>Location, elevation and start date are from the NRCS station metadata. It sits a little higher than the West Yellowstone station, so the two together show how quickly snow depth changes with a small climb in elevation.</p>
+
+  <h2>How to read the numbers</h2>
+  <ul>
+    <li><strong>Snow depth</strong> is inches of snow on the ground at the station.</li>
+    <li><strong>Snow water equivalent</strong> is how many inches of water the snowpack would make if it melted. It shows how dense the snow is.</li>
+    <li><strong>Precipitation accumulation</strong> is the running total of precipitation measured by the station.</li>
+    <li><strong>Air temperature</strong> is the temperature when the reading was taken.</li>
+  </ul>
+
+  <h2>Compare and plan</h2>
+  <ul>
+    <li>See the <a href="/west-yellowstone-snow-report/">West Yellowstone snow report</a> for the nearby stations side by side, and the <a href="/island-park-snow-report/">Island Park snow report</a> for the Idaho stations.</li>
+    <li><a href="/island-park-snowmobiling/">Island Park snowmobiling</a>, <a href="/snowmobile-atv-side-by-side-rentals-island-park/">sled rentals</a> and <a href="/island-park-winter/">winter in Island Park</a>.</li>
+    <li><a href="/webcams-road-conditions/">Webcams and road conditions</a> for what roads and trails look like right now.</li>
+  </ul>
+  <p>Stay at our <a href="/whitebark-cabin/">Whitebark Cabin</a> in Island Park, which sleeps 10 and has a private hot tub for after a day in the snow.</p>
+
+  <h2>Questions</h2>
+  {{FAQ}}
+  <p style="margin-top:1.6em">{{BOOK:whiskey-creek-snotel:Plan a winter stay on Airbnb}}</p>
+</section>
+<script>
+(function(){
+  var el=document.getElementById("snotel"),ID=el.getAttribute("data-id");
+  var url="https://wcc.sc.egov.usda.gov/reportGenerator/view_csv/customSingleStationReport/hourly/"+ID+"%7Cid=%22%22%7Cname/-167,0/WTEQ::value,SNWD::value,PREC::value,TOBS::value";
+  function num(v){return v===""||v===undefined?null:parseFloat(v);}
+  function sign(v){return v===null?"n/a":(v>0?"+":"")+v+'"';}
+  function fmt(s){var m=s.match(/^(\d+)-(\d+)-(\d+) (\d+):(\d+)/);if(!m)return s;var mo=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m[2]-1];var h=+m[4],ap=h>=12?"pm":"am";h=h%12||12;return mo+" "+(+m[3])+", "+h+":"+m[5]+" "+ap+" PST";}
+  function day(s){var m=s.match(/^(\d+)-(\d+)-(\d+)/);var mo=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m[2]-1];return mo+" "+(+m[3]);}
+  fetch(url).then(function(r){if(!r.ok)throw new Error("http");return r.text();}).then(function(t){
+    var rows=[];t.split("\n").forEach(function(l){if(!l||l.charAt(0)==="#"||l.indexOf("Date")===0)return;var p=l.split(",");if(p.length<5)return;rows.push({d:p[0],swe:num(p[1]),sd:num(p[2]),pr:num(p[3]),t:num(p[4])});});
+    var i=-1;for(var k=rows.length-1;k>=0;k--){if(rows[k].sd!==null){i=k;break;}}
+    if(i<0)throw new Error("empty");
+    function chg(back){var j=i-back;if(j<0||rows[j].sd===null)return null;return Math.round((rows[i].sd-rows[j].sd)*10)/10;}
+    var r=rows[i],h='<p style="font-size:.9rem;color:var(--mute);margin:0">Latest reading: '+fmt(r.d)+'</p>';
+    h+='<p style="font-size:2.2rem;font-weight:700;margin:.1em 0">'+r.sd+'" <span style="font-size:1rem;font-weight:400">snow depth</span></p><ul>';
+    h+='<li>Change in the last 24 hours: '+sign(chg(24))+'</li><li>Change in the last 7 days: '+sign(chg(166))+'</li>';
+    if(r.swe!==null)h+='<li>Snow water equivalent: '+r.swe+'"</li>';
+    if(r.pr!==null)h+='<li>Precipitation accumulation: '+r.pr+'"</li>';
+    if(r.t!==null)h+='<li>Air temperature: '+r.t+'&deg;F</li>';
+    h+='</ul>';
+    var by={},order=[];rows.forEach(function(x){var d=x.d.slice(0,10);if(x.sd===null)return;if(!(d in by))order.push(d);by[d]=x;});
+    h+='<h3>Last 7 days</h3><table><tr><th>Date</th><th>Snow depth</th><th>Water equivalent</th><th>Air temp</th></tr>';
+    order.slice(-7).reverse().forEach(function(d){var x=by[d];h+="<tr><td>"+day(d)+"</td><td>"+x.sd+'"</td><td>'+(x.swe===null?"n/a":x.swe+'"')+"</td><td>"+(x.t===null?"n/a":x.t+"&deg;F")+"</td></tr>";});
+    h+='</table><p style="font-size:.85rem;color:var(--mute)">Each row is the last reading of that day (Pacific Standard Time). Today is partial.</p>';
+    el.innerHTML=h;
+  }).catch(function(){el.innerHTML="<p>No reading available right now. Try the NRCS link below.</p>";});
+})();
+</script>
