@@ -123,5 +123,14 @@
   "/groceries-gas-supplies-island-park/": {
     "img": "/images/gallery/08-fully-equipped-kitchen.jpg",
     "alt": "The fully equipped kitchen at the Whitebark Cabin in Island Park, Idaho"
+  },
+  "/st-anthony-sand-dunes/": null,
+  "/side-by-side-riding-island-park/": {
+    "img": "/images/places/summer-centennials.jpg",
+    "alt": "Summer in the Centennial Mountains near Island Park, Idaho"
+  },
+  "/hunting-island-park-idaho/": {
+    "img": "/images/places/winter-ridge.jpg",
+    "alt": "Frosted evergreens and snowy ridges in the Centennial Mountains"
   }
 }
