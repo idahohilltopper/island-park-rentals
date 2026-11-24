@@ -40,7 +40,7 @@
     body.innerHTML=parts.join("<br>")+'<br><span style="font-size:.9rem;color:var(--mute)">NRCS SNOTEL, as of '+when+'</span>';
     sec.style.display="";
     var hs=document.getElementById("hero-snow"),hp=[];
-    res.forEach(function(x){if(!x)return;var i=latest(x.rows,"sd");if(i<0)return;hp.push("<span>"+x.s.name.split(",")[0]+" <b>"+x.rows[i].sd+'"</b></span>');});
+    res.forEach(function(x){if(!x)return;var i=latest(x.rows,"sd");if(i<0)return;hp.push("<span>"+x.s.name.split(",")[0]+" <b>"+x.rows[i].sd+'"</b> <small>'+sign(chg(x.rows,i,"sd",24))+" in 24 hrs</small></span>");});
     if(hs&&hp.length){hs.innerHTML='<em>Snow depth now</em>'+hp.join("")+'<u>Full report &rarr;</u>';hs.style.display="inline-flex";}
   });
 })();
