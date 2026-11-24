@@ -226,7 +226,7 @@ ${verify}
 <meta property="og:image" content="${abs("/images/og.jpg")}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<style>${css}</style>
+${p.path === "/" ? `<link rel="preload" as="image" href="/images/hero-sm.jpg" media="(max-width: 700px)" fetchpriority="high"><link rel="preload" as="image" href="/images/hero.jpg" media="(min-width: 701px)" fetchpriority="high">` : ""}<style>${css}</style>
 <script type="application/ld+json">${schemaFor(p)}</script>
 ${analytics}
 </head>
