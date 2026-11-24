@@ -1,0 +1,9 @@
+{
+  "_note": "Update monthly from each Airbnb listing's own rating and review count (NOT the host profile totals). Keyed by Airbnb room ID.",
+  "1134131738331174490": {
+    "name": "Whitebark Cabin",
+    "rating": 4.84,
+    "reviewCount": 95,
+    "checked": "2026-11-24"
+  }
+}
