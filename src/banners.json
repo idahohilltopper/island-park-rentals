@@ -141,5 +141,9 @@
     "img": "/images/places/river-pines.jpg",
     "alt": "Whitewater on the Henrys Fork winding through pine forest near Island Park, Idaho"
   },
-  "/warm-river-idaho/": null
+  "/warm-river-idaho/": null,
+  "/ashton-idaho/": {
+    "img": "/images/places/mesa-falls-rainbow.jpg",
+    "alt": "A rainbow over the Henrys Fork below Upper Mesa Falls near Ashton, Idaho"
+  }
 }
