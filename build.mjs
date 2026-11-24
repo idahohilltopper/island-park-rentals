@@ -197,9 +197,13 @@ function layout(p, inner) {
   const url = abs(p.path);
   const withBrand = `${p.title} | ${site.name}`;
   const title = p.path === "/" || withBrand.length > 60 ? p.title : withBrand;
-  const analytics = site.plausibleDomain
-    ? `<script defer data-domain="${esc(site.plausibleDomain)}" src="https://plausible.io/js/script.tagged-events.js"></script>`
+  const ga4 = /^G-[A-Z0-9]{6,}$/.test(site.ga4Id || "")
+    ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${site.ga4Id}"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${site.ga4Id}");</script>`
     : "";
+  const analytics =
+    (site.plausibleDomain
+      ? `<script defer data-domain="${esc(site.plausibleDomain)}" src="https://plausible.io/js/script.tagged-events.js"></script>`
+      : "") + ga4;
   const verify = site.googleSiteVerification
     ? `<meta name="google-site-verification" content="${esc(site.googleSiteVerification)}">`
     : "";
