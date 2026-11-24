@@ -10,3 +10,7 @@
 6. Request indexing for the new URL in Google Search Console.
 
 Omit `rating` / `reviewCount` for a cabin with no reviews yet so no rating markup is published.
+
+## Ratings and review counts (monthly)
+
+Each cabin's star rating and review count live in one file, `src/ratings.json`, keyed by the Airbnb room ID (the number in the listing URL). Add an entry when you add a cabin. Use the listing's own rating and review count, not the host profile totals. The build copies those numbers onto the cards, the cabin pages, the schema markup, llms.txt and the text on the Island Park and Airbnb guides. A monthly scheduled task checks each listing and updates the file.

@@ -28,6 +28,14 @@ const loadDir = (dir) =>
     : [];
 const pages = [...loadDir("src/pages"), ...loadDir("src/cabins")];
 const cabins = pages.filter((p) => p.cabin);
+// Ratings come from src/ratings.json, keyed by Airbnb room ID, so one file holds every listing's stars and review count.
+const ratings = existsSync("src/ratings.json") ? JSON.parse(readFileSync("src/ratings.json", "utf8")) : {};
+for (const c of cabins) {
+  const id = (c.cabin.airbnb || "").match(/rooms\/(\d+)/)?.[1];
+  const r = id && ratings[id];
+  if (r) { c.cabin.rating = r.rating; c.cabin.reviewCount = r.reviewCount; }
+}
+if (cabins[0]?.cabin?.rating) { site.rating = cabins[0].cabin.rating; site.reviewCount = cabins[0].cabin.reviewCount; }
 
 // ---------- gallery (auto from a cabin's photo folder) ----------
 const altFromName = (f) =>
