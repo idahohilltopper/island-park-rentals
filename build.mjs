@@ -265,9 +265,22 @@ if(window.gtag)gtag("event","airbnb_click",{location:l,page:location.pathname});
 </html>`;
 }
 
+// ---------- page banners (src/banners.json): photo (or gradient) banner behind the breadcrumb and H1 ----------
+const banners = existsSync("src/banners.json") ? JSON.parse(readFileSync("src/banners.json", "utf8")) : {};
+function withBanner(p, inner) {
+  if (!(p.path in banners)) return inner;
+  const b = banners[p.path];
+  const re = /<section class="wrap prose"([^>]*)>\s*(<p class="crumbs">[\s\S]*?<\/p>)\s*(<h1[^>]*>[\s\S]*?<\/h1>)(\s*<img[^>]*fetchpriority="high"[^>]*>)?(\s*<p style="font-size:\.9rem;color:var\(--mute\);margin:0 0 1\.2em">[^<]*<\/p>)?/;
+  const m = inner.match(re);
+  if (!m) return inner;
+  const img = b ? `<img class="ph-img" src="${b.img}" alt="${esc(b.alt || "")}" fetchpriority="high" decoding="async"${b.pos ? ` style="object-position:${b.pos}"` : ""}>` : "";
+  const hero = `<header class="page-hero${b ? "" : " plain"}">${img}<div class="ph-shade"></div><div class="wrap ph-text">${m[2]}${m[3]}</div></header>\n<section class="wrap prose"${m[1]}>`;
+  return inner.replace(re, hero);
+}
+
 // ---------- write pages ----------
 for (const p of pages) {
-  let inner = render(p.body, p);
+  let inner = withBanner(p, render(p.body, p));
   if (p.faq) inner = inner.replace("{{FAQ}}", faqHtml(p.faq));
   const dir = p.path === "/" ? OUT : join(OUT, p.path);
   mkdirSync(dir, { recursive: true });

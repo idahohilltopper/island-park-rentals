@@ -61,3 +61,12 @@ code{background:#eee7d6;padding:.1em .35em;border-radius:4px;font-size:.9em}
 .cabin-card{padding:0;overflow:hidden}.cabin-card img{width:100%;aspect-ratio:3/2;object-fit:cover}.cbody{padding:20px 22px 22px}.cbody h3 a{color:inherit;text-decoration:none}.cbody .row{margin-top:1em;display:flex;gap:10px;flex-wrap:wrap}.cabin-card .btn{padding:.55em 1.1em;font-size:.95rem}
 .site-footer a.btn{color:#fff}.site-footer a.btn:hover{color:#fff}
 .place.noimg{border-top:4px solid var(--wood)}.place.noimg .pbody{padding-top:20px}
+
+.page-hero{position:relative;color:#fff;min-height:clamp(240px,34vw,400px);display:flex;align-items:flex-end;overflow:hidden;background:linear-gradient(135deg,#2c5440,#16281f)}
+.page-hero .ph-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.page-hero .ph-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,20,30,.35),rgba(8,20,30,.1) 38%,rgba(8,20,30,.78))}
+.page-hero.plain .ph-shade{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(0,0,0,.25))}
+.page-hero .ph-text{position:relative;width:100%;padding-top:clamp(70px,12vw,140px);padding-bottom:clamp(22px,4vw,40px)}
+.page-hero .crumbs,.page-hero .crumbs a{color:rgba(255,255,255,.85);margin-bottom:.6em}
+.page-hero h1{color:#fff;margin:0;max-width:22ch;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.page-hero+.prose{padding-top:clamp(24px,4vw,40px)}
