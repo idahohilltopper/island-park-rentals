@@ -1,0 +1,66 @@
+---
+{"path": "/island-park-snow-report/", "type": "article", "crumb": "Snow Report", "title": "Island Park Snow Report: Live Snow Depth", "description": "Island Park, Idaho snow report with live snow depth, snow water equivalent, new snow and temperature from two nearby NRCS SNOTEL stations, plus how to read the numbers.", "priority": 0.8, "faq": [["How much snow is in Island Park right now?", "This page shows the latest hourly readings from two NRCS SNOTEL stations near Island Park: White Elephant, Idaho, at 7,670 feet, and Black Bear, Montana, at 8,160 feet. Snow depth on the ground is shown in inches, along with the change over the last 24 hours and 7 days."], ["What is snow water equivalent?", "Snow water equivalent (SWE) is the depth of water you would get if the snowpack melted. It tells you how dense and substantial the snowpack is, which snow depth alone does not."], ["How often is the snow report updated?", "The stations report hourly, and this page loads the newest reading each time you open it, so you see the latest data in the morning, in the evening and at any other time."], ["Do these readings match the snowmobile trails?", "Not exactly. SNOTEL stations sit at fixed spots in the high country, so trail conditions in town and along groomed routes can differ. Check the Island Park Chamber, local rental shops and our webcams page for current grooming and road conditions."], ["When is the snow season in Island Park?", "Island Park is a winter destination, and snow typically covers the ground from late fall into spring. This page is most useful from November through April."]]}
+---
+<section class="wrap prose">
+  <p class="crumbs"><a href="/">Home</a> / <a href="/guides/">Guides</a> / Snow Report</p>
+  <h1>Island Park snow report: live snow depth</h1>
+  <p class="answer"><strong>Short answer:</strong> Two NRCS SNOTEL stations near Island Park report snow depth, snow water equivalent and temperature every hour, and this page shows their newest readings each time you open it. Check it in the morning and again in the evening before you plan a snowmobile ride, ski day or drive.</p>
+
+  <h2>Live snow conditions</h2>
+  <div id="snow-cards" class="grid"><div class="card"><h3>White Elephant, Idaho</h3><p>Loading&hellip;</p></div><div class="card"><h3>Black Bear, Montana</h3><p>Loading&hellip;</p></div></div>
+  <p id="snow-note" style="font-size:.9rem;color:var(--mute)">Data: <a href="https://wcc.sc.egov.usda.gov/reportGenerator/view/customSingleStationReport/hourly/860:ID:SNTL%7Cid%3D%22%22%7Cname/-167%2C0/WTEQ%3A%3Avalue%2CSNWD%3A%3Avalue%2CPREC%3A%3Avalue%2CTOBS%3A%3Avalue?fitToScreen=false" target="_blank" rel="noopener">White Elephant (860)</a> and <a href="https://wcc.sc.egov.usda.gov/reportGenerator/view/customSingleStationReport/hourly/347:MT:SNTL%7Cid%3D%22%22%7Cname/-167%2C0/WTEQ%3A%3Avalue%2CSNWD%3A%3Avalue%2CPREC%3A%3Avalue%2CTOBS%3A%3Avalue?fitToScreen=false" target="_blank" rel="noopener">Black Bear (347)</a> from the USDA Natural Resources Conservation Service (NRCS). Times are Pacific Standard Time, as the stations report them. Data are provisional and can change.</p>
+
+  <h2>The two stations</h2>
+  <ul>
+    <li><strong>White Elephant, Idaho</strong> (Fremont County, 7,670 feet). The closest of the two to Island Park, in the Idaho side of the high country.</li>
+    <li><strong>Black Bear, Montana</strong> (Gallatin County, 8,160 feet). A higher site just across the line near the Continental Divide and the Centennial Mountains, so it often holds more snow.</li>
+  </ul>
+
+  <h2>How to read the numbers</h2>
+  <ul>
+    <li><strong>Snow depth</strong> is the inches of snow on the ground at the station.</li>
+    <li><strong>Snow water equivalent (SWE)</strong> is the inches of water the snowpack would make if it melted. A high SWE for the depth means dense, well-settled snow.</li>
+    <li><strong>Change</strong> compares the newest reading with 24 hours and 7 days earlier, so you can see recent storms at a glance.</li>
+    <li><strong>Temperature</strong> is the air temperature at the station when the reading was taken.</li>
+  </ul>
+  <p>These are point readings from the high country. Conditions in town, on groomed trails and on the roads can differ, so use this as a guide, not a trail report. For grooming, riding conditions and road status, see our <a href="/webcams-road-conditions/">webcams and road conditions page</a> and the <a href="https://islandparkchamber.org/" target="_blank" rel="noopener">Island Park Chamber</a>.</p>
+
+  <h2>Plan your winter trip</h2>
+  <ul>
+    <li><a href="/island-park-winter/">Winter in Island Park</a>: snowmobiling, skiing and ice fishing.</li>
+    <li><a href="/island-park-snowmobiling/">Island Park snowmobiling</a> and <a href="/snowmobile-atv-side-by-side-rentals-island-park/">where to rent a sled</a>.</li>
+    <li><a href="/island-park-best-time-to-visit/">Best time to visit</a> by season.</li>
+  </ul>
+  <p>Stay at our <a href="/whitebark-cabin/">Whitebark Cabin</a>, which sleeps 10 and has a private hot tub for after a day in the snow.</p>
+
+  <h2>Questions</h2>
+  {{FAQ}}
+  <p style="margin-top:1.6em">{{BOOK:snow-report:Plan a winter stay on Airbnb}}</p>
+</section>
+<script>
+(function(){
+  var ST=[{id:"860:ID:SNTL",name:"White Elephant, Idaho",ft:"7,670 ft"},{id:"347:MT:SNTL",name:"Black Bear, Montana",ft:"8,160 ft"}];
+  function url(id){return "https://wcc.sc.egov.usda.gov/reportGenerator/view_csv/customSingleStationReport/hourly/"+id+"%7Cid=%22%22%7Cname/-167,0/WTEQ::value,SNWD::value,PREC::value,TOBS::value";}
+  function parse(t){var rows=[];t.split("\n").forEach(function(l){if(!l||l.charAt(0)==="#"||l.indexOf("Date")===0)return;var p=l.split(",");if(p.length<5)return;rows.push({d:p[0],swe:p[1]===""?null:parseFloat(p[1]),sd:p[2]===""?null:parseFloat(p[2]),t:p[4]===""?null:parseFloat(p[4])});});return rows;}
+  function latest(rows,k){for(var i=rows.length-1;i>=0;i--){if(rows[i][k]!==null&&!isNaN(rows[i][k]))return i;}return -1;}
+  function fmtd(s){var m=s.match(/^(\d+)-(\d+)-(\d+) (\d+):(\d+)/);if(!m)return s;var mo=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m[2]-1];var h=+m[4],ap=h>=12?"pm":"am";h=h%12||12;return mo+" "+(+m[3])+", "+h+":"+m[5]+" "+ap+" PST";}
+  function chg(rows,i,k,back){var j=i-back;if(j<0||rows[j][k]===null)return null;return Math.round((rows[i][k]-rows[j][k])*10)/10;}
+  function sign(v){return v===null?"n/a":(v>0?"+":"")+v+'"';}
+
+  var box=document.getElementById("snow-cards");
+  function card(s,rows){
+    var i=latest(rows,"sd");
+    if(i<0)return '<div class="card"><h3>'+s.name+'</h3><p>No reading available right now.</p></div>';
+    var r=rows[i],si=latest(rows,"swe");
+    var h='<div class="card"><h3>'+s.name+'</h3><p style="margin:.2em 0;font-size:.9rem;color:var(--mute)">'+s.ft+' &middot; '+fmtd(r.d)+'</p>';
+    h+='<p style="font-size:1.6rem;font-weight:700;margin:.2em 0">'+r.sd+'" <span style="font-size:.9rem;font-weight:400">snow depth</span></p><ul style="margin:.4em 0;padding-left:1.1em">';
+    h+='<li>Last 24 hours: '+sign(chg(rows,i,"sd",24))+'</li><li>Last 7 days: '+sign(chg(rows,i,"sd",166))+'</li>';
+    if(si>=0)h+='<li>Snow water equivalent: '+rows[si].swe+'"</li>';
+    if(r.t!==null)h+='<li>Air temperature: '+r.t+'&deg;F</li>';
+    return h+'</ul></div>';
+  }
+  Promise.all(ST.map(function(s){return fetch(url(s.id)).then(function(r){if(!r.ok)throw new Error("http");return r.text();}).then(function(t){return {s:s,rows:parse(t)};}).catch(function(){return {s:s,rows:[]};});})).then(function(res){
+    box.innerHTML=res.map(function(x){return card(x.s,x.rows);}).join("");
+  });
+})();
+</script>

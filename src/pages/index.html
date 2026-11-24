@@ -13,6 +13,35 @@
   <li>Island Park, Idaho</li><li>Near Yellowstone National Park</li><li>Booked securely on Airbnb</li><li>Airbnb Superhost</li>
 </ul></div>
 
+<section class="block alt" id="snow-strip" style="display:none"><div class="wrap">
+  <h2>Island Park snow conditions</h2>
+  <p id="snow-strip-body">Loading&hellip;</p>
+  <p><a href="/island-park-snow-report/">Full snow report &rarr;</a> &middot; <a href="/island-park-winter/">Winter in Island Park</a></p>
+</div></section>
+<script>
+(function(){
+  var m=new Date().getMonth();
+  if(!(m>=10||m<=3))return;
+
+  var ST=[{id:"860:ID:SNTL",name:"White Elephant, Idaho",ft:"7,670 ft"},{id:"347:MT:SNTL",name:"Black Bear, Montana",ft:"8,160 ft"}];
+  function url(id){return "https://wcc.sc.egov.usda.gov/reportGenerator/view_csv/customSingleStationReport/hourly/"+id+"%7Cid=%22%22%7Cname/-167,0/WTEQ::value,SNWD::value,PREC::value,TOBS::value";}
+  function parse(t){var rows=[];t.split("\n").forEach(function(l){if(!l||l.charAt(0)==="#"||l.indexOf("Date")===0)return;var p=l.split(",");if(p.length<5)return;rows.push({d:p[0],swe:p[1]===""?null:parseFloat(p[1]),sd:p[2]===""?null:parseFloat(p[2]),t:p[4]===""?null:parseFloat(p[4])});});return rows;}
+  function latest(rows,k){for(var i=rows.length-1;i>=0;i--){if(rows[i][k]!==null&&!isNaN(rows[i][k]))return i;}return -1;}
+  function fmtd(s){var m=s.match(/^(\d+)-(\d+)-(\d+) (\d+):(\d+)/);if(!m)return s;var mo=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m[2]-1];var h=+m[4],ap=h>=12?"pm":"am";h=h%12||12;return mo+" "+(+m[3])+", "+h+":"+m[5]+" "+ap+" PST";}
+  function chg(rows,i,k,back){var j=i-back;if(j<0||rows[j][k]===null)return null;return Math.round((rows[i][k]-rows[j][k])*10)/10;}
+  function sign(v){return v===null?"n/a":(v>0?"+":"")+v+'"';}
+
+  var sec=document.getElementById("snow-strip"),body=document.getElementById("snow-strip-body");
+  Promise.all(ST.map(function(s){return fetch(url(s.id)).then(function(r){if(!r.ok)throw new Error("http");return r.text();}).then(function(t){return {s:s,rows:parse(t)};}).catch(function(){return null;});})).then(function(res){
+    var parts=[],when="";
+    res.forEach(function(x){if(!x)return;var i=latest(x.rows,"sd");if(i<0)return;var r=x.rows[i];when=when||fmtd(r.d);parts.push("<strong>"+x.s.name+" ("+x.s.ft+"):</strong> "+r.sd+'" snow depth, '+sign(chg(x.rows,i,"sd",24))+" in 24 hours"+(r.t!==null?", "+r.t+"&deg;F":""));});
+    if(!parts.length)return;
+    body.innerHTML=parts.join("<br>")+'<br><span style="font-size:.9rem;color:var(--mute)">NRCS SNOTEL, as of '+when+'</span>';
+    sec.style.display="";
+  });
+})();
+</script>
+
 <section class="block"><div class="wrap">
   <h2>Our cabins</h2>
   {{CABIN_CARDS}}
