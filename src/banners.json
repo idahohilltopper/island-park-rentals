@@ -60,6 +60,10 @@
     "img": "/images/places/river-pines.jpg",
     "alt": "Pine forest along the river near Island Park, Idaho"
   },
+  "/island-park-weather/": {
+    "img": "/images/places/summer-centennials.jpg",
+    "alt": "Summer in the Centennial Mountains near Island Park, Idaho"
+  },
   "/island-park-winter/": {
     "img": "/images/places/winter-centennials.jpg",
     "alt": "Snow-covered meadows and peaks of the Centennial Mountains under a deep blue sky"

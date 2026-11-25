@@ -1,0 +1,66 @@
+---
+{"path": "/island-park-weather/", "type": "article", "crumb": "Island Park Weather", "title": "Island Park, Idaho Weather: Live Conditions and Forecast", "description": "Island Park, Idaho weather: live conditions from nearby stations, the National Weather Service 7-day forecast, active alerts, and how to plan for the elevation.", "priority": 0.9, "faq": [["What is the weather in Island Park, Idaho right now?", "This page loads the latest reading from nearby National Weather Service-linked stations and the current National Weather Service forecast each time you open it. Conditions can change quickly at 6,300 feet."], ["Where does the forecast come from?", "From the National Weather Service forecast for the Island Park area, which is issued by the Pocatello, Idaho forecast office."], ["How cold does Island Park get?", "Winters are very cold. Wikipedia notes the Island Park Dam weather station holds Idaho's record low of -60 degrees Fahrenheit (January 1943). Pack layers in every season."], ["How much snow does Island Park get?", "Wikipedia cites about 215 to 234 inches of snow a year. For current depth, see our live snow report using NRCS SNOTEL stations."], ["When is the best time to visit Island Park?", "It depends on what you want to do. See our best time to visit guide for a season-by-season breakdown."]]}
+---
+<section class="wrap prose">
+  <p class="crumbs"><a href="/">Home</a> / <a href="/guides/">Guides</a> / Island Park Weather</p>
+  <h1>Island Park, Idaho weather: live conditions and forecast</h1>
+  <p class="answer"><strong>Short answer:</strong> Island Park sits at about 6,300 feet, so weather changes quickly and nights are cool even in summer. This page loads the latest nearby station reading and the National Weather Service forecast each time you open it, so check it the morning you drive up.</p>
+
+  <h2>Right now</h2>
+  <div id="wx-now"><p>Loading&hellip;</p></div>
+  <h2>Active alerts</h2>
+  <div id="wx-alerts"><p>Loading&hellip;</p></div>
+  <h2>Forecast</h2>
+  <div id="wx-forecast"><p>Loading&hellip;</p></div>
+  <p style="font-size:.9rem;color:var(--mute)">Data: <a href="https://www.weather.gov/" target="_blank" rel="noopener">National Weather Service</a> forecast and alerts for the Island Park area (Pocatello office), and station observations through api.weather.gov. Readings come from nearby stations and can differ from conditions at your cabin or on a trail.</p>
+
+  <h2>What to expect through the year</h2>
+  <ul>
+    <li><strong>Cold winters, lots of snow.</strong> Wikipedia says the Island Park Dam weather station holds Idaho's record low of -60&deg;F, from January 1943, and cites about 215 to 234 inches of snow a year. See our <a href="/island-park-snow-report/">live snow report</a> for current depths.</li>
+    <li><strong>Cool nights in summer.</strong> At this elevation, evenings can be cool even in July. Pack a warm layer. See our <a href="/island-park-idaho-elevation/">elevation guide</a>.</li>
+    <li><strong>Plan by season.</strong> Our <a href="/island-park-best-time-to-visit/">best time to visit</a> guide covers each season, and our <a href="/island-park-winter/">winter guide</a> covers snowmobiling, skiing and getting around.</li>
+    <li><strong>Roads and webcams.</strong> Check <a href="/webcams-road-conditions/">webcams and road conditions</a> before you drive, and see our <a href="/yellowstone-entrances-island-park/">Yellowstone entrances</a> page for winter access.</li>
+  </ul>
+
+  <h2>Stay in Island Park</h2>
+  <p>Our <a href="/whitebark-cabin/">Whitebark Cabin</a> has a built-in air conditioner for summer and an indoor fireplace and private hot tub for cold evenings. It sleeps 10 and welcomes pets.</p>
+
+  <h2>Questions</h2>
+  {{FAQ}}
+  <p style="margin-top:1.6em">{{BOOK:weather:Stay in Island Park on Airbnb}}</p>
+</section>
+<script>
+(function(){
+  var LAT="44.5",LON="-111.34";
+  function f(c){return c===null||c===undefined?null:Math.round(c*9/5+32);}
+  function mph(k){return k===null||k===undefined?null:Math.round(k*0.621371);}
+  function get(u){return fetch(u,{headers:{Accept:"application/geo+json"}}).then(function(r){if(!r.ok)throw new Error("http "+r.status);return r.json();});}
+  var now=document.getElementById("wx-now"),fc=document.getElementById("wx-forecast"),al=document.getElementById("wx-alerts");
+  var STN=[["IPFI1","Island Park"],["ITD55","Henrys Lake"],["ITD54","Camp Creek"]];
+  function obs(i){
+    if(i>=STN.length){now.innerHTML="<p>No station reading available right now. See the forecast below.</p>";return;}
+    get("https://api.weather.gov/stations/"+STN[i][0]+"/observations/latest").then(function(d){
+      var p=d.properties,t=f(p.temperature.value);
+      if(t===null){obs(i+1);return;}
+      var w=mph(p.windSpeed.value),g=mph(p.windGust&&p.windGust.value),when=new Date(p.timestamp);
+      var h='<p style="font-size:.9rem;color:var(--mute);margin:0">'+STN[i][1]+' station &middot; '+when.toLocaleString([],{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+'</p>';
+      h+='<p style="font-size:2.2rem;font-weight:700;margin:.1em 0">'+t+'&deg;F</p><ul>';
+      if(p.textDescription)h+="<li>"+p.textDescription+"</li>";
+      if(w!==null)h+="<li>Wind: "+w+" mph"+(g?" (gusts "+g+" mph)":"")+"</li>";
+      if(p.relativeHumidity&&p.relativeHumidity.value!==null)h+="<li>Humidity: "+Math.round(p.relativeHumidity.value)+"%</li>";
+      now.innerHTML=h+"</ul>";
+    }).catch(function(){obs(i+1);});
+  }
+  obs(0);
+  get("https://api.weather.gov/points/"+LAT+","+LON).then(function(d){return get(d.properties.forecast);}).then(function(d){
+    var ps=d.properties.periods.slice(0,8),h='<div class="grid">';
+    ps.forEach(function(p){h+='<div class="card"><h3>'+p.name+'</h3><p style="font-size:1.4rem;font-weight:700;margin:.1em 0">'+p.temperature+'&deg;'+p.temperatureUnit+'</p><p style="margin:.2em 0">'+p.shortForecast+'</p><p style="font-size:.85rem;color:var(--mute);margin:0">Wind '+p.windSpeed+' '+p.windDirection+'</p></div>';});
+    fc.innerHTML=h+"</div>";
+  }).catch(function(){fc.innerHTML='<p>Forecast not available right now. See <a href="https://forecast.weather.gov/MapClick.php?lat=44.5&amp;lon=-111.34" target="_blank" rel="noopener">weather.gov</a>.</p>';});
+  get("https://api.weather.gov/alerts/active?point="+LAT+","+LON).then(function(d){
+    var fs=d.features||[];
+    if(!fs.length){al.innerHTML="<p>No active National Weather Service alerts for Island Park right now.</p>";return;}
+    al.innerHTML="<ul>"+fs.map(function(x){return "<li><strong>"+x.properties.event+"</strong>: "+(x.properties.headline||"")+"</li>";}).join("")+"</ul>";
+  }).catch(function(){al.innerHTML="<p>Alerts not available right now.</p>";});
+})();
+</script>
