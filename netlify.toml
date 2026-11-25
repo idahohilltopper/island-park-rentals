@@ -2,6 +2,9 @@
   command = "node build.mjs"
   publish = "dist"
 
+[[plugins]]
+  package = "./netlify/plugins/indexnow"
+
 [build.environment]
   NODE_VERSION = "22"
 
