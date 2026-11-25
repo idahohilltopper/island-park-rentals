@@ -51,8 +51,6 @@ async function submit(host, urls) {
 }
 
 module.exports = {
-  computeManifest,
-  diff,
   async onPreBuild({ utils }) {
     try {
       await utils.cache.restore(CACHE_DIR);
