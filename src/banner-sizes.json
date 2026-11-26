@@ -133,6 +133,10 @@
    {
     "src": "/images/sized/places/henrys-lake-panorama-1100.jpg",
     "w": 1100
+   },
+   {
+    "src": "/images/sized/places/henrys-lake-panorama-1400.jpg",
+    "w": 1400
    }
   ]
  },
@@ -189,6 +193,10 @@
    {
     "src": "/images/sized/places/mesa-falls-panorama-1100.jpg",
     "w": 1100
+   },
+   {
+    "src": "/images/sized/places/mesa-falls-panorama-1400.jpg",
+    "w": 1400
    }
   ]
  },
@@ -271,6 +279,10 @@
    {
     "src": "/images/sized/places/sawtell-panorama-1100.jpg",
     "w": 1100
+   },
+   {
+    "src": "/images/sized/places/sawtell-panorama-1400.jpg",
+    "w": 1400
    }
   ]
  },
@@ -327,6 +339,10 @@
    {
     "src": "/images/sized/places/winter-centennials-1100.jpg",
     "w": 1100
+   },
+   {
+    "src": "/images/sized/places/winter-centennials-1400.jpg",
+    "w": 1400
    }
   ]
  },
