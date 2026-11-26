@@ -263,7 +263,7 @@ ${analytics}
   <div class="wrap bar">
     <a class="brand" href="/">${esc(site.name)}</a>
     <nav aria-label="Main">${nav.map(([h, l]) => `<a href="${h}"${h === p.path ? ' aria-current="page"' : ""}>${l}</a>`).join("")}</nav>
-    <a class="btn" href="/rentals/">Book</a>
+    ${cabins.length === 1 ? book("header", "Book", cabins[0].cabin.airbnb) : '<a class="btn" href="/rentals/">Book</a>'}
   </div>
 </header>
 <main id="main">
