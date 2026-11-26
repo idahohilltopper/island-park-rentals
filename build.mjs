@@ -160,19 +160,16 @@ const factsHtml = () => {
   const reviews = rated.reduce((n, k) => n + k.reviewCount, 0);
   const avg = reviews ? (rated.reduce((n, k) => n + k.rating * k.reviewCount, 0) / reviews).toFixed(2) : "";
   const stars = reviews ? `<li>&#9733; ${avg} (${reviews} reviews)</li>` : "";
-  if (ks.length === 1) {
-    const k = ks[0], f = featOf(k);
-    return `<li><b>Sleeps ${k.guests}</b></li>${f.hot ? "<li>Private hot tub</li>" : ""}${f.pets ? "<li>Pets welcome</li>" : ""}${stars}`;
-  }
+  if (ks.length === 1) return `<li><b>Island Park, Idaho</b></li><li>Near Yellowstone's West Entrance</li><li>Booked securely on Airbnb</li>${stars}`;
   const gs = ks.map((k) => k.guests), pets = ks.filter((k) => featOf(k).pets).length;
   return `<li><b>${ks.length} cabins</b></li><li>Sleeps ${Math.min(...gs)} to ${Math.max(...gs)}</li>${pets ? `<li>${pets === ks.length ? "All pet friendly" : pets + " pet friendly"}</li>` : ""}${stars}`;
 };
 const heroLead = () => {
-  if (cabins.length <= 1) return "A forest cabin in Island Park with a private hot tub, room for ten, and a short drive to Yellowstone's West Entrance.";
+  if (cabins.length <= 1) return "Cabin rentals in the forests of Island Park, Idaho, a short drive from Yellowstone's West Entrance.";
   const gs = cabins.map((c) => c.cabin.guests);
   return `Island Park cabins that sleep ${Math.min(...gs)} to ${Math.max(...gs)}, with hot tubs, pets welcome at many, and a short drive to Yellowstone's West Entrance.`;
 };
-const featureTitle = () => (cabins.length > 1 ? `At the ${cabins[0].cabin.name}` : "After the day outside");
+const featureTitle = () => `At the ${cabins[0].cabin.name}`;
 const heroChips = () => {
   if (cabins.length < 2) return "";
   const ks = cabins.map((c) => c.cabin), max = Math.max(...ks.map((k) => k.guests));
