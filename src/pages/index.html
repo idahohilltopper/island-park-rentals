@@ -8,6 +8,7 @@
     <p class="lead">{{HERO_LEAD}}</p>
     <div class="cta"><a class="btn" href="/rentals/">See our cabins</a> <a class="btn ghost" href="/yellowstone-lodging/">Staying near Yellowstone</a></div>
     {{HERO_CHIPS}}
+    <div class="hero-wx" id="hero-wx" style="display:none"></div>
     <a class="hero-snow" id="hero-snow" href="/island-park-snow-report/" style="display:none"></a>
   </div>
 </section>
@@ -39,6 +40,36 @@
     res.forEach(function(x){if(!x)return;var i=latest(x.rows,"sd");if(i<0)return;hp.push("<span>"+x.s.name.split(",")[0]+" <b>"+x.rows[i].sd+'"</b> <small>'+sign(chg(x.rows,i,"sd",24))+" in 24 hrs</small></span>");});
     if(hs&&hp.length){hs.innerHTML='<em>Snow depth now</em>'+hp.join("")+'<u>Full report &rarr;</u>';hs.style.display="inline-flex";}
   });
+})();
+</script>
+
+<script>
+(function(){
+  var el=document.getElementById("hero-wx");if(!el)return;
+  var LAT=44.52,LON=-111.35,H={headers:{Accept:"application/geo+json"}};
+  function get(u){return fetch(u,H).then(function(r){if(!r.ok)throw new Error("http");return r.json();});}
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+  var STN=["IPFI1","ITD55","ITD54"],temp="",alerts="";
+  function show(){if(!temp&&!alerts)return;el.innerHTML=temp+alerts;el.style.display="flex";}
+  function obs(i){
+    if(i>=STN.length){show();return;}
+    get("https://api.weather.gov/stations/"+STN[i]+"/observations/latest").then(function(d){
+      var c=d.properties.temperature.value;
+      if(c===null||c===undefined){obs(i+1);return;}
+      var age=(Date.now()-new Date(d.properties.timestamp))/36e5;
+      if(age>6){obs(i+1);return;}
+      temp='<a class="wx-t" href="/island-park-weather/"><em>Island Park now</em> <b>'+Math.round(c*9/5+32)+'&deg;F</b></a>';
+      show();
+    }).catch(function(){obs(i+1);});
+  }
+  obs(0);
+  get("https://api.weather.gov/alerts/active?point="+LAT+","+LON).then(function(d){
+    var seen={},out=[];
+    (d.features||[]).forEach(function(x){var e=x.properties.event;if(seen[e])return;seen[e]=1;
+      var sev=/Warning/.test(e)?"warn":/Watch/.test(e)?"watch":"adv";
+      out.push('<a class="wx-a '+sev+'" href="https://forecast.weather.gov/MapClick.php?lat='+LAT+'&amp;lon='+LON+'#hazards" target="_blank" rel="noopener">&#9888; '+esc(e)+' <u>Details at weather.gov</u></a>');});
+    alerts=out.join("");show();
+  }).catch(function(){});
 })();
 </script>
 
