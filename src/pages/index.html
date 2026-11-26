@@ -97,7 +97,10 @@
 </div></section>
 
 <section class="block alt"><div class="wrap feature">
+  <div class="fmedia">
   <img data-src="/images/gallery/sm/04-private-hot-tub-winter-snow-view.jpg" alt="Private hot tub on the covered deck with a view of snow and evergreens, Whitebark Cabin, Island Park Idaho" width="800" height="600" decoding="async"><noscript><img src="/images/gallery/sm/04-private-hot-tub-winter-snow-view.jpg" alt="Private hot tub on the covered deck with a view of snow and evergreens, Whitebark Cabin, Island Park Idaho" width="800" height="600"></noscript>
+  <video class="floop" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="/videos/hot-tub-snow-loop.mp4"></video>
+  </div>
   <div>
     <h2>{{FEATURE_TITLE}}</h2>
     <ul>
@@ -157,3 +160,13 @@
   <p>Browse our Island Park cabins, then see live availability and pricing on Airbnb.</p>
   <a class="btn" href="/rentals/">See our cabins</a>
 </section>
+<script>
+(function(){
+  var v=document.querySelector(".floop");if(!v)return;
+  var m=new Date().getMonth();if(!(m>=10||m<=3))return;
+  if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  if(navigator.connection&&navigator.connection.saveData)return;
+  function go(){v.src=v.getAttribute("data-src");v.addEventListener("playing",function(){v.classList.add("on");});var p=v.play();if(p&&p.catch)p.catch(function(){});}
+  if("IntersectionObserver" in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();go();}},{rootMargin:"200px"});io.observe(v);}else go();
+})();
+</script>
