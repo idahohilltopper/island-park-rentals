@@ -344,7 +344,7 @@ ${analytics}
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap bar">
-    <a class="brand" href="/">${esc(site.name)}</a>
+    <a class="brand" href="/" aria-label="${esc(site.name)} home"><svg class="mark" viewBox="0 0 56 56" width="40" height="40" aria-hidden="true"><path d="M4 54V27C4 14.3 14.3 4 27 4h2c12.700 0 23 10.300 23 23v27z" fill="#1f3a2e"/><circle cx="40" cy="17" r="4.500" fill="#c9792b"/><path d="M4 54V44l16-18 9 10 11-17 12 14v21z" fill="#f6f1e7"/><path d="M16 33 10.500 42h3L8.500 49h15l-5-7h3z" fill="#1f3a2e"/><rect x="15" y="49" width="2" height="5" fill="#1f3a2e"/></svg><span class="wm"><b>Yellowstone</b><i>Gateway Stays</i></span></a>
     <nav aria-label="Main">${nav.map(([h, l]) => `<a href="${h}"${h === p.path ? ' aria-current="page"' : ""}>${l}</a>`).join("")}</nav>
     ${cabins.length === 1 ? book("header", "Book", cabins[0].cabin.airbnb) : '<a class="btn" href="/rentals/">Book</a>'}
   </div>
