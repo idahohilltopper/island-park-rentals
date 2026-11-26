@@ -98,8 +98,9 @@
 
 <section class="block alt"><div class="wrap feature">
   <div class="fmedia">
-  <img data-src="/images/gallery/sm/04-private-hot-tub-winter-snow-view.jpg" alt="Private hot tub on the covered deck with a view of snow and evergreens, Whitebark Cabin, Island Park Idaho" width="800" height="600" decoding="async"><noscript><img src="/images/gallery/sm/04-private-hot-tub-winter-snow-view.jpg" alt="Private hot tub on the covered deck with a view of snow and evergreens, Whitebark Cabin, Island Park Idaho" width="800" height="600"></noscript>
-  <video class="floop" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="/videos/hot-tub-snow-loop.mp4"></video>
+  <img class="sea-w" data-src="/images/gallery/sm/04-private-hot-tub-winter-snow-view.jpg" alt="Private hot tub on the covered deck with a view of snow and evergreens, Whitebark Cabin, Island Park Idaho" width="800" height="600" decoding="async"><noscript><img src="/images/gallery/sm/04-private-hot-tub-winter-snow-view.jpg" alt="Private hot tub on the covered deck with a view of snow and evergreens, Whitebark Cabin, Island Park Idaho" width="800" height="600"></noscript>
+  <img class="sea-s" data-src="/images/gallery/sm/02-private-hot-tub-with-sunset-view.jpg" alt="Private hot tub on the covered deck at sunset with evergreens, Whitebark Cabin, Island Park Idaho" width="800" height="600" decoding="async">
+  <video class="floop" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="/videos/hot-tub-snow-loop.mp4" data-src-summer="/videos/hot-tub-sunset-loop.mp4"></video>
   </div>
   <div>
     <h2>{{FEATURE_TITLE}}</h2>
@@ -163,10 +164,11 @@
 <script>
 (function(){
   var v=document.querySelector(".floop");if(!v)return;
-  var m=new Date().getMonth();if(!(m>=10||m<=3))return;
+  var m=new Date().getMonth(),winter=(m>=10||m<=3);
+  var off=document.querySelector(winter?".sea-s":".sea-w");if(off)off.style.display="none";
   if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)return;
   if(navigator.connection&&navigator.connection.saveData)return;
-  function go(){v.src=v.getAttribute("data-src");v.addEventListener("playing",function(){v.classList.add("on");});var p=v.play();if(p&&p.catch)p.catch(function(){});}
+  function go(){v.src=v.getAttribute(winter?"data-src":"data-src-summer");v.addEventListener("playing",function(){v.classList.add("on");});var p=v.play();if(p&&p.catch)p.catch(function(){});}
   if("IntersectionObserver" in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();go();}},{rootMargin:"200px"});io.observe(v);}else go();
 })();
 </script>
