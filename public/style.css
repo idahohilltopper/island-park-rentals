@@ -163,3 +163,4 @@ dialog.lb button:hover,dialog.lb button:focus-visible{background:rgba(255,255,25
 .story{max-width:760px}.story .big{font-family:"Zilla Slab",Georgia,serif;font-size:clamp(1.3rem,2.6vw,1.65rem);line-height:1.4;color:var(--green);border-left:4px solid var(--wood);padding-left:18px;margin:0 0 1.1em}.story p{font-size:1.08rem;line-height:1.65}
 .site-footer .btn.ghost.sm{padding:.5em 1.2em;color:#fff;border-color:#fff;background:transparent}.site-footer .btn.ghost.sm:hover{background:rgba(255,255,255,.14)}
 .cabin-card .rt{display:block;white-space:nowrap;margin-top:.35em}
+.fmedia{position:relative}.fmedia img,.fmedia video{width:100%;border-radius:12px;aspect-ratio:4/3;object-fit:cover}.fmedia .floop{position:absolute;inset:0;height:100%;opacity:0;transition:opacity .6s}.fmedia .floop.on{opacity:1}
