@@ -1,0 +1,359 @@
+{
+ "/images/gallery/01-exterior-at-sunset.jpg": {
+  "w": 1440,
+  "variants": [
+   {
+    "src": "/images/sized/gallery/01-exterior-at-sunset-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/gallery/01-exterior-at-sunset-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/gallery/01-exterior-at-sunset-1100.jpg",
+    "w": 1100
+   }
+  ]
+ },
+ "/images/gallery/04-private-hot-tub-winter-snow-view.jpg": {
+  "w": 1440,
+  "variants": [
+   {
+    "src": "/images/sized/gallery/04-private-hot-tub-winter-snow-view-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/gallery/04-private-hot-tub-winter-snow-view-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/gallery/04-private-hot-tub-winter-snow-view-1100.jpg",
+    "w": 1100
+   }
+  ]
+ },
+ "/images/gallery/08-fully-equipped-kitchen.jpg": {
+  "w": 1440,
+  "variants": [
+   {
+    "src": "/images/sized/gallery/08-fully-equipped-kitchen-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/gallery/08-fully-equipped-kitchen-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/gallery/08-fully-equipped-kitchen-1100.jpg",
+    "w": 1100
+   }
+  ]
+ },
+ "/images/gallery/16-cabin-exterior-in-daylight.jpg": {
+  "w": 1440,
+  "variants": [
+   {
+    "src": "/images/sized/gallery/16-cabin-exterior-in-daylight-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/gallery/16-cabin-exterior-in-daylight-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/gallery/16-cabin-exterior-in-daylight-1100.jpg",
+    "w": 1100
+   }
+  ]
+ },
+ "/images/places/big-springs.jpg": {
+  "w": 1200,
+  "variants": [
+   {
+    "src": "/images/sized/places/big-springs-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/big-springs-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/camping.jpg": {
+  "w": 1200,
+  "variants": [
+   {
+    "src": "/images/sized/places/camping-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/camping-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/grizzly.jpg": {
+  "w": 1199,
+  "variants": [
+   {
+    "src": "/images/sized/places/grizzly-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/grizzly-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/henrys-fork.jpg": {
+  "w": 1200,
+  "variants": [
+   {
+    "src": "/images/sized/places/henrys-fork-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/henrys-fork-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/henrys-lake-panorama.jpg": {
+  "w": 1800,
+  "variants": [
+   {
+    "src": "/images/sized/places/henrys-lake-panorama-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/henrys-lake-panorama-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/places/henrys-lake-panorama-1100.jpg",
+    "w": 1100
+   }
+  ]
+ },
+ "/images/places/island-park-reservoir.jpg": {
+  "w": 1200,
+  "variants": [
+   {
+    "src": "/images/sized/places/island-park-reservoir-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/island-park-reservoir-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/johnny-sack-cabin.jpg": {
+  "w": 1000,
+  "variants": [
+   {
+    "src": "/images/sized/places/johnny-sack-cabin-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/johnny-sack-cabin-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/lakeside-lodge-steak.jpg": {
+  "w": 1000,
+  "variants": [
+   {
+    "src": "/images/sized/places/lakeside-lodge-steak-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/lakeside-lodge-steak-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/mesa-falls-panorama.jpg": {
+  "w": 1800,
+  "variants": [
+   {
+    "src": "/images/sized/places/mesa-falls-panorama-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/mesa-falls-panorama-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/places/mesa-falls-panorama-1100.jpg",
+    "w": 1100
+   }
+  ]
+ },
+ "/images/places/mesa-falls-rainbow.jpg": {
+  "w": 1000,
+  "variants": [
+   {
+    "src": "/images/sized/places/mesa-falls-rainbow-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/mesa-falls-rainbow-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/mount-jefferson.jpg": {
+  "w": 1000,
+  "variants": [
+   {
+    "src": "/images/sized/places/mount-jefferson-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/mount-jefferson-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/river-pines.jpg": {
+  "w": 1200,
+  "variants": [
+   {
+    "src": "/images/sized/places/river-pines-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/river-pines-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/sawtell-banner.jpg": {
+  "w": 1200,
+  "variants": [
+   {
+    "src": "/images/sized/places/sawtell-banner-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/sawtell-banner-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/sawtell-flats.jpg": {
+  "w": 1000,
+  "variants": [
+   {
+    "src": "/images/sized/places/sawtell-flats-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/sawtell-flats-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/sawtell-panorama.jpg": {
+  "w": 1800,
+  "variants": [
+   {
+    "src": "/images/sized/places/sawtell-panorama-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/sawtell-panorama-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/places/sawtell-panorama-1100.jpg",
+    "w": 1100
+   }
+  ]
+ },
+ "/images/places/snowmobiling-centennial.jpg": {
+  "w": 1200,
+  "variants": [
+   {
+    "src": "/images/sized/places/snowmobiling-centennial-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/snowmobiling-centennial-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/summer-centennials.jpg": {
+  "w": 1200,
+  "variants": [
+   {
+    "src": "/images/sized/places/summer-centennials-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/summer-centennials-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/tetons-view.jpg": {
+  "w": 1200,
+  "variants": [
+   {
+    "src": "/images/sized/places/tetons-view-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/tetons-view-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/winter-centennials.jpg": {
+  "w": 1600,
+  "variants": [
+   {
+    "src": "/images/sized/places/winter-centennials-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/winter-centennials-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/places/winter-centennials-1100.jpg",
+    "w": 1100
+   }
+  ]
+ },
+ "/images/places/winter-ridge.jpg": {
+  "w": 1000,
+  "variants": [
+   {
+    "src": "/images/sized/places/winter-ridge-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/winter-ridge-800.jpg",
+    "w": 800
+   }
+  ]
+ },
+ "/images/places/yellowstone-geyser.jpg": {
+  "w": 1200,
+  "variants": [
+   {
+    "src": "/images/sized/places/yellowstone-geyser-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/yellowstone-geyser-800.jpg",
+    "w": 800
+   }
+  ]
+ }
+}

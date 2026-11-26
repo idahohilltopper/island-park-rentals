@@ -18,3 +18,11 @@ Each cabin's star rating and review count live in one file, `src/ratings.json`, 
 ## Map coordinates (geo)
 
 Google's rental markup needs coordinates. We use town-level coordinates for Island Park (about 44.50, -111.34) in each cabin's front matter as `"geo": [44.5, -111.34]`. Never use the cabin's real location; the address stays private.
+
+## Banner photos on phones
+
+After adding or changing a banner photo in `src/banners.json` (or a cabin gallery photo used as a banner), run:
+
+    python3 scripts/make-banner-sizes.py
+
+It makes smaller copies under `public/images/sized/` so phones download less, and updates `src/banner-sizes.json`. Commit those files with the change.
