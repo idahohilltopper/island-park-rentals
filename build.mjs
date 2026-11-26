@@ -247,6 +247,7 @@ function schemaFor(p) {
       identifier: k.identifier || p.path.replace(/\W+/g, "-").replace(/^-|-$/g, ""),
       image: cabinImages(k),
       brand: { "@type": "Brand", name: site.name },
+      telephone: site.phone,
       address: { "@type": "PostalAddress", addressLocality: "Island Park", addressRegion: "ID", ...(k.postalCode ? { postalCode: k.postalCode } : {}), addressCountry: "US" },
       ...(k.geo ? { geo: { "@type": "GeoCoordinates", latitude: k.geo[0], longitude: k.geo[1] } } : {}),
       containsPlace: {
@@ -346,6 +347,7 @@ ${analytics}
   <div class="wrap bar">
     <a class="brand" href="/" aria-label="${esc(site.name)} home"><svg class="mark" viewBox="0 0 56 56" width="40" height="40" aria-hidden="true"><path d="M4 54V27C4 14.3 14.3 4 27 4h2c12.700 0 23 10.300 23 23v27z" fill="#1f3a2e"/><circle cx="40" cy="17" r="4.500" fill="#c9792b"/><path d="M4 54V44l16-18 9 10 11-17 12 14v21z" fill="#f6f1e7"/><path d="M16 33 10.500 42h3L8.500 49h15l-5-7h3z" fill="#1f3a2e"/><rect x="15" y="49" width="2" height="5" fill="#1f3a2e"/></svg><span class="wm"><b>Yellowstone</b><i>Gateway Stays</i></span></a>
     <nav aria-label="Main">${nav.map(([h, l]) => `<a href="${h}"${h === p.path ? ' aria-current="page"' : ""}>${l}</a>`).join("")}</nav>
+    <a class="tel" href="tel:${site.phone}" aria-label="Call ${esc(site.phoneDisplay)}"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6.6 10.800a15.100 15.100 0 0 0 6.600 6.600l2.200-2.200a1 1 0 0 1 1-.25c1.100.37 2.300.57 3.600.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.500a1 1 0 0 1 1 1c0 1.300.2 2.500.57 3.600a1 1 0 0 1-.25 1z"/></svg><span>${esc(site.phoneDisplay)}</span></a>
     ${cabins.length === 1 ? book("header", "Book", cabins[0].cabin.airbnb) : '<a class="btn" href="/rentals/">Book</a>'}
   </div>
 </header>
@@ -364,7 +366,9 @@ ${inner}
       <ul>${nav.map(([h, l]) => `<li><a href="${h}">${l}</a></li>`).join("")}</ul>
     </div>
     <div>
-      <strong>Booking</strong>
+      <strong>Questions?</strong>
+      <p>Call <a href="tel:${site.phone}">${esc(site.phoneDisplay)}</a></p>
+      <strong style="display:block;margin-top:1em">Booking</strong>
       <p>Reservations, pricing and availability are handled securely on Airbnb.</p>
     </div>
   </div>

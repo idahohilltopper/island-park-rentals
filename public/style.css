@@ -159,3 +159,4 @@ dialog.lb button:hover,dialog.lb button:focus-visible{background:rgba(255,255,25
 .hero-wx a:hover{filter:brightness(1.1)}
 .hero-wx+.hero-snow{margin-top:.5rem}
 .hero-wx .wx-t{flex-wrap:wrap;gap:.3rem 1rem;border-radius:999px}.hero-wx .wx-t span{font-size:.9rem}@media (max-width:700px){.hero-wx .wx-t{border-radius:14px}}
+.tel{display:inline-flex;align-items:center;gap:.4rem;color:var(--green);text-decoration:none;font-weight:600;font-size:.95rem;white-space:nowrap}.tel:hover{color:var(--wood-d)}.bar nav a,.brand .wm i,.brand .wm b{white-space:nowrap}.bar nav{gap:16px}@media(max-width:1320px){.bar nav a:nth-child(n+6){display:none}}@media(max-width:1020px){.bar nav a:nth-child(n+5){display:none}}@media(max-width:700px){.tel span{display:none}.tel{width:42px;height:42px;justify-content:center;border:2px solid var(--green);border-radius:50%}.bar{gap:10px}}
