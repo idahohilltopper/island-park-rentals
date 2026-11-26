@@ -26,8 +26,13 @@ const loadDir = (dir) =>
           return { ...JSON.parse(m[1]), body: m[2] };
         })
     : [];
-const pages = [...loadDir("src/pages"), ...loadDir("src/cabins")];
+const pages = [...loadDir("src/pages"), ...loadDir("src/cabins")].filter((p) => !p.draft); // "draft": true in a cabin's front matter keeps it unpublished
 const cabins = pages.filter((p) => p.cabin);
+cabins.sort((a, b) => (a.cabin.order ?? 99) - (b.cabin.order ?? 99) || String(a.cabin.name).localeCompare(String(b.cabin.name)));
+// A published cabin must not still contain scaffold placeholders.
+for (const c of cabins) if (/TODO/.test(JSON.stringify(c))) throw new Error(`${c.path}: still contains TODO text. Finish it, or set "draft": true to keep it unpublished.`);
+// Each cabin keeps its photos in its own folder. Default: public/images/cabins/<identifier>/
+const galleryDir = (k) => k.gallery || (k.identifier ? `images/cabins/${k.identifier}` : "images/gallery");
 // Ratings come from src/ratings.json, keyed by Airbnb room ID, so one file holds every listing's stars and review count.
 const ratings = existsSync("src/ratings.json") ? JSON.parse(readFileSync("src/ratings.json", "utf8")) : {};
 for (const c of cabins) {
@@ -79,7 +84,7 @@ const css = readFileSync("public/style.css", "utf8")
   .replace(/\s*([{};])\s*/g, "$1")
   .trim();
 const hasHero = existsSync("public/images/hero.jpg");
-const galleryFiles = cabins.reduce((n, p) => n + (existsSync(join("public", p.cabin.gallery || "")) ? readdirSync(join("public", p.cabin.gallery)).length : 0), 0);
+const galleryFiles = cabins.reduce((n, p) => n + (existsSync(join("public", galleryDir(p.cabin))) ? readdirSync(join("public", galleryDir(p.cabin))).length : 0), 0);
 
 // ---------- photo credits (src/photo-credits.json) ----------
 const creditsFile = existsSync("src/photo-credits.json") ? JSON.parse(readFileSync("src/photo-credits.json", "utf8")) : [];
@@ -100,7 +105,7 @@ const smOf = (p) => {
   const m = p.match(/^(.*)\/([^/]+)$/);
   return m && existsSync(join("public", m[1], "sm", m[2])) ? `${m[1]}/sm/${m[2]}` : p;
 };
-const cabinCards = () =>
+const cabinFeatureCards = () =>
   `<div class="grid cabins">${cabins
     .map((c) => {
       const k = c.cabin;
@@ -109,12 +114,90 @@ const cabinCards = () =>
     })
     .join("")}</div>`;
 
+// ---------- multi-cabin helpers (cards, filters, comparison, jump menu, trust strip) ----------
+const FILTER_MIN = 3; // the filter bar appears once there are this many cabins
+const featOf = (k) => ({
+  hot: k.hotTub ?? (k.amenities || []).some((a) => /hot tub/i.test(a)),
+  pets: !!k.petsAllowed,
+  trailer: !!k.trailerParking,
+});
+const gridCard = (c) => {
+  const k = c.cabin, f = featOf(k);
+  const tags = [f.hot && "Hot tub", f.pets && "Pets welcome", f.trailer && "Trailer parking"].filter(Boolean).map((t) => `<span>${t}</span>`).join("");
+  const sm = smOf(k.cardImage);
+  const img = `<img src="${sm}"${sm !== k.cardImage ? ` srcset="${sm} 800w, ${k.cardImage} 1440w" sizes="(min-width: 1000px) 360px, (min-width: 600px) 50vw, 100vw"` : ""} alt="${esc(k.name)}, Island Park Idaho cabin" loading="lazy" decoding="async" width="1280" height="853">`;
+  return `<article class="card ccard" data-sleeps="${k.guests}" data-pets="${f.pets ? 1 : 0}" data-hot="${f.hot ? 1 : 0}" data-trailer="${f.trailer ? 1 : 0}"><a class="cimg" href="${c.path}">${img}</a><div class="cbody"><h3><a href="${c.path}">${esc(k.name)}</a></h3><p class="specs">Sleeps ${k.guests} &middot; ${k.bedrooms} bedroom${k.bedrooms === 1 ? "" : "s"} &middot; ${k.bathrooms} bath${k.bathrooms === 1 ? "" : "s"}</p>${tags ? `<p class="tags">${tags}</p>` : ""}${k.tagline ? `<p>${esc(k.tagline)}</p>` : ""}${k.rating ? `<p class="rate">${star} ${k.rating} (${k.reviewCount} reviews)</p>` : ""}<p class="row"><a class="more tl" href="${c.path}">View the cabin &rarr;</a> ${book("card-" + c.path.replace(/\W+/g, ""), "Book on Airbnb", k.airbnb)}</p></div></article>`;
+};
+const cabinCards = () =>
+  cabins.length === 1
+    ? cabinFeatureCards()
+    : `<div class="cgrid">${cabins.map(gridCard).join("")}</div>${cabins.length >= FILTER_MIN ? `<p class="fnone" data-fnone hidden>No cabin matches all of those. <a href="/rentals/">Clear the filters</a>.</p>` : ""}`;
+const cabinFilters = () => {
+  if (cabins.length < FILTER_MIN) return "";
+  const gs = cabins.map((c) => c.cabin.guests), min = Math.min(...gs), max = Math.max(...gs);
+  const opts = [4, 6, 8, 10, 12, 14, 16].filter((n) => n <= max && n > min);
+  const any = (key) => cabins.some((c) => featOf(c.cabin)[key]);
+  return `<div class="filters" data-filters><label>Sleeps<select><option value="">Any size</option>${opts.map((n) => `<option value="${n}">${n}+ guests</option>`).join("")}</select></label>${any("pets") ? `<label class="ck"><input type="checkbox" value="pets"> Pets welcome</label>` : ""}${any("hot") ? `<label class="ck"><input type="checkbox" value="hot"> Hot tub</label>` : ""}${any("trailer") ? `<label class="ck"><input type="checkbox" value="trailer"> Trailer parking</label>` : ""}<span class="fcount" data-fcount></span></div>`;
+};
+const cabinJump = () =>
+  cabins.length < 2 ? "" : `<p class="jump"><label>Jump to a cabin <select data-jump><option value="">Choose a cabin</option>${cabins.map((c) => `<option value="${c.path}">${esc(c.cabin.name)}</option>`).join("")}</select></label></p>`;
+const cabinTable = () => {
+  if (cabins.length < 2) return "";
+  const yn = (b) => (b ? "Yes" : "No");
+  const row = (label, fn) => `<tr><th scope="row">${label}</th>${cabins.map((c) => `<td>${fn(c.cabin, featOf(c.cabin))}</td>`).join("")}</tr>`;
+  return `<h2 id="compare" style="margin-top:2em">Compare our cabins</h2><div class="tablewrap"><table class="cmp"><thead><tr><th></th>${cabins.map((c) => `<th><a href="${c.path}">${esc(c.cabin.name)}</a></th>`).join("")}</tr></thead><tbody>${row("Sleeps", (k) => k.guests)}${row("Bedrooms", (k) => k.bedrooms)}${row("Bathrooms", (k) => k.bathrooms)}${row("Pets welcome", (k, f) => yn(f.pets))}${row("Private hot tub", (k, f) => yn(f.hot))}${row("Trailer parking", (k, f) => yn(f.trailer))}${row("Guest rating", (k) => (k.rating ? `${k.rating} (${k.reviewCount})` : "New"))}</tbody></table></div>`;
+};
+const otherCabins = (p) => {
+  const others = cabins.filter((c) => c.path !== p.path);
+  return others.length
+    ? `<section class="block alt"><div class="wrap"><h2>More cabins in Island Park</h2><div class="cgrid">${others.map(gridCard).join("")}</div><p style="margin-top:1.2em"><a class="more tl" href="/rentals/#compare">Compare all our cabins &rarr;</a></p></div></section>`
+    : "";
+};
+const factsHtml = () => {
+  const ks = cabins.map((c) => c.cabin);
+  if (!ks.length) return "";
+  const rated = ks.filter((k) => k.rating && k.reviewCount);
+  const reviews = rated.reduce((n, k) => n + k.reviewCount, 0);
+  const avg = reviews ? (rated.reduce((n, k) => n + k.rating * k.reviewCount, 0) / reviews).toFixed(2) : "";
+  const stars = reviews ? `<li>&#9733; ${avg} (${reviews} reviews)</li>` : "";
+  if (ks.length === 1) {
+    const k = ks[0], f = featOf(k);
+    return `<li><b>Sleeps ${k.guests}</b></li>${f.hot ? "<li>Private hot tub</li>" : ""}${f.pets ? "<li>Pets welcome</li>" : ""}${stars}`;
+  }
+  const gs = ks.map((k) => k.guests), pets = ks.filter((k) => featOf(k).pets).length;
+  return `<li><b>${ks.length} cabins</b></li><li>Sleeps ${Math.min(...gs)} to ${Math.max(...gs)}</li>${pets ? `<li>${pets === ks.length ? "All pet friendly" : pets + " pet friendly"}</li>` : ""}${stars}`;
+};
+const heroLead = () => {
+  if (cabins.length <= 1) return "A forest cabin in Island Park with a private hot tub, room for ten, and a short drive to Yellowstone's West Entrance.";
+  const gs = cabins.map((c) => c.cabin.guests);
+  return `Island Park cabins that sleep ${Math.min(...gs)} to ${Math.max(...gs)}, with hot tubs, pets welcome at many, and a short drive to Yellowstone's West Entrance.`;
+};
+const featureTitle = () => (cabins.length > 1 ? `At the ${cabins[0].cabin.name}` : "After the day outside");
+const heroChips = () => {
+  if (cabins.length < 2) return "";
+  const ks = cabins.map((c) => c.cabin), max = Math.max(...ks.map((k) => k.guests));
+  const chips = [];
+  if (ks.some((k) => featOf(k).hot)) chips.push(["/rentals/?f=hot", "Hot tub"]);
+  if (ks.some((k) => featOf(k).pets)) chips.push(["/rentals/?f=pets", "Pets welcome"]);
+  if (max >= 8) chips.push([`/rentals/?sleeps=${max >= 10 ? 10 : 8}`, `Sleeps ${max >= 10 ? 10 : 8}+`]);
+  if (ks.some((k) => featOf(k).trailer)) chips.push(["/rentals/?f=trailer", "Trailer parking"]);
+  return `<p class="chips">${chips.map(([h, l]) => `<a href="${h}">${l}</a>`).join("")}<a href="/rentals/#compare">Compare all cabins</a></p>`;
+};
+
 function render(body, p = {}) {
   const k = p.cabin || {};
   return body
-    .replace(/\{\{MOSAIC:([\d,]+)\}\}/g, (_, nums) => mosaicFor(k.gallery || "images/gallery", k.name ? `${k.name}, Island Park Idaho` : "Island Park Idaho cabin", nums.split(",").map(Number)))
-    .replaceAll("{{GALLERY}}", galleryFor(k.gallery || "images/gallery", k.name ? `${k.name}, Island Park Idaho` : "Island Park Idaho cabin"))
+    .replace(/\{\{MOSAIC:([\d,]+)\}\}/g, (_, nums) => mosaicFor(galleryDir(k), k.name ? `${k.name}, Island Park Idaho` : "Island Park Idaho cabin", nums.split(",").map(Number)))
+    .replaceAll("{{GALLERY}}", galleryFor(galleryDir(k), k.name ? `${k.name}, Island Park Idaho` : "Island Park Idaho cabin"))
     .replaceAll("{{CABIN_CARDS}}", cabinCards())
+    .replaceAll("{{CABIN_FILTERS}}", cabinFilters())
+    .replaceAll("{{CABIN_JUMP}}", cabinJump())
+    .replaceAll("{{CABIN_TABLE}}", cabinTable())
+    .replaceAll("{{OTHER_CABINS}}", otherCabins(p))
+    .replaceAll("{{FACTS}}", factsHtml())
+    .replaceAll("{{HERO_CHIPS}}", heroChips())
+    .replaceAll("{{HERO_LEAD}}", heroLead())
+    .replaceAll("{{FEATURE_TITLE}}", featureTitle())
     .replaceAll("{{CABIN_COUNT}}", String(cabins.length))
     .replace(/\{\{BOOK:([\w-]+)(?::([^}]+))?\}\}/g, (_, loc, label) => book(loc, label, k.airbnb || site.airbnb))
     .replaceAll("{{RATING}}", String(k.rating ?? site.rating))
@@ -132,9 +215,9 @@ function faqHtml(faq) {
 const stripTags = (s) => s.replace(/<[^>]+>/g, "");
 
 function cabinImages(k) {
-  const d = join("public", k.gallery || "");
-  const files = k.gallery && existsSync(d) ? readdirSync(d).filter((f) => /\.(jpe?g|webp|png)$/i.test(f)).sort() : [];
-  return files.length ? files.map((f) => abs(`/${k.gallery}/${f}`)) : [abs(k.cardImage)];
+  const d = join("public", galleryDir(k));
+  const files = existsSync(d) ? readdirSync(d).filter((f) => /\.(jpe?g|webp|png)$/i.test(f)).sort() : [];
+  return files.length ? files.map((f) => abs(`/${galleryDir(k)}/${f}`)) : [abs(k.cardImage)];
 }
 
 function schemaFor(p) {
@@ -184,6 +267,9 @@ function schemaFor(p) {
     if (k.rating && k.reviewCount)
       v.aggregateRating = { "@type": "AggregateRating", ratingValue: k.rating, bestRating: 5, reviewCount: k.reviewCount };
     graph.push(v);
+  }
+  if (p.path === "/rentals/" && cabins.length > 1) {
+    graph.push({ "@type": "ItemList", name: "Cabins", itemListElement: cabins.map((c, i) => ({ "@type": "ListItem", position: i + 1, url: abs(c.path), name: c.cabin.name })) });
   }
   if (p.faq) {
     graph.push({
@@ -287,6 +373,13 @@ ${inner}
   </div>
   <div class="wrap legal">&copy; ${new Date().getFullYear()} ${esc(site.name)}. Independent vacation rental site. Not affiliated with Yellowstone National Park or the National Park Service. All cabin photos are of the actual properties.</div>
 </footer>
+<script>
+(function(){var j=document.querySelector("[data-jump]");if(j)j.addEventListener("change",function(){if(j.value)location.href=j.value;});
+var bar=document.querySelector("[data-filters]");if(!bar)return;var cards=[].slice.call(document.querySelectorAll(".ccard")),out=document.querySelector("[data-fcount]"),none=document.querySelector("[data-fnone]"),sel=bar.querySelector("select"),cbs=[].slice.call(bar.querySelectorAll("input[type=checkbox]"));
+function apply(){var min=+sel.value||0,need=cbs.filter(function(c){return c.checked;}).map(function(c){return c.value;}),n=0;cards.forEach(function(c){var ok=+c.dataset.sleeps>=min&&need.every(function(k){return c.dataset[k]==="1";});c.hidden=!ok;if(ok)n++;});out.textContent="Showing "+n+" of "+cards.length+" cabins";if(none)none.hidden=n>0;}
+var q=new URLSearchParams(location.search),f=(q.get("f")||"").split(",");cbs.forEach(function(c){if(f.indexOf(c.value)>-1)c.checked=true;});if(q.get("sleeps")){sel.value=q.get("sleeps");if(sel.value!==q.get("sleeps"))sel.value="";}
+bar.addEventListener("change",apply);apply();})();
+</script>
 <script>
 (function(){var im=[].slice.call(document.querySelectorAll("img[data-src]"));if(!im.length)return;function load(i){if(i.getAttribute("data-srcset"))i.srcset=i.getAttribute("data-srcset");i.src=i.getAttribute("data-src");i.removeAttribute("data-src");}if(!("IntersectionObserver" in window)){im.forEach(load);return;}var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){load(e.target);o.unobserve(e.target);}});},{rootMargin:"300px 0px"});im.forEach(function(x){o.observe(x);});})();
 </script>
