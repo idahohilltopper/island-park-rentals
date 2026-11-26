@@ -368,6 +368,7 @@ ${inner}
     <div>
       <strong>Questions?</strong>
       <p>Call or text <a href="tel:${site.phone}">${esc(site.phoneDisplay)}</a></p>
+      <p><a class="btn ghost sm" href="sms:${site.phone}">Text us</a></p>
       <strong style="display:block;margin-top:1em">Booking</strong>
       <p>Reservations, pricing and availability are handled securely on Airbnb.</p>
     </div>
