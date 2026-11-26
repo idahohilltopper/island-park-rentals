@@ -49,26 +49,44 @@
   var LAT=44.52,LON=-111.35,H={headers:{Accept:"application/geo+json"}};
   function get(u){return fetch(u,H).then(function(r){if(!r.ok)throw new Error("http");return r.json();});}
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
-  var STN=["IPFI1","ITD55","ITD54"],temp="",alerts="";
-  function show(){if(!temp&&!alerts)return;el.innerHTML=temp+alerts;el.style.display="flex";}
+  var STN=["IPFI1","ITD55","ITD54"],temp="",fc="",alerts="",wind="",tnow=null;
+  function render(){
+    var bits="";
+    if(tnow!==null)bits+='<em>Island Park now</em> <b>'+tnow+'&deg;F</b>';
+    if(wind)bits+='<span>Wind '+wind+'</span>';
+    if(fc)bits+='<span>'+fc+'</span>';
+    temp=bits?'<a class="wx-t" href="/island-park-weather/">'+bits+'</a>':"";
+    if(!temp&&!alerts)return;el.innerHTML=temp+alerts;el.style.display="flex";
+  }
+  function mph(k){return k===null||k===undefined?null:Math.round(k*0.621371);}
   function obs(i){
-    if(i>=STN.length){show();return;}
-    get("https://api.weather.gov/stations/"+STN[i]+"/observations/latest").then(function(d){
-      var c=d.properties.temperature.value;
-      if(c===null||c===undefined){obs(i+1);return;}
-      var age=(Date.now()-new Date(d.properties.timestamp))/36e5;
-      if(age>6){obs(i+1);return;}
-      temp='<a class="wx-t" href="/island-park-weather/"><em>Island Park now</em> <b>'+Math.round(c*9/5+32)+'&deg;F</b></a>';
-      show();
+    if(i>=STN.length){render();return;}
+    get("https://api.weather.gov/stations/"+STN[i]+"/observations?limit=8").then(function(d){
+      var p=null,fs=d.features||[];
+      for(var k=0;k<fs.length;k++){var q=fs[k].properties;if(q.temperature&&q.temperature.value!==null&&q.temperature.value!==undefined){p=q;break;}}
+      if(!p||(Date.now()-new Date(p.timestamp))/36e5>6){obs(i+1);return;}
+      var c=p.temperature.value;
+      tnow=Math.round(c*9/5+32);
+      var w=mph(p.windSpeed.value),g=mph(p.windGust&&p.windGust.value);
+      if(w!==null&&w>0)wind=w+" mph"+(g&&g>w?", gusts "+g:"");else if(g)wind="gusts "+g+" mph";else if(w===0)wind="calm";
+      render();
     }).catch(function(){obs(i+1);});
   }
   obs(0);
+  get("https://api.weather.gov/points/"+LAT+","+LON).then(function(d){return get(d.properties.forecast);}).then(function(d){
+    var ps=d.properties.periods,hi=null,lo=null;
+    for(var i=0;i<ps.length&&i<4;i++){var q=ps[i];if(q.isDaytime&&hi===null)hi=q.temperature;if(!q.isDaytime&&lo===null)lo=q.temperature;}
+    var o=[];if(hi!==null)o.push("High "+hi+"&deg;");if(lo!==null)o.push("Low "+lo+"&deg;");
+    fc=o.join(" &middot; ");
+    if(!wind&&ps[0]&&ps[0].windSpeed)wind=ps[0].windSpeed.replace(/ mph/,"")+" mph "+(ps[0].windDirection||"");
+    render();
+  }).catch(function(){});
   get("https://api.weather.gov/alerts/active?point="+LAT+","+LON).then(function(d){
     var seen={},out=[];
     (d.features||[]).forEach(function(x){var e=x.properties.event;if(seen[e])return;seen[e]=1;
       var sev=/Warning/.test(e)?"warn":/Watch/.test(e)?"watch":"adv";
       out.push('<a class="wx-a '+sev+'" href="https://forecast.weather.gov/MapClick.php?lat='+LAT+'&amp;lon='+LON+'#hazards" target="_blank" rel="noopener">&#9888; '+esc(e)+' <u>Details at weather.gov</u></a>');});
-    alerts=out.join("");show();
+    alerts=out.join("");render();
   }).catch(function(){});
 })();
 </script>
