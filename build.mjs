@@ -201,6 +201,8 @@ function render(body, p = {}) {
     .replaceAll("{{REVIEWS}}", String(k.reviewCount ?? site.reviewCount))
     .replaceAll("{{PHOTO_CREDITS}}", photoCredits)
     .replaceAll("{{AIRBNB}}", k.airbnb || site.airbnb)
+    .replaceAll("{{PHONE_DISPLAY}}", site.phoneDisplay)
+    .replaceAll("{{PHONE}}", site.phone)
     .replaceAll("{{STAR}}", star);
 }
 
@@ -363,7 +365,7 @@ ${inner}
     </div>
     <div>
       <strong>Explore</strong>
-      <ul>${nav.map(([h, l]) => `<li><a href="${h}">${l}</a></li>`).join("")}</ul>
+      <ul>${[...nav, ["/about/", "About us"]].map(([h, l]) => `<li><a href="${h}">${l}</a></li>`).join("")}</ul>
     </div>
     <div>
       <strong>Questions?</strong>
