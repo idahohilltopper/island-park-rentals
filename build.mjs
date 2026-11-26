@@ -109,7 +109,7 @@ const cabinFeatureCards = () =>
   `<div class="grid cabins">${cabins
     .map((c) => {
       const k = c.cabin;
-      const rating = k.rating ? ` {{STAR}} ${k.rating} (${k.reviewCount} reviews)` : "";
+      const rating = k.rating ? `<span class="rt">{{STAR}} ${k.rating} (${k.reviewCount} reviews)</span>` : "";
       return `<article class="card cabin-card"><a href="${c.path}"><img src="${smOf(k.cardImage)}" ${smOf(k.cardImage) !== k.cardImage ? `srcset="${smOf(k.cardImage)} 800w, ${k.cardImage} 1440w" sizes="(min-width: 820px) 620px, 100vw" ` : ""}alt="${esc(k.name)}, Island Park Idaho cabin" loading="lazy" fetchpriority="low" decoding="async" width="1280" height="853"></a><div class="cbody"><h3><a href="${c.path}">${esc(k.name)}</a></h3><p>${esc(k.cardBlurb)}${rating}</p><p class="row"><a class="more tl" href="${c.path}">View the cabin &rarr;</a> ${book("card-" + c.path.replace(/\W+/g, ""), "Book on Airbnb", k.airbnb)}</p></div></article>`;
     })
     .join("")}</div>`;
