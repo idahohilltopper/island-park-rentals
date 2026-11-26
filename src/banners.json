@@ -207,5 +207,9 @@
   "/ashton-idaho/": {
     "img": "/images/places/mesa-falls-rainbow.jpg",
     "alt": "A rainbow over the Henrys Fork below Upper Mesa Falls near Ashton, Idaho"
+  },
+  "/rentals/": {
+    "img": "/images/gallery/02-private-hot-tub-with-sunset-view.jpg",
+    "alt": "The private hot tub on the covered deck at sunset, Whitebark Cabin, Island Park, Idaho"
   }
 }

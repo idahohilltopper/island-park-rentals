@@ -16,6 +16,23 @@
    }
   ]
  },
+ "/images/gallery/02-private-hot-tub-with-sunset-view.jpg": {
+  "w": 1440,
+  "variants": [
+   {
+    "src": "/images/sized/gallery/02-private-hot-tub-with-sunset-view-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/gallery/02-private-hot-tub-with-sunset-view-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/gallery/02-private-hot-tub-with-sunset-view-1100.jpg",
+    "w": 1100
+   }
+  ]
+ },
  "/images/gallery/04-private-hot-tub-winter-snow-view.jpg": {
   "w": 1440,
   "variants": [
