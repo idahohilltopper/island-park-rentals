@@ -69,6 +69,11 @@
     "alt": "Old Faithful erupting in Yellowstone National Park",
     "pos": "center 45%"
   },
+  "/whitebark-cabin/": {
+    "img": "/images/gallery/01-exterior-at-sunset.jpg",
+    "alt": "The Whitebark Cabin at sunset in Island Park, Idaho",
+    "pos": "center 60%"
+  },
   "/island-park-winter/": {
     "img": "/images/places/winter-centennials.jpg",
     "alt": "Snow-covered meadows and peaks of the Centennial Mountains under a deep blue sky"
