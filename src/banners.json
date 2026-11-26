@@ -64,6 +64,11 @@
     "img": "/images/places/summer-centennials.jpg",
     "alt": "Summer in the Centennial Mountains near Island Park, Idaho"
   },
+  "/yellowstone-west-entrance-from-island-park/": {
+    "img": "/images/places/yellowstone-geyser.jpg",
+    "alt": "Old Faithful erupting in Yellowstone National Park",
+    "pos": "center 45%"
+  },
   "/island-park-winter/": {
     "img": "/images/places/winter-centennials.jpg",
     "alt": "Snow-covered meadows and peaks of the Centennial Mountains under a deep blue sky"
