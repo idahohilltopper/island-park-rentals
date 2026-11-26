@@ -52,7 +52,24 @@ function galleryFor(dir, label) {
       const sm = existsSync(join("public", dir, "sm", f));
       const src = sm ? `/${esc(dir)}/sm/${esc(f)}` : `/${esc(dir)}/${esc(f)}`;
       const set = sm ? ` srcset="/${esc(dir)}/sm/${esc(f)} 800w, /${esc(dir)}/${esc(f)} 1440w" sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"` : "";
-      return `<figure><img src="${src}"${set} alt="${esc(`${altFromName(f)}, ${label}`)}" ${i === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} decoding="async"></figure>`;
+      const alt = esc(`${altFromName(f)}, ${label}`);
+      const dset = set.replace(" srcset=", " data-srcset=");
+      return `<figure><a href="/${esc(dir)}/${esc(f)}" data-lb><img data-src="${src}"${dset} alt="${alt}" decoding="async"><noscript><img src="${src}"${set} alt="${alt}"></noscript></a></figure>`;
+    })
+    .join("")}</div>`;
+}
+// Photo mosaic for the top of a cabin page: picks files by number prefix (01-, 02-, ...).
+function mosaicFor(dir, label, picks) {
+  const d = join("public", dir);
+  const files = existsSync(d) ? readdirSync(d).filter((f) => /\.(jpe?g|webp|png|avif)$/i.test(f)).sort() : [];
+  const chosen = picks.map((n) => files.find((f) => f.startsWith(String(n).padStart(2, "0") + "-"))).filter(Boolean);
+  if (!chosen.length) return "";
+  return `<div class="mosaic">${chosen
+    .map((f, i) => {
+      const sm = existsSync(join("public", dir, "sm", f));
+      const src = sm ? `/${esc(dir)}/sm/${esc(f)}` : `/${esc(dir)}/${esc(f)}`;
+      const alt = esc(`${altFromName(f)}, ${label}`);
+      return `<a${i === 0 ? ' class="big"' : ""} href="/${esc(dir)}/${esc(f)}" data-lb>${i === 0 ? `<img src="${src}" alt="${alt}" loading="eager" decoding="async">` : `<img data-src="${src}" alt="${alt}" decoding="async"><noscript><img src="${src}" alt="${alt}"></noscript>`}</a>`;
     })
     .join("")}</div>`;
 }
@@ -88,13 +105,14 @@ const cabinCards = () =>
     .map((c) => {
       const k = c.cabin;
       const rating = k.rating ? ` {{STAR}} ${k.rating} (${k.reviewCount} reviews)` : "";
-      return `<article class="card cabin-card"><a href="${c.path}"><img src="${smOf(k.cardImage)}" ${smOf(k.cardImage) !== k.cardImage ? `srcset="${smOf(k.cardImage)} 800w, ${k.cardImage} 1440w" sizes="(min-width: 1100px) 1060px, 100vw" ` : ""}alt="${esc(k.name)}, Island Park Idaho cabin" loading="lazy" decoding="async" width="1280" height="853"></a><div class="cbody"><h3><a href="${c.path}">${esc(k.name)}</a></h3><p>${esc(k.cardBlurb)}${rating}</p><p class="row"><a class="btn" href="${c.path}">View details</a> ${book("card-" + c.path.replace(/\W+/g, ""), "Book on Airbnb", k.airbnb)}</p></div></article>`;
+      return `<article class="card cabin-card"><a href="${c.path}"><img src="${smOf(k.cardImage)}" ${smOf(k.cardImage) !== k.cardImage ? `srcset="${smOf(k.cardImage)} 800w, ${k.cardImage} 1440w" sizes="(min-width: 820px) 620px, 100vw" ` : ""}alt="${esc(k.name)}, Island Park Idaho cabin" loading="lazy" fetchpriority="low" decoding="async" width="1280" height="853"></a><div class="cbody"><h3><a href="${c.path}">${esc(k.name)}</a></h3><p>${esc(k.cardBlurb)}${rating}</p><p class="row"><a class="more tl" href="${c.path}">View the cabin &rarr;</a> ${book("card-" + c.path.replace(/\W+/g, ""), "Book on Airbnb", k.airbnb)}</p></div></article>`;
     })
     .join("")}</div>`;
 
 function render(body, p = {}) {
   const k = p.cabin || {};
   return body
+    .replace(/\{\{MOSAIC:([\d,]+)\}\}/g, (_, nums) => mosaicFor(k.gallery || "images/gallery", k.name ? `${k.name}, Island Park Idaho` : "Island Park Idaho cabin", nums.split(",").map(Number)))
     .replaceAll("{{GALLERY}}", galleryFor(k.gallery || "images/gallery", k.name ? `${k.name}, Island Park Idaho` : "Island Park Idaho cabin"))
     .replaceAll("{{CABIN_CARDS}}", cabinCards())
     .replaceAll("{{CABIN_COUNT}}", String(cabins.length))
@@ -234,6 +252,7 @@ ${verify}
 <meta property="og:image" content="${abs("/images/og.jpg")}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/zilla-slab-700.woff2" crossorigin>
 ${p.path === "/" ? `<link rel="preload" as="image" href="/images/hero-sm.jpg" media="(max-width: 700px)" fetchpriority="high"><link rel="preload" as="image" href="/images/hero.jpg" media="(min-width: 701px)" fetchpriority="high">` : ""}<style>${css}</style>
 <script type="application/ld+json">${schemaFor(p)}</script>
 ${analytics}
@@ -268,6 +287,13 @@ ${inner}
   </div>
   <div class="wrap legal">&copy; ${new Date().getFullYear()} ${esc(site.name)}. Independent vacation rental site. Not affiliated with Yellowstone National Park or the National Park Service. All cabin photos are of the actual properties.</div>
 </footer>
+<script>
+(function(){var im=[].slice.call(document.querySelectorAll("img[data-src]"));if(!im.length)return;function load(i){if(i.getAttribute("data-srcset"))i.srcset=i.getAttribute("data-srcset");i.src=i.getAttribute("data-src");i.removeAttribute("data-src");}if(!("IntersectionObserver" in window)){im.forEach(load);return;}var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){load(e.target);o.unobserve(e.target);}});},{rootMargin:"300px 0px"});im.forEach(function(x){o.observe(x);});})();
+</script>
+<script>
+(function(){var L=[],i=0,d;function open(n){i=(n+L.length)%L.length;if(!d){d=document.createElement("dialog");d.className="lb";d.innerHTML='<button class="x" aria-label="Close">&times;</button><button class="p" aria-label="Previous">&lsaquo;</button><button class="n" aria-label="Next">&rsaquo;</button><img alt="">';document.body.appendChild(d);d.addEventListener("click",function(e){if(e.target===d||e.target.classList.contains("x"))d.close();else if(e.target.classList.contains("p"))open(i-1);else if(e.target.classList.contains("n"))open(i+1);});d.addEventListener("keydown",function(e){if(e.key==="ArrowLeft")open(i-1);if(e.key==="ArrowRight")open(i+1);});}var a=L[i];d.querySelector("img").src=a.href;d.querySelector("img").alt=(a.querySelector("img")||{}).alt||"";if(!d.open)d.showModal();}
+document.addEventListener("click",function(e){var a=e.target.closest("a[data-lb]");if(!a||!document.createElement("dialog").showModal)return;e.preventDefault();L=[].slice.call(document.querySelectorAll("a[data-lb]"));open(L.indexOf(a));});})();
+</script>
 <script>
 document.addEventListener("click",function(e){var a=e.target.closest("[data-airbnb]");if(!a)return;var l=a.getAttribute("data-airbnb");
 if(window.plausible)plausible("Airbnb Click",{props:{location:l,page:location.pathname}});

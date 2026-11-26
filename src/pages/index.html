@@ -5,20 +5,15 @@
   <div class="wrap">
     <p class="eyebrow">Island Park, Idaho cabin rentals &middot; Near Yellowstone</p>
     <h1>Your gateway to Yellowstone and Island Park, Idaho</h1>
-    <p class="lead">Comfortable cabin rentals in the forests of Island Park, Idaho, a short drive from Yellowstone National Park, with room for the whole group.</p>
+    <p class="lead">A forest cabin in Island Park with a private hot tub, room for ten, and a short drive to Yellowstone's West Entrance.</p>
     <div class="cta"><a class="btn" href="/rentals/">See our cabins</a> <a class="btn ghost" href="/yellowstone-lodging/">Staying near Yellowstone</a></div>
     <a class="hero-snow" id="hero-snow" href="/island-park-snow-report/" style="display:none"></a>
   </div>
 </section>
 <div class="facts"><ul>
-  <li>Island Park, Idaho</li><li>Near Yellowstone National Park</li><li>Booked securely on Airbnb</li><li>Airbnb Superhost</li>
+  <li><b>Sleeps 10</b></li><li>Private hot tub</li><li>Pets welcome</li><li>&#9733; {{RATING}} ({{REVIEWS}} reviews)</li>
 </ul></div>
 
-<section class="block alt" id="snow-strip" style="display:none"><div class="wrap">
-  <h2>Island Park snow conditions</h2>
-  <p id="snow-strip-body">Loading&hellip;</p>
-  <p><a href="/island-park-snow-report/">Full snow report &rarr;</a> &middot; <a href="/island-park-winter/">Winter in Island Park</a></p>
-</div></section>
 <script>
 (function(){
   var m=new Date().getMonth();
@@ -32,13 +27,13 @@
   function chg(rows,i,k,back){var j=i-back;if(j<0||rows[j][k]===null)return null;return Math.round((rows[i][k]-rows[j][k])*10)/10;}
   function sign(v){return v===null?"n/a":(v>0?"+":"")+v+'"';}
 
-  var sec=document.getElementById("snow-strip"),body=document.getElementById("snow-strip-body");
+  var sec=null,body=null;
   Promise.all(ST.map(function(s){return fetch(url(s.id)).then(function(r){if(!r.ok)throw new Error("http");return r.text();}).then(function(t){return {s:s,rows:parse(t)};}).catch(function(){return null;});})).then(function(res){
     var parts=[],when="";
     res.forEach(function(x){if(!x)return;var i=latest(x.rows,"sd");if(i<0)return;var r=x.rows[i];when=when||fmtd(r.d);parts.push("<strong>"+x.s.name+" ("+x.s.ft+"):</strong> "+r.sd+'" snow depth, '+sign(chg(x.rows,i,"sd",24))+" in 24 hours"+(r.t!==null?", "+r.t+"&deg;F":""));});
     if(!parts.length)return;
-    body.innerHTML=parts.join("<br>")+'<br><span style="font-size:.9rem;color:var(--mute)">NRCS SNOTEL, as of '+when+'</span>';
-    sec.style.display="";
+    if(body)body.innerHTML=parts.join("<br>")+'<br><span style="font-size:.9rem;color:var(--mute)">NRCS SNOTEL, as of '+when+'</span>';
+    if(sec)sec.style.display="";
     var hs=document.getElementById("hero-snow"),hp=[];
     res.forEach(function(x){if(!x)return;var i=latest(x.rows,"sd");if(i<0)return;hp.push("<span>"+x.s.name.split(",")[0]+" <b>"+x.rows[i].sd+'"</b> <small>'+sign(chg(x.rows,i,"sd",24))+" in 24 hrs</small></span>");});
     if(hs&&hp.length){hs.innerHTML='<em>Snow depth now</em>'+hp.join("")+'<u>Full report &rarr;</u>';hs.style.display="inline-flex";}
@@ -51,35 +46,47 @@
   {{CABIN_CARDS}}
 </div></section>
 
-<section class="block alt"><div class="wrap">
-  <h2>Why stay in Island Park</h2>
-  <div class="grid">
-    <div class="card"><h3>A short drive from Yellowstone</h3><p>Spend your days in the park and your evenings in a quiet forest setting, with more space than a hotel room.</p><a class="more" href="/yellowstone-lodging/">Staying near Yellowstone &rarr;</a></div>
-    <div class="card"><h3>Outdoors in every season</h3><p>Fly fishing, Henrys Lake, Mesa Falls and Harriman State Park in warm months, and snowmobiling and skiing in winter.</p><a class="more" href="/things-to-do/">Things to do &rarr;</a></div>
-    <div class="card"><h3>Winter riding base</h3><p>Island Park is one of the region's best-known snowmobiling areas, with trailer parking and room for groups at our Whitebark Cabin.</p><a class="more" href="/island-park-snowmobiling/">Snowmobiling guide &rarr;</a></div>
+<section class="block alt"><div class="wrap feature">
+  <img data-src="/images/gallery/sm/04-private-hot-tub-winter-snow-view.jpg" alt="Private hot tub on the covered deck with a view of snow and evergreens, Whitebark Cabin, Island Park Idaho" width="800" height="600" decoding="async"><noscript><img src="/images/gallery/sm/04-private-hot-tub-winter-snow-view.jpg" alt="Private hot tub on the covered deck with a view of snow and evergreens, Whitebark Cabin, Island Park Idaho" width="800" height="600"></noscript>
+  <div>
+    <h2>After the day outside</h2>
+    <ul>
+      <li><b>A private hot tub</b> with a meadow view in summer and snow in winter.</li>
+      <li><b>An indoor fireplace,</b> a full kitchen, and a fire pit when fire restrictions allow.</li>
+      <li><b>Room for ten,</b> with space for small to medium trailers.</li>
+    </ul>
+    <p>{{BOOK:home-feature:Book on Airbnb}}</p>
+    <p><a class="more tl" href="/whitebark-cabin/">See all the photos &rarr;</a></p>
   </div>
 </div></section>
 
 <section class="block"><div class="wrap">
-  <h2>Plan your Yellowstone trip</h2>
-  <p><a href="/guides/">Browse all guides &rarr;</a></p>
-  <div class="grid">
-    <div class="card"><h3>Island Park, Idaho travel guide</h3><p>Everything to know before you go.</p><a class="more" href="/island-park-idaho/">Read the guide &rarr;</a></div>
-    <div class="card"><h3>Island Park vs West Yellowstone</h3><p>Where to stay near the West Entrance.</p><a class="more" href="/yellowstone-lodging/">Read the guide &rarr;</a></div>
-    <div class="card"><h3>Island Park vs Big Sky vs West Yellowstone</h3><p>Skiing, space and distances compared.</p><a class="more" href="/island-park-vs-big-sky-vs-west-yellowstone/">Compare &rarr;</a></div>
-    <div class="card"><h3>Getting here</h3><p>Driving from Bozeman, Big Sky and Idaho Falls.</p><a class="more" href="/getting-to-island-park/">Get directions &rarr;</a></div>
-    <div class="card"><h3>Yellowstone itinerary</h3><p>2, 3 or 4 days with NPS drive times.</p><a class="more" href="/yellowstone-itinerary/">Plan your days &rarr;</a></div>
-    <div class="card"><h3>Grand Teton and Yellowstone</h3><p>Combine both parks from Island Park.</p><a class="more" href="/grand-teton-yellowstone-itinerary/">See the plan &rarr;</a></div>
-    <div class="card"><h3>Winter in Island Park</h3><p>Snowmobiling, skiing and ice fishing.</p><a class="more" href="/island-park-winter/">Winter guide &rarr;</a></div>
-    <div class="card"><h3>Best time to visit</h3><p>Weather, snow and Yellowstone road dates.</p><a class="more" href="/island-park-best-time-to-visit/">Plan your season &rarr;</a></div>
-    <div class="card"><h3>Closest airport to Yellowstone</h3><p>Which airport fits which entrance.</p><a class="more" href="/closest-airport-to-yellowstone/">Compare airports &rarr;</a></div>
-    <div class="card"><h3>Mesa Falls</h3><p>Upper and Lower falls and the scenic byway.</p><a class="more" href="/mesa-falls/">Visit guide &rarr;</a></div>
-    <div class="card"><h3>Grizzly and Wolf Discovery Center</h3><p>Rescued wildlife in West Yellowstone.</p><a class="more" href="/grizzly-wolf-discovery-center/">Plan your visit &rarr;</a></div>
-    <div class="card"><h3>Airbnb in Island Park</h3><p>How to choose the right cabin.</p><a class="more" href="/airbnb-island-park-idaho/">Booking guide &rarr;</a></div>
-    <div class="card"><h3>Webcams and road conditions</h3><p>Official sources in one place.</p><a class="more" href="/webcams-road-conditions/">Check before you go &rarr;</a></div>
-    <div class="card"><h3>Fly fishing near Island Park</h3><p>Henrys Lake, the Henrys Fork and the Madison River.</p><a class="more" href="/fly-fishing-island-park/">Fishing guide &rarr;</a></div>
-    <div class="card"><h3>Camping in Island Park</h3><p>Campgrounds, seasons and a cabin alternative.</p><a class="more" href="/camping-island-park-idaho/">Campground guide &rarr;</a></div>
+  <h2>Around Island Park</h2>
+  <div class="tiles">
+    <a class="tile big" href="/sawtell-peak/"><img data-src="/images/tiles/sawtell.jpg" alt="A mountain goat on Sawtell Peak above Island Park, Idaho" width="800" height="533" decoding="async"><noscript><img src="/images/tiles/sawtell.jpg" alt="A mountain goat on Sawtell Peak above Island Park, Idaho" width="800" height="533"></noscript><span class="tcap"><b>Sawtell Peak</b><small>Mountain goats, big views and a road to the top</small></span></a>
+    <a class="tile" href="/mesa-falls/"><img data-src="/images/tiles/mesa-falls.jpg" alt="Mesa Falls on the Henrys Fork, Idaho" width="800" height="533" decoding="async"><noscript><img src="/images/tiles/mesa-falls.jpg" alt="Mesa Falls on the Henrys Fork, Idaho" width="800" height="533"></noscript><span class="tcap"><b>Mesa Falls</b></span></a>
+    <a class="tile" href="/big-springs-island-park/"><img data-src="/images/tiles/big-springs.jpg" alt="Big Springs near Island Park, Idaho" width="800" height="533" decoding="async"><noscript><img src="/images/tiles/big-springs.jpg" alt="Big Springs near Island Park, Idaho" width="800" height="533"></noscript><span class="tcap"><b>Big Springs</b></span></a>
+    <a class="tile" href="/island-park-snowmobiling/"><img data-src="/images/tiles/snowmobiling.jpg" alt="Snowmobiling in deep powder near Island Park, Idaho" width="800" height="533" decoding="async"><noscript><img src="/images/tiles/snowmobiling.jpg" alt="Snowmobiling in deep powder near Island Park, Idaho" width="800" height="533"></noscript><span class="tcap"><b>Snowmobiling</b></span></a>
+    <a class="tile" href="/henrys-fork-fly-fishing/"><img data-src="/images/tiles/henrys-fork.jpg" alt="Fly fishing the Henrys Fork near Island Park, Idaho" width="800" height="533" decoding="async"><noscript><img src="/images/tiles/henrys-fork.jpg" alt="Fly fishing the Henrys Fork near Island Park, Idaho" width="800" height="533"></noscript><span class="tcap"><b>Fly fishing</b></span></a>
   </div>
+  <h2 style="margin-top:2em">Plan your trip</h2>
+  <ul class="morelist">
+    <li><a href="/island-park-idaho/">Island Park, Idaho travel guide</a><span>Everything to know before you go</span></li>
+    <li><a href="/yellowstone-west-entrance-from-island-park/">Driving to the West Entrance</a><span>The route, drive times and season</span></li>
+    <li><a href="/yellowstone-lodging/">Island Park vs West Yellowstone</a><span>Where to stay near the West Entrance</span></li>
+    <li><a href="/island-park-vs-big-sky-vs-west-yellowstone/">Island Park vs Big Sky vs West Yellowstone</a><span>Skiing, space and distances compared</span></li>
+    <li><a href="/getting-to-island-park/">Getting here</a><span>From Bozeman, Big Sky and Idaho Falls</span></li>
+    <li><a href="/yellowstone-itinerary/">Yellowstone itinerary</a><span>2, 3 or 4 days with park drive times</span></li>
+    <li><a href="/grand-teton-yellowstone-itinerary/">Grand Teton and Yellowstone</a><span>Combine both parks from Island Park</span></li>
+    <li><a href="/island-park-winter/">Winter in Island Park</a><span>Snowmobiling, skiing and ice fishing</span></li>
+    <li><a href="/island-park-snow-report/">Snow report</a><span>Live snow depth from nearby stations</span></li>
+    <li><a href="/island-park-weather/">Weather and forecast</a><span>Live conditions and alerts</span></li>
+    <li><a href="/island-park-best-time-to-visit/">Best time to visit</a><span>Weather, snow and park road dates</span></li>
+    <li><a href="/closest-airport-to-yellowstone/">Closest airport to Yellowstone</a><span>Which airport fits which entrance</span></li>
+    <li><a href="/webcams-road-conditions/">Webcams and road conditions</a><span>Official sources in one place</span></li>
+    <li><a href="/airbnb-island-park-idaho/">Airbnb in Island Park</a><span>How to choose the right cabin</span></li>
+  </ul>
+  <p style="margin-top:1.4em"><a class="more tl" href="/guides/">Browse all guides &rarr;</a></p>
 </div></section>
 
 <section class="block"><div class="wrap" style="max-width:800px">
