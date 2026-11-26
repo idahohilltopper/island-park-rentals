@@ -211,5 +211,9 @@
   "/rentals/": {
     "img": "/images/gallery/02-private-hot-tub-with-sunset-view.jpg",
     "alt": "The private hot tub on the covered deck at sunset, Whitebark Cabin, Island Park, Idaho"
+  },
+  "/about/": {
+    "img": "/images/places/snowmobiling-centennial.jpg",
+    "alt": "Snowmobiling in the Centennial Mountains near Island Park, Idaho"
   }
 }
