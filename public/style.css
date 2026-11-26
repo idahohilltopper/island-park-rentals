@@ -158,3 +158,4 @@ dialog.lb button:hover,dialog.lb button:focus-visible{background:rgba(255,255,25
 .hero-wx .adv{background:rgba(70,80,90,.9)}
 .hero-wx a:hover{filter:brightness(1.1)}
 .hero-wx+.hero-snow{margin-top:.5rem}
+.hero-wx .wx-t{flex-wrap:wrap;gap:.3rem 1rem;border-radius:999px}.hero-wx .wx-t span{font-size:.9rem}@media (max-width:700px){.hero-wx .wx-t{border-radius:14px}}
