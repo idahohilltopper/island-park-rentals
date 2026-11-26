@@ -1,13 +1,27 @@
 # Adding a cabin
 
-1. Copy `src/cabins/whitebark.html` to `src/cabins/<new-cabin>.html`.
-2. Edit the JSON at the top: `path` (e.g. `/lodgepole-cabin/`), `title`, `description`, and the `cabin` block
-   (name, Airbnb URL, rating, reviews, guests, bedrooms, bathrooms, amenities, card blurb).
-3. Rewrite the page body below the second `---` with that cabin's real details. Only state facts from its Airbnb listing.
-4. Put photos in `public/images/cabins/<new-cabin>/` (name each file for what it shows, e.g. `01-living-room.jpg`; the name becomes the alt text)
-   and set `cardImage` and `gallery` (`images/cabins/<new-cabin>`) in the JSON.
-5. `git push` to `main`. Netlify rebuilds; the cabin appears on the Rentals and home pages and in the sitemap automatically.
-6. Request indexing for the new URL in Google Search Console.
+The site is set up for many cabins. Adding a cabin adds it to the home page, the Rentals page (cards, filters, comparison table and "jump to a cabin" menu), the sitemap, the search markup, the monthly rating update and the "More cabins" section on every other cabin page. Nothing else needs editing.
+
+## Steps for each new cabin
+
+1. Make the page: `node scripts/new-cabin.mjs <slug> "<Cabin Name>" <airbnb-url>`
+   This creates `src/cabins/<slug>.html` as a draft and the photo folder `public/images/cabins/<slug>/`.
+2. Fill in every `TODO` in the page. The build refuses to publish a cabin that still has `TODO` text. Only state facts from the cabin's Airbnb listing. Never publish the address.
+   The `cabin` block drives the cards and filters: `guests`, `bedrooms`, `bathrooms`, `petsAllowed`, `trailerParking`, an `amenities` list (include "Private hot tub" if it has one), a one-sentence `tagline`, and `order` (the lower number shows first).
+3. Add the photos to `public/images/cabins/<slug>/`. Name each file for what it shows: `01-exterior.jpg`, `02-hot-tub.jpg`. The name becomes the alt text and the order. The top mosaic uses photos 1 to 5 (`{{MOSAIC:1,2,3,4,5}}`); the full gallery shows all of them. Point `cardImage` at the best exterior photo.
+4. Optional banner photo: add the page's path to `src/banners.json`, then run `python3 scripts/make-banner-sizes.py`.
+5. Add the listing to `src/ratings.json` (key = the number in the Airbnb URL) if it has reviews.
+6. Remove `"draft": true` from the page's front matter, run `node build.mjs`, and look at the Rentals page and the new cabin page.
+7. Push to `main`. Netlify rebuilds, IndexNow tells Bing and others, and you request indexing for the new URL in Google Search Console.
+
+## What changes by itself as cabins are added
+
+- 1 cabin: a large feature card, no filters.
+- 2 cabins: a card grid, a "Jump to a cabin" menu, a comparison table, hero chips on the home page, and a "More cabins" section on each cabin page. The header **Book** button switches from the Airbnb listing to the Rentals page.
+- 3 or more cabins: the filter bar (guests, pets, hot tub, trailer parking) also appears.
+- The home trust strip counts the cabins, the sleeping range, the pet-friendly count and a review-weighted average rating.
+
+Review the static text on `/rentals/` and the home page's "At the <first cabin>" section when you add cabins, since both describe the first cabin.
 
 Omit `rating` / `reviewCount` for a cabin with no reviews yet so no rating markup is published.
 
