@@ -194,6 +194,27 @@
    }
   ]
  },
+ "/images/places/grand-prismatic-aerial.jpg": {
+  "w": 2000,
+  "variants": [
+   {
+    "src": "/images/sized/places/grand-prismatic-aerial-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/grand-prismatic-aerial-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/places/grand-prismatic-aerial-1100.jpg",
+    "w": 1100
+   },
+   {
+    "src": "/images/sized/places/grand-prismatic-aerial-1400.jpg",
+    "w": 1400
+   }
+  ]
+ },
  "/images/places/grizzly-bear.jpg": {
   "w": 1800,
   "variants": [
