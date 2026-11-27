@@ -949,31 +949,6 @@
    }
   ]
  },
- "/images/places/thermal-pool.jpg": {
-  "w": 1800,
-  "variants": [
-   {
-    "src": "/images/sized/places/thermal-pool-640.jpg",
-    "w": 640
-   },
-   {
-    "src": "/images/sized/places/thermal-pool-800.jpg",
-    "w": 800
-   },
-   {
-    "src": "/images/sized/places/thermal-pool-1100.jpg",
-    "w": 1100
-   },
-   {
-    "src": "/images/sized/places/thermal-pool-1400.jpg",
-    "w": 1400
-   },
-   {
-    "src": "/images/sized/places/thermal-pool-2400.jpg",
-    "w": 2400
-   }
-  ]
- },
  "/images/places/trout-in-net.jpg": {
   "w": 1800,
   "variants": [
@@ -1149,6 +1124,31 @@
    },
    {
     "src": "/images/sized/places/yellowstone-canyon-2400.jpg",
+    "w": 2400
+   }
+  ]
+ },
+ "/images/places/yellowstone-entrance-sign.jpg": {
+  "w": 2000,
+  "variants": [
+   {
+    "src": "/images/sized/places/yellowstone-entrance-sign-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/yellowstone-entrance-sign-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/places/yellowstone-entrance-sign-1100.jpg",
+    "w": 1100
+   },
+   {
+    "src": "/images/sized/places/yellowstone-entrance-sign-1400.jpg",
+    "w": 1400
+   },
+   {
+    "src": "/images/sized/places/yellowstone-entrance-sign-2400.jpg",
     "w": 2400
    }
   ]
