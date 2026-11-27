@@ -42,5 +42,9 @@
   "/island-park-hotels-vs-cabins/": {
     "img": "/images/sized/places/log-cabin-autumn-640.jpg",
     "alt": "A log cabin with a red roof and orange door among autumn-colored shrubs and evergreens under a dramatic sky"
+  },
+  "/madison-river-fishing/": {
+    "img": "/images/sized/places/madison-river-frost-640.jpg",
+    "alt": "Two anglers wading in the steaming Madison River on a frosty morning, with frost-covered trees and gravel bars"
   }
 }
