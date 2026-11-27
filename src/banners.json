@@ -258,5 +258,10 @@
     "img": "/images/places/kids-fishing-pond.jpg",
     "alt": "Two laughing children in sunglasses fishing from a grassy bank",
     "pos": "center 50%"
+  },
+  "/powersports-rentals-island-park-west-yellowstone/": {
+    "img": "/images/places/snowmobiler-deep-powder.jpg",
+    "alt": "A snowmobiler in an orange helmet giving a thumbs up, sitting in deep powder beside a sled among snow-covered evergreens",
+    "pos": "center 68%"
   }
 }
