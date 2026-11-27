@@ -26,5 +26,9 @@
   "/grand-teton-yellowstone-itinerary/": {
     "img": "/images/sized/places/teton-alpine-lake-640.jpg",
     "alt": "A turquoise alpine lake with large boulders below rocky, snow-streaked Teton peaks"
+  },
+  "/groceries-gas-supplies-island-park/": {
+    "img": "/images/sized/places/grocery-tomatoes-640.jpg",
+    "alt": "A hand picking a ripe tomato from a produce display in a grocery store"
   }
 }
