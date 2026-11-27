@@ -1,8 +1,46 @@
 {
-  "/harriman-state-park/": {"img": "/images/sized/places/harriman-640.jpg", "alt": "Harriman State Park, near Island Park, Idaho"},
-  "/madison-river-fishing/": {"img": "/images/sized/places/rainbow-trout-640.jpg", "alt": "A rainbow trout, a fish found in the rivers near Island Park, Idaho"},
-  "/south-fork-snake-river-fishing/": {"img": "/images/sized/places/rainbow-trout-640.jpg", "alt": "A rainbow trout, a fish found in the rivers near Island Park, Idaho"},
-  "/buffalo-river-warm-river-fishing/": {"img": "/images/sized/places/river-pines-640.jpg", "alt": "A river winding through pine forest near Island Park, Idaho"},
-  "/warm-river-idaho/": {"img": "/images/sized/places/river-pines-640.jpg", "alt": "A river winding through pine forest near Island Park, Idaho"},
-  "/faq/": {"img": "/images/sized/gallery/16-cabin-exterior-in-daylight-640.jpg", "alt": "The Whitebark Cabin in Island Park, Idaho"}
+  "/harriman-state-park/": {
+    "img": "/images/sized/places/harriman-640.jpg",
+    "alt": "Harriman State Park, near Island Park, Idaho"
+  },
+  "/madison-river-fishing/": {
+    "img": "/images/sized/places/rainbow-trout-640.jpg",
+    "alt": "A rainbow trout, a fish found in the rivers near Island Park, Idaho"
+  },
+  "/south-fork-snake-river-fishing/": {
+    "img": "/images/sized/places/rainbow-trout-640.jpg",
+    "alt": "A rainbow trout, a fish found in the rivers near Island Park, Idaho"
+  },
+  "/buffalo-river-warm-river-fishing/": {
+    "img": "/images/sized/places/river-pines-640.jpg",
+    "alt": "A river winding through pine forest near Island Park, Idaho"
+  },
+  "/warm-river-idaho/": {
+    "img": "/images/sized/places/river-pines-640.jpg",
+    "alt": "A river winding through pine forest near Island Park, Idaho"
+  },
+  "/faq/": {
+    "img": "/images/sized/gallery/16-cabin-exterior-in-daylight-640.jpg",
+    "alt": "The Whitebark Cabin in Island Park, Idaho"
+  },
+  "/fishing-guides-island-park/": {
+    "img": "/images/sized/places/brown-trout-release-640.jpg",
+    "alt": "An angler carefully releasing a brown trout in a river"
+  },
+  "/island-park-fishing-report/": {
+    "img": "/images/sized/places/trout-in-clear-water-640.jpg",
+    "alt": "Trout swimming in clear, sunlit water"
+  },
+  "/yellowstone-entrances-island-park/": {
+    "img": "/images/sized/places/thermal-pool-640.jpg",
+    "alt": "A turquoise hot spring with steam and orange mineral deposits in Yellowstone"
+  },
+  "/yellowstone-west-entrance-from-island-park/": {
+    "img": "/images/sized/places/grizzly-bear-640.jpg",
+    "alt": "A grizzly bear walking toward the camera"
+  },
+  "/island-park-weather/": {
+    "img": "/images/sized/places/milky-way-peak-640.jpg",
+    "alt": "The Milky Way over a mountain peak at night"
+  }
 }
