@@ -173,13 +173,10 @@ dialog.lb button:hover,dialog.lb button:focus-visible{background:rgba(255,255,25
 @media (min-width:701px) and (max-width:1199px){.hero{padding-top:calc(100vw*934/2576 + 28px)}}
 
 @media (min-width:861px){
-.bar{min-height:128px;gap:22px;transition:min-height .25s}
-.brand{gap:.85rem}.brand .mark{width:56px;height:56px;transition:all .25s}
-.brand .wm b{font-size:1.6rem;transition:font-size .25s}.brand .wm i{font-size:.74rem;transition:font-size .25s}
+.bar{min-height:128px;gap:22px}
+.brand{gap:.85rem}.brand .mark{width:56px;height:56px}
+.brand .wm b{font-size:1.6rem}.brand .wm i{font-size:.74rem}
 .bar .btn{padding:.65em 1.4em}
-.site-header.scrolled .bar{min-height:64px}
-.site-header.scrolled .brand .mark{width:40px;height:40px}
-.site-header.scrolled .brand .wm b{font-size:1.4rem}.site-header.scrolled .brand .wm i{font-size:.68rem}
 }
 @media (min-width:861px) and (max-width:1160px){.bar nav a:nth-child(n+4){display:none}.bar{gap:16px}}
 @media (min-width:1280px){
@@ -189,6 +186,5 @@ dialog.lb button:hover,dialog.lb button:focus-visible{background:rgba(255,255,25
 .bar nav{gap:22px}.bar nav a{font-size:1.08rem}
 .tel{font-size:1.08rem}
 .bar .btn{padding:.7em 1.6em;font-size:1.08rem}
-.site-header.scrolled .brand .mark{width:40px;height:40px}
-.site-header.scrolled .brand .wm b{font-size:1.4rem}.site-header.scrolled .brand .wm i{font-size:.68rem}
 }
+@media (min-width:861px){.site-header{position:static;backdrop-filter:none;background:var(--paper)}}

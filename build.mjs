@@ -386,7 +386,6 @@ var q=new URLSearchParams(location.search),f=(q.get("f")||"").split(",");cbs.for
 bar.addEventListener("change",apply);apply();})();
 </script>
 <script>
-(function(){var h=document.querySelector(".site-header");if(h){var t=function(){h.classList.toggle("scrolled",window.scrollY>40);};t();window.addEventListener("scroll",t,{passive:true});}})();
 (function(){var im=[].slice.call(document.querySelectorAll("img[data-src]"));if(!im.length)return;function load(i){if(i.getAttribute("data-srcset"))i.srcset=i.getAttribute("data-srcset");i.src=i.getAttribute("data-src");i.removeAttribute("data-src");}if(!("IntersectionObserver" in window)){im.forEach(load);return;}var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){load(e.target);o.unobserve(e.target);}});},{rootMargin:"300px 0px"});im.forEach(function(x){o.observe(x);});})();
 </script>
 <script>
