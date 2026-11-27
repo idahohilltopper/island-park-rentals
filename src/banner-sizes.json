@@ -716,5 +716,26 @@
     "w": 1100
    }
   ]
+ },
+ "/images/places/yellowstone-canyon.jpg": {
+  "w": 2000,
+  "variants": [
+   {
+    "src": "/images/sized/places/yellowstone-canyon-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/yellowstone-canyon-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/places/yellowstone-canyon-1100.jpg",
+    "w": 1100
+   },
+   {
+    "src": "/images/sized/places/yellowstone-canyon-1400.jpg",
+    "w": 1400
+   }
+  ]
  }
 }

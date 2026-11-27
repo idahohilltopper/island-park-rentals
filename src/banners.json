@@ -1,7 +1,8 @@
 {
   "/yellowstone-lodging/": {
-    "img": "/images/places/summer-centennials.jpg",
-    "alt": "Summer in the Centennial Mountains near Island Park, Idaho"
+    "img": "/images/places/yellowstone-canyon.jpg",
+    "alt": "The Yellowstone River winding through a deep, colorful canyon with forested slopes",
+    "pos": "center 45%"
   },
   "/getting-to-island-park/": {
     "img": "/images/places/sawtell-flats.jpg",
