@@ -50,7 +50,7 @@ section.alt{background:var(--cream)}
 .foot{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.foot ul{list-style:none;margin:0;padding:0}.foot li{margin:.3em 0}
 .legal{border-top:1px solid #2a3d33;margin-top:34px;padding-top:18px;padding-bottom:26px;font-size:.82rem;opacity:.8}
 code{background:#eee7d6;padding:.1em .35em;border-radius:4px;font-size:.9em}
-.hero{background-color:#1f3a2e;background-image:url(/images/hero-sm.jpg);background-repeat:no-repeat;background-position:top center;background-size:100% auto;padding:calc(100vw*934/2576 + 28px) 0 34px}
+.hero{background-color:#1f3a2e;background-image:url(/images/hero-m.jpg);background-repeat:no-repeat;background-position:top center;background-size:100% auto;padding:calc(100vw*934/1076 + 28px) 0 34px}
 
 .places{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));margin-top:1.4em}
 .place{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s}
@@ -170,3 +170,4 @@ dialog.lb button:hover,dialog.lb button:focus-visible{background:rgba(255,255,25
 .wxbar .hero-wx .wx-t,.wxbar .hero-snow{background:var(--green);backdrop-filter:none}
 .wxbar .hero-snow:hover{background:var(--green2)}
 @media (max-width:700px){.wxbar{display:block}.wxbar .hero-wx{margin:14px 0 0}.wxbar .hero-snow{margin:10px 0 14px}}
+@media (min-width:701px) and (max-width:1199px){.hero{padding-top:calc(100vw*934/2576 + 28px)}}

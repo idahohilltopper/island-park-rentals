@@ -340,7 +340,7 @@ ${verify}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/zilla-slab-700.woff2" crossorigin>
-${p.path === "/" ? `<link rel="preload" as="image" href="/images/hero-sm.jpg" media="(max-width: 700px)" fetchpriority="high"><link rel="preload" as="image" href="/images/hero.jpg" media="(min-width: 701px)" fetchpriority="high">` : ""}<style>${css}</style>
+${p.path === "/" ? `<link rel="preload" as="image" href="/images/hero-m.jpg" media="(max-width: 700px)" fetchpriority="high"><link rel="preload" as="image" href="/images/hero.jpg" media="(min-width: 701px)" fetchpriority="high">` : ""}<style>${css}</style>
 <script type="application/ld+json">${schemaFor(p)}</script>
 ${analytics}
 </head>
