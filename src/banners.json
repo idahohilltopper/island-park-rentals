@@ -215,5 +215,9 @@
   "/about/": {
     "img": "/images/places/snowmobiling-centennial.jpg",
     "alt": "Snowmobiling in the Centennial Mountains near Island Park, Idaho"
+  },
+  "/island-park-cabin-large-groups-families/": {
+    "img": "/images/gallery/06-living-room-and-dining-table.jpg",
+    "alt": "The living room and dining table inside the Whitebark Cabin in Island Park, Idaho"
   }
 }
