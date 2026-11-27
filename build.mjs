@@ -1,6 +1,7 @@
 // Zero-dependency static site generator.
 // Usage: node build.mjs        -> writes ./dist
 // Pages live in src/pages/*.html and start with a JSON front-matter block between --- lines.
+import { execSync } from "node:child_process";
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, cpSync, rmSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
@@ -23,7 +24,7 @@ const loadDir = (dir) =>
           const raw = readFileSync(join(dir, f), "utf8");
           const m = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
           if (!m) throw new Error(`${dir}/${f}: missing front matter`);
-          return { ...JSON.parse(m[1]), body: m[2] };
+          return { ...JSON.parse(m[1]), body: m[2], srcFile: join(dir, f) };
         })
     : [];
 const pages = [...loadDir("src/pages"), ...loadDir("src/cabins")].filter((p) => !p.draft); // "draft": true in a cabin's front matter keeps it unpublished
@@ -422,12 +423,27 @@ function withBanner(p, inner) {
 }
 
 // ---------- write pages ----------
+// lastmod: a page's date only moves when its rendered content changes. src/lastmod.json holds {path: {hash, date}}.
+// Run locally, the build updates it (commit it with the change). On Netlify it is read-only, so unchanged pages keep their date.
+const lmFile = "src/lastmod.json";
+const lmOld = existsSync(lmFile) ? JSON.parse(readFileSync(lmFile, "utf8")) : {};
+const lmNew = {};
+const gitDate = (f) => { try { return execSync(`git log -1 --format=%cs -- ${f}`, { stdio: ["ignore", "pipe", "ignore"] }).toString().trim() || today; } catch { return today; } };
 for (const p of pages) {
   let inner = withBanner(p, render(p.body, p));
   if (p.faq) inner = inner.replace("{{FAQ}}", faqHtml(p.faq));
+  const lmHash = createHash("md5").update(inner).digest("hex").slice(0, 12);
+  const prev = lmOld[p.path];
+  const date = prev ? (prev.hash === lmHash ? prev.date : today) : gitDate(p.srcFile);
+  lmNew[p.path] = { hash: lmHash, date };
+  if (!p.lastmod) p.lastmod = date;
   const dir = p.path === "/" ? OUT : join(OUT, p.path);
   mkdirSync(dir, { recursive: true });
   writeFileSync(join(dir, "index.html"), layout(p, inner));
+}
+if (!process.env.NETLIFY && !process.env.CI) {
+  const sorted = Object.fromEntries(Object.entries(lmNew).sort(([a], [b]) => a.localeCompare(b)));
+  writeFileSync(lmFile, JSON.stringify(sorted, null, 1) + "\n");
 }
 
 // ---------- cache-busting: serve images from /assets/ with a content hash in the filename ----------
