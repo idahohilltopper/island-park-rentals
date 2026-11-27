@@ -674,31 +674,6 @@
    }
   ]
  },
- "/images/places/powder-snow-trees.jpg": {
-  "w": 948,
-  "variants": [
-   {
-    "src": "/images/sized/places/powder-snow-trees-640.jpg",
-    "w": 640
-   },
-   {
-    "src": "/images/sized/places/powder-snow-trees-800.jpg",
-    "w": 800
-   },
-   {
-    "src": "/images/sized/places/powder-snow-trees-1400.jpg",
-    "w": 1400
-   },
-   {
-    "src": "/images/sized/places/powder-snow-trees-1800.jpg",
-    "w": 1800
-   },
-   {
-    "src": "/images/sized/places/powder-snow-trees-2400.jpg",
-    "w": 2400
-   }
-  ]
- },
  "/images/places/river-blue-sky.jpg": {
   "w": 1512,
   "variants": [
