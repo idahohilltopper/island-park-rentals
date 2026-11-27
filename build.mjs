@@ -420,15 +420,15 @@ function guideCardPhotos(inner) {
     if (!h) return whole;
     const b = banners[h];
     let src = "", alt = "";
-    if (b && b.img) {
+    if (cardPhotos[h]) {
+      src = cardPhotos[h].img;
+      alt = cardPhotos[h].alt || "";
+    } else if (b && b.img) {
       const v = (bannerSizes[b.img]?.variants || []).find((x) => x.w === 640);
       src = v ? v.src : b.img;
       alt = b.alt || "";
-    } else if (cardPhotos[h]) {
-      src = cardPhotos[h].img;
-      alt = cardPhotos[h].alt || "";
     }
-    const pos = b && b.pos ? ` style="object-position:${b.pos}"` : "";
+    const pos = !cardPhotos[h] && b && b.pos ? ` style="object-position:${b.pos}"` : "";
     const media = src
       ? `<a class="gimg" href="${h}" tabindex="-1"><img src="${src}" alt="${esc(alt)}" width="640" height="427" loading="lazy" decoding="async"${pos}></a>`
       : `<a class="gimg noimg" href="${h}" tabindex="-1" aria-hidden="true"></a>`;
