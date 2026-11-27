@@ -824,6 +824,31 @@
    }
   ]
  },
+ "/images/places/snowmobile-aurora.jpg": {
+  "w": 2000,
+  "variants": [
+   {
+    "src": "/images/sized/places/snowmobile-aurora-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/snowmobile-aurora-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/places/snowmobile-aurora-1100.jpg",
+    "w": 1100
+   },
+   {
+    "src": "/images/sized/places/snowmobile-aurora-1400.jpg",
+    "w": 1400
+   },
+   {
+    "src": "/images/sized/places/snowmobile-aurora-2400.jpg",
+    "w": 2400
+   }
+  ]
+ },
  "/images/places/snowmobiler-deep-powder.jpg": {
   "w": 2016,
   "variants": [
