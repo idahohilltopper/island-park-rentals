@@ -58,5 +58,9 @@
   "/island-park-winter/": {
     "img": "/images/sized/places/snowy-tetons-dawn-640.jpg",
     "alt": "Snow-covered mountains at dawn above a frozen white valley and dark evergreens"
+  },
+  "/fly-fishing-island-park/": {
+    "img": "/images/sized/places/angler-wading-river-640.jpg",
+    "alt": "An angler in waders crossing rocks in a forested river"
   }
 }
