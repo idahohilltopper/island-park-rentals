@@ -442,7 +442,7 @@ function withBanner(p, inner) {
   const m = inner.match(re);
   if (!m) return inner;
   const img = b ? `<img class="ph-img" src="${b.img}"${bannerSrcset(b.img)} alt="${esc(b.alt || "")}" fetchpriority="high" decoding="async"${b.pos ? ` style="object-position:${b.pos}"` : ""}>` : "";
-  const hero = `<header class="page-hero${b ? "" : " plain"}">${img}<div class="ph-shade"></div><div class="wrap ph-text">${m[2]}${m[3]}</div></header>\n<section class="wrap prose"${m[1]}>`;
+  const hero = `<header class="page-hero${b ? "" : " plain"}${b && b.tall ? " tall" : ""}">${img}<div class="ph-shade"></div><div class="wrap ph-text">${m[2]}${m[3]}</div></header>\n<section class="wrap prose"${m[1]}>`;
   return inner.replace(re, hero);
 }
 

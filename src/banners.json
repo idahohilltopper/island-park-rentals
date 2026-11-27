@@ -62,7 +62,8 @@
   "/yellowstone-entrances-island-park/": {
     "img": "/images/places/yellowstone-entrance-sign.jpg",
     "alt": "The wooden Yellowstone National Park entrance sign with the National Park Service arrowhead, set among stone columns with grassy hills and mountains behind",
-    "pos": "center 100%"
+    "pos": "center 62%",
+    "tall": true
   },
   "/island-park-hotels-vs-cabins/": {
     "img": "/images/places/log-cabin-autumn.jpg",
