@@ -209,8 +209,9 @@
     "alt": "A rainbow over the Henrys Fork below Upper Mesa Falls near Ashton, Idaho"
   },
   "/rentals/": {
-    "img": "/images/gallery/02-private-hot-tub-with-sunset-view.jpg",
-    "alt": "The private hot tub on the covered deck at sunset, Whitebark Cabin, Island Park, Idaho"
+    "img": "/images/gallery/16-cabin-exterior-in-daylight.jpg",
+    "alt": "The Whitebark Cabin exterior in daylight, surrounded by evergreens in Island Park, Idaho",
+    "pos": "center 52%"
   },
   "/about/": {
     "img": "/images/places/snowmobiling-centennial.jpg",
