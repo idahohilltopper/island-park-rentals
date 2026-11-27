@@ -85,9 +85,9 @@
     "pos": "center 30%"
   },
   "/island-park-snowmobiling/": {
-    "img": "/images/places/snowmobile-aurora.jpg",
-    "alt": "A line of snowmobiles riding up a groomed snow trail at night under green northern lights",
-    "pos": "center 52%"
+    "img": "/images/places/powder-snow-trees.jpg",
+    "alt": "Deep powder snow piled on evergreen branches in the forest near Island Park, Idaho",
+    "pos": "center 60%"
   },
   "/grand-teton-yellowstone-itinerary/": {
     "img": "/images/places/teton-alpine-lake.jpg",
@@ -208,8 +208,9 @@
     "pos": "center 72%"
   },
   "/snowmobile-atv-side-by-side-rentals-island-park/": {
-    "img": "/images/places/snowmobiling-centennial.jpg",
-    "alt": "Snow-covered peak and evergreens in the Centennial Mountains near Island Park"
+    "img": "/images/places/utv-mountain-trail.jpg",
+    "alt": "A side-by-side parked on a dirt trail on a green mountain ridge under a bright blue sky, with distant snow-capped peaks",
+    "pos": "center 88%"
   },
   "/st-anthony-sand-dunes/": {
     "img": "/images/places/sand-dunes.jpg",
@@ -260,8 +261,8 @@
     "pos": "center 50%"
   },
   "/powersports-rentals-island-park-west-yellowstone/": {
-    "img": "/images/places/snowmobiler-deep-powder.jpg",
-    "alt": "A snowmobiler in an orange helmet giving a thumbs up, sitting in deep powder beside a sled among snow-covered evergreens",
-    "pos": "center 68%"
+    "img": "/images/places/snowmobile-aurora.jpg",
+    "alt": "A line of snowmobiles riding up a groomed snow trail at night under green northern lights",
+    "pos": "center 52%"
   }
 }
