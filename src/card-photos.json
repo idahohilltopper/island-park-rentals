@@ -22,5 +22,9 @@
   "/island-park-snowmobiling/": {
     "img": "/images/sized/places/snowmobiler-deep-powder-640.jpg",
     "alt": "A snowmobiler in an orange helmet giving a thumbs up in deep powder among snow-covered evergreens"
+  },
+  "/grand-teton-yellowstone-itinerary/": {
+    "img": "/images/sized/places/teton-alpine-lake-640.jpg",
+    "alt": "A turquoise alpine lake with large boulders below rocky, snow-streaked Teton peaks"
   }
 }
