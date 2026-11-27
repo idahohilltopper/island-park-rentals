@@ -12,8 +12,8 @@
     "alt": "An angler holding a spotted brown trout in the water beside a wooden landing net"
   },
   "/buffalo-river-warm-river-fishing/": {
-    "img": "/images/sized/places/river-pines-640.jpg",
-    "alt": "A river winding through pine forest near Island Park, Idaho"
+    "img": "/images/sized/places/dad-son-fishing-640.jpg",
+    "alt": "A father and young son fishing together while standing in a shallow river"
   },
   "/warm-river-idaho/": {
     "img": "/images/sized/places/river-pines-640.jpg",
@@ -62,5 +62,21 @@
   "/fly-fishing-island-park/": {
     "img": "/images/sized/places/angler-wading-river-640.jpg",
     "alt": "An angler in waders crossing rocks in a forested river"
+  },
+  "/yellowstone-itinerary/": {
+    "img": "/images/sized/places/bison-at-dawn-640.jpg",
+    "alt": "A bison grazing on a grassy hillside at sunrise above a misty river valley"
+  },
+  "/macks-inn-island-park/": {
+    "img": "/images/sized/places/river-ponderosa-640.jpg",
+    "alt": "A river running past a forested hillside with tall pines under a cloudy sky"
+  },
+  "/side-by-side-riding-island-park/": {
+    "img": "/images/sized/places/snowy-peaks-green-hills-640.jpg",
+    "alt": "Snow-covered mountains above green rolling hills and forest under stormy clouds"
+  },
+  "/island-park-cabin-large-groups-families/": {
+    "img": "/images/sized/places/kids-fishing-pond-640.jpg",
+    "alt": "Two laughing children in sunglasses fishing from a grassy bank"
   }
 }
