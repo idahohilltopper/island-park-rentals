@@ -18,5 +18,9 @@
   "/sawtell-peak/": {
     "img": "/images/sized/places/mountain-goats-ridge-640.jpg",
     "alt": "Mountain goats standing on dark volcanic rock above a valley and lake"
+  },
+  "/island-park-snowmobiling/": {
+    "img": "/images/sized/places/snowmobiler-deep-powder-640.jpg",
+    "alt": "A snowmobiler in an orange helmet giving a thumbs up in deep powder among snow-covered evergreens"
   }
 }
