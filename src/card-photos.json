@@ -54,5 +54,9 @@
   "/ashton-idaho/": {
     "img": "/images/sized/places/upper-mesa-falls-summer-640.jpg",
     "alt": "Upper Mesa Falls in summer, with mist rising from the canyon"
+  },
+  "/island-park-winter/": {
+    "img": "/images/sized/places/snowy-tetons-dawn-640.jpg",
+    "alt": "Snow-covered mountains at dawn above a frozen white valley and dark evergreens"
   }
 }
