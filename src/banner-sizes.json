@@ -50,6 +50,23 @@
    }
   ]
  },
+ "/images/gallery/06-living-room-and-dining-table.jpg": {
+  "w": 1440,
+  "variants": [
+   {
+    "src": "/images/sized/gallery/06-living-room-and-dining-table-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/gallery/06-living-room-and-dining-table-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/gallery/06-living-room-and-dining-table-1100.jpg",
+    "w": 1100
+   }
+  ]
+ },
  "/images/gallery/08-fully-equipped-kitchen.jpg": {
   "w": 1440,
   "variants": [
