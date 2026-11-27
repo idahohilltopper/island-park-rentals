@@ -9,8 +9,9 @@
     "pos": "center 40%"
   },
   "/closest-airport-to-yellowstone/": {
-    "img": "/images/places/winter-ridge.jpg",
-    "alt": "Frosted evergreens and snowy ridges in the Centennial Mountains"
+    "img": "/images/places/mountains-at-dusk.jpg",
+    "alt": "Snow-dusted mountains at dusk above an open meadow and a wooden fence",
+    "pos": "center 45%"
   },
   "/island-park-vs-big-sky-vs-west-yellowstone/": {
     "img": "/images/places/mount-jefferson.jpg",
@@ -53,21 +54,23 @@
     "alt": "Panorama from Sawtell Peak above Island Park, Idaho"
   },
   "/yellowstone-entrances-island-park/": {
-    "img": "/images/places/yellowstone-geyser.jpg",
-    "alt": "Old Faithful erupting in Yellowstone National Park"
+    "img": "/images/places/thermal-pool.jpg",
+    "alt": "A turquoise hot spring with steam and orange mineral deposits in Yellowstone",
+    "pos": "center 55%"
   },
   "/island-park-hotels-vs-cabins/": {
     "img": "/images/places/river-pines.jpg",
     "alt": "Pine forest along the river near Island Park, Idaho"
   },
   "/island-park-weather/": {
-    "img": "/images/places/summer-centennials.jpg",
-    "alt": "Summer in the Centennial Mountains near Island Park, Idaho"
+    "img": "/images/places/milky-way-peak.jpg",
+    "alt": "The Milky Way over a mountain peak at night",
+    "pos": "center 40%"
   },
   "/yellowstone-west-entrance-from-island-park/": {
-    "img": "/images/places/yellowstone-geyser.jpg",
-    "alt": "Old Faithful erupting in Yellowstone National Park",
-    "pos": "center 45%"
+    "img": "/images/places/grizzly-bear.jpg",
+    "alt": "A grizzly bear walking toward the camera",
+    "pos": "center 35%"
   },
   "/whitebark-cabin/": {
     "img": "/images/gallery/01-exterior-at-sunset.jpg",
@@ -75,8 +78,9 @@
     "pos": "center 60%"
   },
   "/island-park-winter/": {
-    "img": "/images/places/winter-centennials.jpg",
-    "alt": "Snow-covered meadows and peaks of the Centennial Mountains under a deep blue sky"
+    "img": "/images/places/snowy-tetons-dawn.jpg",
+    "alt": "Snow-covered mountains at dawn above a frozen white valley and dark evergreens",
+    "pos": "center 30%"
   },
   "/island-park-snowmobiling/": {
     "img": "/images/places/snowmobiling-centennial.jpg",
@@ -88,9 +92,9 @@
     "pos": "center 30%"
   },
   "/yellowstone-itinerary/": {
-    "img": "/images/places/yellowstone-geyser.jpg",
-    "alt": "Old Faithful erupting in Yellowstone National Park",
-    "pos": "center 45%"
+    "img": "/images/places/bison-at-dawn.jpg",
+    "alt": "A bison grazing on a grassy hillside at sunrise above a misty river valley",
+    "pos": "center 82%"
   },
   "/grizzly-wolf-discovery-center/": {
     "img": "/images/places/grizzly.jpg",
@@ -105,23 +109,38 @@
     "alt": "Tent and camp chair at sunrise on a grassy mountain ridge"
   },
   "/fly-fishing-island-park/": {
-    "img": "/images/places/river-pines.jpg",
-    "alt": "Whitewater rapids on the Henrys Fork winding through pine forest"
+    "img": "/images/places/angler-wading-river.jpg",
+    "alt": "An angler in waders crossing rocks in a forested river",
+    "pos": "center 55%"
   },
   "/henrys-lake-fishing/": {
-    "img": "/images/places/henrys-lake-panorama.jpg",
-    "alt": "Panorama of Henrys Lake from the top of Sawtell Peak"
+    "img": "/images/places/henrys-lake-view.jpg",
+    "alt": "Henrys Lake seen from a high ridge, with mountains beyond and forest below",
+    "pos": "center 35%"
   },
   "/henrys-fork-fly-fishing/": {
     "img": "/images/places/henrys-fork.jpg",
     "alt": "The Henrys Fork of the Snake River tumbling over boulders through pine forest"
   },
-  "/madison-river-fishing/": null,
-  "/buffalo-river-warm-river-fishing/": null,
-  "/south-fork-snake-river-fishing/": null,
+  "/madison-river-fishing/": {
+    "img": "/images/places/trout-in-clear-water.jpg",
+    "alt": "Trout swimming in clear, sunlit water",
+    "pos": "center 50%"
+  },
+  "/buffalo-river-warm-river-fishing/": {
+    "img": "/images/places/dad-son-fishing.jpg",
+    "alt": "A father and young son fishing together while standing in a shallow river",
+    "pos": "center 55%"
+  },
+  "/south-fork-snake-river-fishing/": {
+    "img": "/images/places/trout-in-net.jpg",
+    "alt": "An angler holding a spotted brown trout in the water beside a wooden landing net",
+    "pos": "center 55%"
+  },
   "/fishing-guides-island-park/": {
-    "img": "/images/places/henrys-fork.jpg",
-    "alt": "The Henrys Fork of the Snake River near Island Park, Idaho"
+    "img": "/images/places/brown-trout-release.jpg",
+    "alt": "An angler carefully releasing a brown trout in a river",
+    "pos": "center 55%"
   },
   "/island-park-idaho/": {
     "img": "/images/places/sawtell-flats.jpg",
@@ -132,8 +151,9 @@
     "alt": "The Whitebark Cabin exterior at sunset in Island Park, Idaho"
   },
   "/webcams-road-conditions/": {
-    "img": "/images/places/winter-ridge.jpg",
-    "alt": "Snowy ridges and evergreens near Island Park, Idaho"
+    "img": "/images/places/winter-sunset-trees.jpg",
+    "alt": "A snowy hillside glowing orange at sunset, seen through snow-covered evergreens",
+    "pos": "center 50%"
   },
   "/big-springs-island-park/": {
     "img": "/images/places/big-springs.jpg",
@@ -150,8 +170,9 @@
     "pos": "center 55%"
   },
   "/island-park-best-time-to-visit/": {
-    "img": "/images/places/summer-centennials.jpg",
-    "alt": "Summer in the Centennial Mountains near Island Park, Idaho"
+    "img": "/images/places/wildflowers-mountains.jpg",
+    "alt": "Wildflowers and sagebrush in a summer meadow with snow-streaked mountains behind",
+    "pos": "center 55%"
   },
   "/island-park-restaurants/": {
     "img": "/images/places/lakeside-lodge-steak.jpg",
@@ -192,18 +213,25 @@
     "alt": "Summer in the Centennial Mountains near Island Park, Idaho"
   },
   "/hunting-island-park-idaho/": {
-    "img": "/images/places/winter-ridge.jpg",
-    "alt": "Frosted evergreens and snowy ridges in the Centennial Mountains"
+    "img": "/images/places/high-ridge-autumn.jpg",
+    "alt": "A high mountain ridge with dry autumn grass and scattered evergreens under a cloudy sky",
+    "pos": "center 50%"
   },
   "/island-park-fishing-report/": {
-    "img": "/images/places/henrys-fork.jpg",
-    "alt": "The Henrys Fork of the Snake River tumbling over boulders through pine forest near Island Park, Idaho"
+    "img": "/images/places/river-blue-sky.jpg",
+    "alt": "A river flowing between tall evergreens under a blue sky with scattered clouds",
+    "pos": "center 50%"
   },
   "/macks-inn-island-park/": {
-    "img": "/images/places/river-pines.jpg",
-    "alt": "Whitewater on the Henrys Fork winding through pine forest near Island Park, Idaho"
+    "img": "/images/places/river-ponderosa.jpg",
+    "alt": "A river running past a forested hillside with tall pines under a cloudy sky",
+    "pos": "center 50%"
   },
-  "/warm-river-idaho/": null,
+  "/warm-river-idaho/": {
+    "img": "/images/places/clear-stream-weeds.jpg",
+    "alt": "A clear, shallow stream with green water weeds streaming in the current, beside golden autumn grass",
+    "pos": "center 50%"
+  },
   "/ashton-idaho/": {
     "img": "/images/places/mesa-falls-rainbow.jpg",
     "alt": "A rainbow over the Henrys Fork below Upper Mesa Falls near Ashton, Idaho"
@@ -218,7 +246,8 @@
     "alt": "Snowmobiling in the Centennial Mountains near Island Park, Idaho"
   },
   "/island-park-cabin-large-groups-families/": {
-    "img": "/images/gallery/06-living-room-and-dining-table.jpg",
-    "alt": "The living room and dining table inside the Whitebark Cabin in Island Park, Idaho"
+    "img": "/images/places/kids-fishing-pond.jpg",
+    "alt": "Two laughing children in sunglasses fishing from a grassy bank",
+    "pos": "center 50%"
   }
 }
