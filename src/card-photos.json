@@ -3,84 +3,16 @@
     "img": "/images/sized/places/harriman-640.jpg",
     "alt": "Harriman State Park, near Island Park, Idaho"
   },
-  "/madison-river-fishing/": {
-    "img": "/images/sized/places/rainbow-trout-640.jpg",
-    "alt": "A rainbow trout, a fish found in the rivers near Island Park, Idaho"
-  },
-  "/south-fork-snake-river-fishing/": {
-    "img": "/images/sized/places/trout-in-net-640.jpg",
-    "alt": "An angler holding a spotted brown trout in the water beside a wooden landing net"
-  },
-  "/buffalo-river-warm-river-fishing/": {
-    "img": "/images/sized/places/dad-son-fishing-640.jpg",
-    "alt": "A father and young son fishing together while standing in a shallow river"
-  },
-  "/warm-river-idaho/": {
-    "img": "/images/sized/places/clear-stream-weeds-640.jpg",
-    "alt": "A clear, shallow stream with green water weeds streaming in the current, beside golden autumn grass and a fallen tree"
-  },
   "/faq/": {
     "img": "/images/sized/gallery/16-cabin-exterior-in-daylight-640.jpg",
     "alt": "The Whitebark Cabin in Island Park, Idaho"
   },
-  "/fishing-guides-island-park/": {
-    "img": "/images/sized/places/brown-trout-release-640.jpg",
-    "alt": "An angler carefully releasing a brown trout in a river"
-  },
-  "/island-park-fishing-report/": {
-    "img": "/images/sized/places/river-blue-sky-640.jpg",
-    "alt": "A river flowing between tall evergreens under a blue sky with scattered clouds"
-  },
-  "/yellowstone-entrances-island-park/": {
-    "img": "/images/sized/places/thermal-pool-640.jpg",
-    "alt": "A turquoise hot spring with steam and orange mineral deposits in Yellowstone"
-  },
-  "/yellowstone-west-entrance-from-island-park/": {
-    "img": "/images/sized/places/grizzly-bear-640.jpg",
-    "alt": "A grizzly bear walking toward the camera"
-  },
-  "/island-park-weather/": {
-    "img": "/images/sized/places/milky-way-peak-640.jpg",
-    "alt": "The Milky Way over a mountain peak at night"
-  },
-  "/island-park-best-time-to-visit/": {
-    "img": "/images/sized/places/wildflowers-mountains-640.jpg",
-    "alt": "Wildflowers and sagebrush in a summer meadow with snow-streaked mountains behind"
-  },
-  "/closest-airport-to-yellowstone/": {
-    "img": "/images/sized/places/mountains-at-dusk-640.jpg",
-    "alt": "Snow-dusted mountains at dusk above an open meadow and a wooden fence"
-  },
-  "/ashton-idaho/": {
+  "/mesa-falls/": {
     "img": "/images/sized/places/upper-mesa-falls-summer-640.jpg",
     "alt": "Upper Mesa Falls in summer, with mist rising from the canyon"
   },
-  "/island-park-winter/": {
-    "img": "/images/sized/places/snowy-tetons-dawn-640.jpg",
-    "alt": "Snow-covered mountains at dawn above a frozen white valley and dark evergreens"
-  },
-  "/fly-fishing-island-park/": {
-    "img": "/images/sized/places/angler-wading-river-640.jpg",
-    "alt": "An angler in waders crossing rocks in a forested river"
-  },
-  "/yellowstone-itinerary/": {
-    "img": "/images/sized/places/bison-at-dawn-640.jpg",
-    "alt": "A bison grazing on a grassy hillside at sunrise above a misty river valley"
-  },
-  "/macks-inn-island-park/": {
-    "img": "/images/sized/places/river-ponderosa-640.jpg",
-    "alt": "A river running past a forested hillside with tall pines under a cloudy sky"
-  },
-  "/side-by-side-riding-island-park/": {
+  "/island-park-vs-big-sky-vs-west-yellowstone/": {
     "img": "/images/sized/places/snowy-peaks-green-hills-640.jpg",
     "alt": "Snow-covered mountains above green rolling hills and forest under stormy clouds"
-  },
-  "/island-park-cabin-large-groups-families/": {
-    "img": "/images/sized/places/kids-fishing-pond-640.jpg",
-    "alt": "Two laughing children in sunglasses fishing from a grassy bank"
-  },
-  "/webcams-road-conditions/": {
-    "img": "/images/sized/places/winter-sunset-trees-640.jpg",
-    "alt": "A snowy hillside glowing orange at sunset, seen through snow-covered evergreens"
   }
 }
