@@ -210,7 +210,11 @@
     "img": "/images/places/snowmobiling-centennial.jpg",
     "alt": "Snow-covered peak and evergreens in the Centennial Mountains near Island Park"
   },
-  "/st-anthony-sand-dunes/": null,
+  "/st-anthony-sand-dunes/": {
+    "img": "/images/places/sand-dunes.jpg",
+    "alt": "Large golden sand dunes with sunlit ridges and shadowed slopes under a cloudy blue sky, with forested mountains behind",
+    "pos": "center 70%"
+  },
   "/side-by-side-riding-island-park/": {
     "img": "/images/places/utv-mountain-trail.jpg",
     "alt": "A side-by-side parked on a dirt trail on a green mountain ridge under a bright blue sky, with distant snow-capped peaks",
