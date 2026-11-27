@@ -411,6 +411,30 @@ function bannerSrcset(img) {
   const parts = s.variants.map((v) => `${v.src} ${v.w}w`).concat(`${img} ${s.w}w`);
   return ` srcset="${parts.join(", ")}" sizes="100vw"`;
 }
+
+// Guides page: give each card a thumbnail from our own photos (the target page's banner, or src/card-photos.json).
+const cardPhotos = existsSync("src/card-photos.json") ? JSON.parse(readFileSync("src/card-photos.json", "utf8")) : {};
+function guideCardPhotos(inner) {
+  return inner.replace(/<div class="card">([\s\S]*?)<\/div>/g, (whole, body) => {
+    const h = (body.match(/href="([^"]+)"/) || [])[1];
+    if (!h) return whole;
+    const b = banners[h];
+    let src = "", alt = "";
+    if (b && b.img) {
+      const v = (bannerSizes[b.img]?.variants || []).find((x) => x.w === 640);
+      src = v ? v.src : b.img;
+      alt = b.alt || "";
+    } else if (cardPhotos[h]) {
+      src = cardPhotos[h].img;
+      alt = cardPhotos[h].alt || "";
+    }
+    const pos = b && b.pos ? ` style="object-position:${b.pos}"` : "";
+    const media = src
+      ? `<a class="gimg" href="${h}" tabindex="-1"><img src="${src}" alt="${esc(alt)}" width="640" height="427" loading="lazy" decoding="async"${pos}></a>`
+      : `<a class="gimg noimg" href="${h}" tabindex="-1" aria-hidden="true"></a>`;
+    return `<div class="card hasimg">${media}<div class="gb">${body}</div></div>`;
+  });
+}
 function withBanner(p, inner) {
   if (!(p.path in banners)) return inner;
   const b = banners[p.path];
@@ -431,6 +455,7 @@ const lmNew = {};
 const gitDate = (f) => { try { return execSync(`git log -1 --format=%cs -- ${f}`, { stdio: ["ignore", "pipe", "ignore"] }).toString().trim() || today; } catch { return today; } };
 for (const p of pages) {
   let inner = withBanner(p, render(p.body, p));
+  if (p.path === "/guides/") inner = guideCardPhotos(inner);
   if (p.faq) inner = inner.replace("{{FAQ}}", faqHtml(p.faq));
   const lmHash = createHash("md5").update(inner).digest("hex").slice(0, 12);
   const prev = lmOld[p.path];
