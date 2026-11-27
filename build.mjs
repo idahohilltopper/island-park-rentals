@@ -543,7 +543,14 @@ ${cabins
   })
   .join("\n")}
 
-## Key pages
+## Start here
+${["/rentals/", "/faq/", "/island-park-idaho/", "/about/", "/yellowstone-lodging/", "/getting-to-island-park/", "/things-to-do/", "/powersports-rentals-island-park-west-yellowstone/"]
+  .map((path) => pages.find((p) => p.path === path))
+  .filter(Boolean)
+  .map((p) => `- [${p.title}](${abs(p.path)}): ${p.description}`)
+  .join("\n")}
+
+## All pages
 ${pages.filter((p) => !p.cabin).map((p) => `- [${p.title}](${abs(p.path)}): ${p.description}`).join("\n")}
 `
 );
