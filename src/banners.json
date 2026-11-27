@@ -60,8 +60,9 @@
     "pos": "center 55%"
   },
   "/island-park-hotels-vs-cabins/": {
-    "img": "/images/places/river-pines.jpg",
-    "alt": "Pine forest along the river near Island Park, Idaho"
+    "img": "/images/places/log-cabin-autumn.jpg",
+    "alt": "A log cabin with a red roof and orange door among autumn-colored shrubs and evergreens under a dramatic sky",
+    "pos": "center 60%"
   },
   "/island-park-weather/": {
     "img": "/images/places/milky-way-peak.jpg",

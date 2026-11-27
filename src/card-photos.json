@@ -38,5 +38,9 @@
   "/st-anthony-sand-dunes/": {
     "img": "/images/sized/places/sand-dunes-640.jpg",
     "alt": "Large golden sand dunes with sunlit ridges and shadowed slopes under a cloudy blue sky, with forested mountains behind"
+  },
+  "/island-park-hotels-vs-cabins/": {
+    "img": "/images/sized/places/log-cabin-autumn-640.jpg",
+    "alt": "A log cabin with a red roof and orange door among autumn-colored shrubs and evergreens under a dramatic sky"
   }
 }
