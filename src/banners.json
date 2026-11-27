@@ -20,35 +20,40 @@
   },
   "/island-park-snow-report/": {
     "img": "/images/places/winter-centennials.jpg",
-    "alt": "Snow-covered meadows and peaks of the Centennial Mountains under a deep blue sky"
+    "alt": "Snow-covered ridges and evergreens under a blue sky in the Centennial Mountains near Island Park, Idaho",
+    "pos": "center 62%"
   },
   "/white-elephant-snotel/": {
-    "img": "/images/places/winter-ridge.jpg",
-    "alt": "Frosted evergreens and snowy ridges in the Centennial Mountains"
+    "img": "/images/places/snowy-tetons-dawn.jpg",
+    "alt": "Snow-covered mountains at dawn above a frozen white valley and dark evergreens",
+    "pos": "center 30%"
   },
   "/black-bear-snotel/": {
-    "img": "/images/places/snowmobiling-centennial.jpg",
-    "alt": "Snow-covered peak and evergreens in the Centennial Mountains near Island Park"
-  },
-  "/island-park-snotel/": {
-    "img": "/images/places/winter-centennials.jpg",
-    "alt": "Snow-covered meadows and peaks of the Centennial Mountains under a deep blue sky"
-  },
-  "/west-yellowstone-snow-report/": {
-    "img": "/images/places/winter-centennials.jpg",
-    "alt": "Snow-covered meadows and peaks of the Centennial Mountains under a deep blue sky"
-  },
-  "/west-yellowstone-snotel/": {
-    "img": "/images/places/winter-centennials.jpg",
-    "alt": "Snow-covered meadows and peaks of the Centennial Mountains under a deep blue sky"
-  },
-  "/whiskey-creek-snotel/": {
     "img": "/images/places/winter-ridge.jpg",
     "alt": "Frosted evergreens and snowy ridges in the Centennial Mountains"
   },
+  "/island-park-snotel/": {
+    "img": "/images/places/winter-sunset-trees.jpg",
+    "alt": "A snowy hillside glowing orange at sunset, seen through snow-covered evergreens",
+    "pos": "center 50%"
+  },
+  "/west-yellowstone-snow-report/": {
+    "img": "/images/places/madison-river-frost.jpg",
+    "alt": "The Madison River steaming on a frosty morning, with frost-covered trees and gravel bars",
+    "pos": "center 35%"
+  },
+  "/west-yellowstone-snotel/": {
+    "img": "/images/places/winter-tetons-glow.jpg",
+    "alt": "Snow-covered evergreens framing a distant mountain range under a glowing winter sky"
+  },
+  "/whiskey-creek-snotel/": {
+    "img": "/images/places/powder-snow-trees.jpg",
+    "alt": "Deep powder snow piled on evergreen branches in the forest"
+  },
   "/madison-plateau-snotel/": {
-    "img": "/images/places/snowmobiling-centennial.jpg",
-    "alt": "Snow-covered peak and evergreens in the Centennial Mountains near Island Park"
+    "img": "/images/places/snowmobiler-deep-powder.jpg",
+    "alt": "A snowmobiler in an orange helmet giving a thumbs up, sitting in deep powder among snow-covered evergreens",
+    "pos": "center 70%"
   },
   "/island-park-idaho-elevation/": {
     "img": "/images/places/sawtell-panorama.jpg",

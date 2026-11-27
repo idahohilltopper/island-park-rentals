@@ -699,6 +699,31 @@
    }
   ]
  },
+ "/images/places/powder-snow-trees.jpg": {
+  "w": 948,
+  "variants": [
+   {
+    "src": "/images/sized/places/powder-snow-trees-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/powder-snow-trees-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/places/powder-snow-trees-1400.jpg",
+    "w": 1400
+   },
+   {
+    "src": "/images/sized/places/powder-snow-trees-1800.jpg",
+    "w": 1800
+   },
+   {
+    "src": "/images/sized/places/powder-snow-trees-2400.jpg",
+    "w": 2400
+   }
+  ]
+ },
  "/images/places/river-blue-sky.jpg": {
   "w": 1512,
   "variants": [
@@ -870,6 +895,35 @@
    },
    {
     "src": "/images/sized/places/snowmobile-aurora-2400.jpg",
+    "w": 2400
+   }
+  ]
+ },
+ "/images/places/snowmobiler-deep-powder.jpg": {
+  "w": 2016,
+  "variants": [
+   {
+    "src": "/images/sized/places/snowmobiler-deep-powder-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/snowmobiler-deep-powder-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/places/snowmobiler-deep-powder-1100.jpg",
+    "w": 1100
+   },
+   {
+    "src": "/images/sized/places/snowmobiler-deep-powder-1400.jpg",
+    "w": 1400
+   },
+   {
+    "src": "/images/sized/places/snowmobiler-deep-powder-1800.jpg",
+    "w": 1800
+   },
+   {
+    "src": "/images/sized/places/snowmobiler-deep-powder-2400.jpg",
     "w": 2400
    }
   ]
@@ -1099,6 +1153,31 @@
    },
    {
     "src": "/images/sized/places/winter-sunset-trees-2400.jpg",
+    "w": 2400
+   }
+  ]
+ },
+ "/images/places/winter-tetons-glow.jpg": {
+  "w": 1000,
+  "variants": [
+   {
+    "src": "/images/sized/places/winter-tetons-glow-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/winter-tetons-glow-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/places/winter-tetons-glow-1400.jpg",
+    "w": 1400
+   },
+   {
+    "src": "/images/sized/places/winter-tetons-glow-1800.jpg",
+    "w": 1800
+   },
+   {
+    "src": "/images/sized/places/winter-tetons-glow-2400.jpg",
     "w": 2400
    }
   ]
