@@ -50,5 +50,9 @@
   "/yellowstone-entrances-island-park/": {
     "img": "/images/sized/places/yellowstone-entrance-sign-640.jpg",
     "alt": "The wooden Yellowstone National Park entrance sign with the National Park Service arrowhead, set among stone columns with grassy hills and mountains behind"
+  },
+  "/yellowstone-west-entrance-from-island-park/": {
+    "img": "/images/sized/places/yellowstone-sign-brown-640.jpg",
+    "alt": "The brown wooden Yellowstone National Park entrance sign with the National Park Service arrowhead and log posts, with golden hills and mountains behind"
   }
 }
