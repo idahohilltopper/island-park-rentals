@@ -264,7 +264,8 @@
   "/island-park-cabin-large-groups-families/": {
     "img": "/images/places/kids-fishing-pond.jpg",
     "alt": "Two laughing children in sunglasses fishing from a grassy bank",
-    "pos": "center 50%"
+    "pos": "center 40%",
+    "tall": true
   },
   "/powersports-rentals-island-park-west-yellowstone/": {
     "img": "/images/places/snowmobile-aurora.jpg",
