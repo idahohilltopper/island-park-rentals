@@ -34,5 +34,9 @@
   "/side-by-side-riding-island-park/": {
     "img": "/images/sized/places/utv-mountain-trail-640.jpg",
     "alt": "A side-by-side parked on a dirt trail on a green mountain ridge under a bright blue sky, with distant snow-capped peaks"
+  },
+  "/st-anthony-sand-dunes/": {
+    "img": "/images/sized/places/sand-dunes-640.jpg",
+    "alt": "Large golden sand dunes with sunlit ridges and shadowed slopes under a cloudy blue sky, with forested mountains behind"
   }
 }
