@@ -30,5 +30,9 @@
   "/groceries-gas-supplies-island-park/": {
     "img": "/images/sized/places/grocery-tomatoes-640.jpg",
     "alt": "A hand picking a ripe tomato from a produce display in a grocery store"
+  },
+  "/side-by-side-riding-island-park/": {
+    "img": "/images/sized/places/utv-mountain-trail-640.jpg",
+    "alt": "A side-by-side parked on a dirt trail on a green mountain ridge under a bright blue sky, with distant snow-capped peaks"
   }
 }
