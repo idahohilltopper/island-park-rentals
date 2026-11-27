@@ -49,31 +49,6 @@
    }
   ]
  },
- "/images/gallery/08-fully-equipped-kitchen.jpg": {
-  "w": 1440,
-  "variants": [
-   {
-    "src": "/images/sized/gallery/08-fully-equipped-kitchen-640.jpg",
-    "w": 640
-   },
-   {
-    "src": "/images/sized/gallery/08-fully-equipped-kitchen-800.jpg",
-    "w": 800
-   },
-   {
-    "src": "/images/sized/gallery/08-fully-equipped-kitchen-1100.jpg",
-    "w": 1100
-   },
-   {
-    "src": "/images/sized/gallery/08-fully-equipped-kitchen-1800.jpg",
-    "w": 1800
-   },
-   {
-    "src": "/images/sized/gallery/08-fully-equipped-kitchen-2400.jpg",
-    "w": 2400
-   }
-  ]
- },
  "/images/gallery/16-cabin-exterior-in-daylight.jpg": {
   "w": 1440,
   "variants": [
@@ -345,6 +320,31 @@
    },
    {
     "src": "/images/sized/places/grizzly-2400.jpg",
+    "w": 2400
+   }
+  ]
+ },
+ "/images/places/grocery-tomatoes.jpg": {
+  "w": 2000,
+  "variants": [
+   {
+    "src": "/images/sized/places/grocery-tomatoes-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/grocery-tomatoes-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/places/grocery-tomatoes-1100.jpg",
+    "w": 1100
+   },
+   {
+    "src": "/images/sized/places/grocery-tomatoes-1400.jpg",
+    "w": 1400
+   },
+   {
+    "src": "/images/sized/places/grocery-tomatoes-2400.jpg",
     "w": 2400
    }
   ]
