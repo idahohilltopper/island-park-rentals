@@ -549,6 +549,31 @@
    }
   ]
  },
+ "/images/places/madison-river-frost.jpg": {
+  "w": 2000,
+  "variants": [
+   {
+    "src": "/images/sized/places/madison-river-frost-640.jpg",
+    "w": 640
+   },
+   {
+    "src": "/images/sized/places/madison-river-frost-800.jpg",
+    "w": 800
+   },
+   {
+    "src": "/images/sized/places/madison-river-frost-1100.jpg",
+    "w": 1100
+   },
+   {
+    "src": "/images/sized/places/madison-river-frost-1400.jpg",
+    "w": 1400
+   },
+   {
+    "src": "/images/sized/places/madison-river-frost-2400.jpg",
+    "w": 2400
+   }
+  ]
+ },
  "/images/places/mesa-falls-panorama.jpg": {
   "w": 1800,
   "variants": [
@@ -945,31 +970,6 @@
    },
    {
     "src": "/images/sized/places/thermal-pool-2400.jpg",
-    "w": 2400
-   }
-  ]
- },
- "/images/places/trout-in-clear-water.jpg": {
-  "w": 1800,
-  "variants": [
-   {
-    "src": "/images/sized/places/trout-in-clear-water-640.jpg",
-    "w": 640
-   },
-   {
-    "src": "/images/sized/places/trout-in-clear-water-800.jpg",
-    "w": 800
-   },
-   {
-    "src": "/images/sized/places/trout-in-clear-water-1100.jpg",
-    "w": 1100
-   },
-   {
-    "src": "/images/sized/places/trout-in-clear-water-1400.jpg",
-    "w": 1400
-   },
-   {
-    "src": "/images/sized/places/trout-in-clear-water-2400.jpg",
     "w": 2400
    }
   ]
