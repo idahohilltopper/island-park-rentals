@@ -212,8 +212,9 @@
   },
   "/st-anthony-sand-dunes/": null,
   "/side-by-side-riding-island-park/": {
-    "img": "/images/places/summer-centennials.jpg",
-    "alt": "Summer in the Centennial Mountains near Island Park, Idaho"
+    "img": "/images/places/utv-mountain-trail.jpg",
+    "alt": "A side-by-side parked on a dirt trail on a green mountain ridge under a bright blue sky, with distant snow-capped peaks",
+    "pos": "center 88%"
   },
   "/hunting-island-park-idaho/": {
     "img": "/images/places/high-ridge-autumn.jpg",
