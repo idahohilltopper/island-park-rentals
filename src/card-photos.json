@@ -42,5 +42,17 @@
   "/island-park-weather/": {
     "img": "/images/sized/places/milky-way-peak-640.jpg",
     "alt": "The Milky Way over a mountain peak at night"
+  },
+  "/island-park-best-time-to-visit/": {
+    "img": "/images/sized/places/wildflowers-mountains-640.jpg",
+    "alt": "Wildflowers and sagebrush in a summer meadow with snow-streaked mountains behind"
+  },
+  "/closest-airport-to-yellowstone/": {
+    "img": "/images/sized/places/mountains-at-dusk-640.jpg",
+    "alt": "Snow-dusted mountains at dusk above an open meadow and a wooden fence"
+  },
+  "/ashton-idaho/": {
+    "img": "/images/sized/places/upper-mesa-falls-summer-640.jpg",
+    "alt": "Upper Mesa Falls in summer, with mist rising from the canyon"
   }
 }
